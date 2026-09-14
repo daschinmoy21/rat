@@ -1,8 +1,8 @@
 import email.utils
 import tomllib
-from pathlib import Path
 import urllib.request
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 from rat_producers.extract import extract_entities
 
