@@ -18,7 +18,7 @@ Fix the machine if that fails.
 
 | Change | Where |
 |---|---|
-| Source | plugin, see [docs/plugins.md](docs/plugins.md). Until the loader exists: `producers/rat_producers/` |
+| Source | plugin, see [docs/plugins.md](docs/plugins.md). Loaded by `rat_producers.loader` |
 | Envelope | `events.py` and `Event.scala` in the same PR |
 | Job | `spark/src/main/scala/rat/` |
 | Python lib | `uv add`, commit `uv.lock` |
@@ -36,4 +36,4 @@ Python: `event_id`, `ts_ms`. Scala: `eventId`, `tsMs`. Same fields. Payload stay
 
 Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, small PR, say what you ran (`uv sync`, `sbt compile`).
 
-Scaffold. `Correlate` starts Spark and stops. No Kafka in-tree yet.
+Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` still starts Spark and stops.
