@@ -3,7 +3,7 @@ package rat
 final case class Event(
     eventId: String,
     source: String,
-    entityId: String,
+    entities: List[String],
     tsMs: Long,
     payload: String
 )
