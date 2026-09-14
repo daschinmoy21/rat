@@ -25,6 +25,7 @@ spark-warehouse/
 metastore_db/
 checkpoint/
 derby.log
+rat-cursors.db
 
 result
 result-*

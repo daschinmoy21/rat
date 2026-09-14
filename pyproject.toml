@@ -9,6 +9,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+  "pytest>=8.0.0",
   "ruff>=0.6.0",
 ]
 
@@ -22,3 +23,8 @@ rat-producers = { workspace = true }
 target-version = "py312"
 line-length = 100
 src = ["producers"]
+
+[tool.ruff.lint.per-file-ignores]
+# broad excepts are the boundary policy: retry/DLQ in emit, source isolation in run
+"producers/rat_producers/producer.py" = ["BLE001"]
+"producers/rat_producers/cli.py" = ["BLE001"]

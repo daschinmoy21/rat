@@ -1,0 +1,9 @@
+name = "hn"
+topic = "events.hn"
+interval = "60s"
+
+[payload]
+schema = "schema.json"
+
+[entities]
+from_fields = ["title", "url"]

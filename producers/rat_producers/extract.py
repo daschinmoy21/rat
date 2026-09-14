@@ -1,4 +1,5 @@
-import re 
+import re
+
 _CASHTAG = re.compile(r"\$([A-Za-z]{1,5})\b")
 
 def extract_entities(text:str)->list[str]:

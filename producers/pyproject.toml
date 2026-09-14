@@ -10,3 +10,6 @@ requires-python = ">=3.12"
 dependencies = [
   "kafka-python>=2.0.2",
 ]
+
+[project.scripts]
+rat = "rat_producers.cli:main"

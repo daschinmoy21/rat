@@ -1,0 +1,12 @@
+name = "rss"
+topic = "events.rss"
+interval = "5m"
+
+[config]
+url = "https://hnrss.org/frontpage"
+
+[payload]
+schema = "schema.json"
+
+[entities]
+from_fields = ["title", "link"]
