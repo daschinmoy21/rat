@@ -1,4 +1,5 @@
 .direnv/
+.commandcode/
 .env
 .venv/
 producers/.venv/
@@ -27,3 +28,6 @@ derby.log
 
 result
 result-*
+
+# local learning / practice space (untracked)
+learn/
