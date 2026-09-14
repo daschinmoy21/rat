@@ -1,0 +1,12 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rat-producers"
+version = "0.1.0"
+description = "Kafka producers for multi-source events"
+requires-python = ">=3.12"
+dependencies = [
+  "kafka-python>=2.0.2",
+]

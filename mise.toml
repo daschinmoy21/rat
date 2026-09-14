@@ -1,0 +1,5 @@
+[tools]
+java = "temurin-17"
+python = "3.12"
+sbt = "1.10.11"
+uv = "0.12.11"
