@@ -30,13 +30,19 @@
             python
             uv
             basedpyright
+            ruff # python lint/format LSP via `ruff server`
 
             podman
             docker-compose
 
+            # language servers
             nixd
             yaml-language-server
             bash-language-server
+            taplo # toml: pyproject.toml, plugins/*/plugin.toml
+            vscode-langservers-extracted # json: plugins/*/schema.json
+            typescript-language-server
+            astro-language-server # learn/course site
           ];
 
           shellHook = ''
