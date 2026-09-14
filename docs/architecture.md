@@ -42,6 +42,8 @@ payload     source-specific fields
 
 `entity_id` plus event time is the correlation key. If a source cannot name an entity, it does not belong on the correlated path. It can still land as raw, but it will not join.
 
+Sources themselves are plugins. Core does not import Hacker News. See [plugins.md](plugins.md). Agents on the VPS talk to a CLI/MCP on the core, not to Spark. See [agents.md](agents.md).
+
 ## Spark job
 
 `rat.Correlate` is the Structured Streaming app. It will:

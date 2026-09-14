@@ -33,10 +33,16 @@ Do not put PySpark in `spark/`. Do not have a producer write to Hive. Do not add
 
 ## Adding a source
 
-1. New module under `producers/rat_producers/`. Name it after the source (`host.py`, `svc.py`, whatever it actually is).
-2. Emit `Event` from `events.py`. Set `source`, `entity_id`, `ts_ms`. If you cannot name an entity, it will not join later.
+Target shape is a **plugin** (manifest + adapter + payload schema). Read [docs/plugins.md](docs/plugins.md). The loader is not in-tree yet, so for now:
+
+1. New module under `producers/rat_producers/`. Name it after the source.
+2. Emit the envelope from `events.py`. Put source-specific fields in `payload`. Join keys on the envelope (`entity_id` today, `entities` once that lands).
 3. One Kafka topic per source, same name as `source` unless you have a reason not to.
-4. Leave `Correlate.scala` alone unless the job must learn a new field or a new join.
+4. Leave `Correlate.scala` alone unless the job must learn a new envelope field or a new join.
+
+Do not add PySpark. Do not teach Spark about HN item JSON. That stays in the plugin payload.
+
+A new RSS **feed** is config, not a plugin. A new **kind** of source (HN, stocks, IMAP) is a plugin.
 
 ## Changing the event shape
 

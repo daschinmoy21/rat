@@ -16,8 +16,10 @@ This is still a scaffold. Shared `Event` type, toolchain, docs. No broker, no li
 | See how pieces connect | [docs/architecture.md](docs/architecture.md) |
 | Get a machine working | [docs/setup.md](docs/setup.md) |
 | Change code without making a mess | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Add or change a source | `producers/` |
-| Change the shared event shape | `producers/rat_producers/events.py` **and** `spark/src/main/scala/rat/Event.scala` |
+| Add or change a source | plugin under `plugins/` (see [docs/plugins.md](docs/plugins.md)). Today still `producers/` until the loader exists |
+| Change the shared envelope | `producers/rat_producers/events.py` **and** `spark/src/main/scala/rat/Event.scala` |
+| Payload shape for one source | that plugin's `schema.json` |
+| Agent / VPS tool surface | [docs/agents.md](docs/agents.md) |
 | Correlation, windows, sink | `spark/` |
 | Python deps | `uv add` / `uv remove` at repo root |
 | Scala deps | `spark/build.sbt` |
@@ -26,9 +28,9 @@ This is still a scaffold. Shared `Event` type, toolchain, docs. No broker, no li
 ## Layout
 
 ```
-producers/     Python. One producer per source. Shared Event schema.
+producers/     Python core helpers + envelope. Plugins will own sources.
 spark/         Scala sbt job. Structured Streaming only lives here.
-docs/          Why, architecture, setup.
+docs/          Why, architecture, setup, plugins, agents.
 scripts/       check-deps.sh
 flake.nix      Nix shell (JDK 17, sbt, uv, Metals).
 mise.toml      Same versions without Nix.
@@ -57,4 +59,6 @@ cd spark && sbt compile
 - [docs/overview.md](docs/overview.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/setup.md](docs/setup.md)
+- [docs/plugins.md](docs/plugins.md)
+- [docs/agents.md](docs/agents.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
