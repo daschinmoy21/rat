@@ -1,65 +1,35 @@
 # Architecture
 
 ```
-personal sources
-      │
-      ▼
-Python producers  ──►  Kafka topics (one topic per source)
-                              │
-                              ▼
-                   Scala Spark Structured Streaming
-                   normalize → window → join → score
-                              │
-                              ▼
-                   parquet on HDFS  ──►  Hive tables
+plugins  →  Kafka (events.<source>)
+                →  Spark Structured Streaming
+                →  parquet / HDFS  →  Hive
 ```
 
-Kafka decouples producers from the job. Spark is the only place that knows how sources relate. Hive is read-path SQL, not the ingestion path.
+Kafka buffers. Spark correlates. Hive is read-only SQL.
 
-## Language split
+| Piece | Lang |
+|---|---|
+| Plugins / producers | Python |
+| Job | Scala 2.13, Spark 3.5.3 |
+| Queries | HiveQL |
 
-| Piece | Language | Why |
-|---|---|---|
-| Producers | Python | JSON, APIs, messy source SDKs. uv project under `producers/`. |
-| Correlation job | Scala | Spark's native Structured Streaming API. sbt project under `spark/`. |
-| Queries | HiveQL | Tables on the parquet the job wrote. |
+No PySpark in `spark/`. Producers do not touch Hive. uv for Python, sbt for Scala. [setup.md](setup.md).
 
-Do not mix PySpark and Scala in the same Spark app. Producers never talk to Hive.
-
-Python deps go through uv (`pyproject.toml`, `uv.lock`). Scala deps go through `spark/build.sbt`. The toolchain is JDK 17, sbt 1.10.11, Python 3.12, uv. Nix (`flake.nix`) or mise (`mise.toml`) both pin those. Neither is the Kafka/Hive cluster. See [setup.md](setup.md).
-
-## Event schema
-
-Every producer emits the same shape. Python and Scala both have it.
+## Envelope
 
 ```
-event_id    stable id for this event
-source      which producer (host, svc, feed, …)
-entity_id   what we join on (host, user, ip, …)
-ts_ms       event time, milliseconds
-payload     source-specific fields
+event_id    stable id (hn:123)
+source      plugin name
+entities    join keys, 0..n
+ts_ms       event time
+payload     plugin JSON
 ```
 
-`entity_id` plus event time is the correlation key. If a source cannot name an entity, it does not belong on the correlated path. It can still land as raw, but it will not join.
+No entity → land raw, skip the join. Sources are plugins: [plugins.md](plugins.md).
 
-Sources themselves are plugins. Core does not import Hacker News. See [plugins.md](plugins.md). Agents on the VPS talk to a CLI/MCP on the core, not to Spark. See [agents.md](agents.md).
+## Job
 
-## Spark job
+`rat.Correlate` reads topics, parses the envelope, watermarks `ts_ms`, joins on entity + window, writes parquet. Hive mounts those paths. `sbt run` is `local[*]` until a cluster exists.
 
-`rat.Correlate` is the Structured Streaming app. It will:
-
-1. Read each source topic.
-2. Parse to `Event`.
-3. Watermark on `ts_ms` so late events do not grow state forever.
-4. Join sources on `entity_id` inside a bounded window.
-5. Write parquet to HDFS, partitioned by date (and source if that stays useful).
-
-Hive then mounts those paths as external tables. The job does not INSERT through HiveServer.
-
-Until a cluster exists, `sbt run` uses `local[*]` (`SPARK_MASTER` can override).
-
-## Status
-
-Scaffold only. Flake, uv workspace, sbt project, shared `Event` type. No Kafka broker, no compose stack, no live correlation yet. Getting Kafka to stay up is the next piece. Everything else waits on that.
-
-Where to put a change: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Scaffold. No Kafka in-tree. Next: broker. Code map: [CONTRIBUTING.md](../CONTRIBUTING.md).

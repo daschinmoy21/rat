@@ -1,85 +1,39 @@
 # Contributing
 
-Group repo. Nobody is assigned a lane here. The layout is the contract: producers in Python, the streaming job in Scala, Hive is query-only.
+Python producers. Scala job. Hive is query-only. No PySpark. Producers never write Hive.
 
-## Get a shell
+## Shell
 
-[docs/setup.md](docs/setup.md) is the install page. Short version:
+[docs/setup.md](docs/setup.md). Then:
 
 ```bash
-# Nix
-direnv allow
-
-# not Nix: mise install, or JDK 17 + sbt + uv by hand
-uv sync --frozen
+direnv allow          # Nix
+uv sync --frozen      # always
 ./scripts/check-deps.sh
 ```
 
-`check-deps.sh` wants JDK 17, sbt, uv, Python 3.12+. If that fails, fix the machine before touching code.
+Fix the machine if that fails.
 
-## Where code goes
+## Where
 
-| Change | Directory | Tool |
-|---|---|---|
-| New source / producer | `producers/rat_producers/` | uv, Python 3.12 |
-| Event fields | Python `events.py` **and** Scala `Event.scala` | both |
-| Windows, joins, sink | `spark/src/main/scala/rat/` | sbt |
-| Python libraries | repo root `pyproject.toml` | `uv add`, commit `uv.lock` |
-| Spark libraries | `spark/build.sbt` | sbt |
-| JDK / sbt / Python / uv pins | `flake.nix` **and** `mise.toml` | keep them in sync |
-| Why / architecture / setup | `docs/` | markdown |
+| Change | Where |
+|---|---|
+| Source | plugin, see [docs/plugins.md](docs/plugins.md). Until the loader exists: `producers/rat_producers/` |
+| Envelope | `events.py` and `Event.scala` in the same PR |
+| Job | `spark/src/main/scala/rat/` |
+| Python lib | `uv add`, commit `uv.lock` |
+| Spark lib | `spark/build.sbt` (3.5.3 / 2.13.14) |
+| Tool pins | `flake.nix` and `mise.toml` together |
+| Docs | `docs/` |
 
-Do not put PySpark in `spark/`. Do not have a producer write to Hive. Do not add a second event schema.
+RSS **feed** = config. New **kind** of source (HN, stocks, IMAP) = plugin.
 
-## Adding a source
+## Envelope
 
-Target shape is a **plugin** (manifest + adapter + payload schema). Read [docs/plugins.md](docs/plugins.md). The loader is not in-tree yet, so for now:
+Python: `event_id`, `ts_ms`. Scala: `eventId`, `tsMs`. Same fields. Payload stays plugin JSON.
 
-1. New module under `producers/rat_producers/`. Name it after the source.
-2. Emit the envelope from `events.py`. Put source-specific fields in `payload`. Join keys on the envelope (`entity_id` today, `entities` once that lands).
-3. One Kafka topic per source, same name as `source` unless you have a reason not to.
-4. Leave `Correlate.scala` alone unless the job must learn a new envelope field or a new join.
+## Git
 
-Do not add PySpark. Do not teach Spark about HN item JSON. That stays in the plugin payload.
+Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, small PR, say what you ran (`uv sync`, `sbt compile`).
 
-A new RSS **feed** is config, not a plugin. A new **kind** of source (HN, stocks, IMAP) is a plugin.
-
-## Changing the event shape
-
-Two files, same meaning:
-
-- `producers/rat_producers/events.py`
-- `spark/src/main/scala/rat/Event.scala`
-
-Python uses `event_id`, `ts_ms`. Scala uses `eventId`, `tsMs`. Same fields. If you add one, add it on both sides in the same change.
-
-## Deps
-
-Python:
-
-```bash
-uv add some-lib
-uv remove some-lib
-```
-
-Commit `pyproject.toml` and `uv.lock`. Do not pip-install into the void. Do not add Python packages to `flake.nix`.
-
-Scala: edit `spark/build.sbt`. Spark stays `3.5.3` / Scala `2.13.14` unless the group decides to bump both. `%%` already pulls `_2.13` artifacts.
-
-After a Python dep change, `uv sync --frozen` must work on a clean tree. After a Scala dep change, `cd spark && sbt compile` must work.
-
-## What not to commit
-
-`.venv/`, `spark/target/`, `.metals/`, `.bloop/`, `.direnv/`, `__pycache__/`, `.env`, broker data, Hive warehouses. `.gitignore` already covers the usual ones.
-
-Secrets stay out of git. Kafka passwords, API keys, hostnames that should not be public: env vars or a local file that is gitignored.
-
-## Branches and PRs
-
-`main` is the default branch. Work on a short branch (`producers-host`, `spark-watermark`, `docs-setup`). Open a PR into `main`.
-
-Say what you touched and how you checked it (`uv sync`, `sbt compile`, `./scripts/check-deps.sh`). Small diffs. Do not mix a producer, a Spark rewrite, and a flake bump in one PR unless they are actually one change.
-
-## Status of the repo
-
-Scaffold. `Correlate` starts a local SparkSession and stops. There is no Kafka compose in-tree yet. If you add the broker, put compose and notes under something obvious (`compose/`, `docs/`) and point the README at it.
+Scaffold. `Correlate` starts Spark and stops. No Kafka in-tree yet.
