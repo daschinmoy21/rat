@@ -28,4 +28,4 @@ No entity → land raw, skip the join. Sources are plugins: [plugins.md](plugins
 
 `rat.Correlate` reads topics, parses the envelope, watermarks `ts_ms`, joins on entity + window, writes parquet. Hive mounts those paths. `sbt run` is `local[*]` until a cluster exists.
 
-Kafka is in-tree: [infra/kafka/compose.yml](../infra/kafka/compose.yml) (single-node KRaft, `localhost:9092`). Producers run live against it. Next: the Spark job. Code map: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Kafka is in-tree: [infra/kafka/compose.yml](../infra/kafka/compose.yml) (single-node KRaft, `localhost:9092`). Producers run live against it. Next: Hive + the end-to-end run. Code map: [CONTRIBUTING.md](../CONTRIBUTING.md).

@@ -36,4 +36,4 @@ Python: `event_id`, `ts_ms`. Scala: `eventId`, `tsMs`. Same fields. Payload stay
 
 Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, small PR, say what you ran (`uv sync`, `sbt compile`).
 
-Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` still starts Spark and stops.
+Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` streams both topics through the watermark join into checkpointed Parquet. Next: Hive.
