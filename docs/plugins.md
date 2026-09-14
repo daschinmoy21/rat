@@ -1,5 +1,9 @@
 # Plugins
 
+![hn, rss, and stocks fan into core, then Kafka, then Spark](rat-plugins.jpg)
+
+Source: [rat-plugins.tldraw](rat-plugins.tldraw).
+
 Core does not know HN, stocks, or RSS. A plugin is a directory: manifest, poller, payload schema. Drop it in, restart, new source.
 
 Spark reads the envelope only. If adding a feed needs a Scala rebuild, the split failed.

@@ -1,12 +1,8 @@
 # Architecture
 
-```
-plugins  →  Kafka (events.<source>)
-                →  Spark Structured Streaming
-                →  parquet / HDFS  →  Hive
-```
+![plugins to Kafka to Spark to parquet/HDFS to Hive](rat-pipe.jpg)
 
-Kafka buffers. Spark correlates. Hive is read-only SQL.
+Source: [rat-pipe.tldraw](rat-pipe.tldraw). Kafka buffers. Spark correlates. Hive is read-only SQL.
 
 | Piece | Lang |
 |---|---|
