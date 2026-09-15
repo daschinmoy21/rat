@@ -25,6 +25,7 @@ Fix the machine if that fails.
 | Spark lib | `spark/build.sbt` (3.5.3 / 2.13.14) |
 | Tool pins | `flake.nix` and `mise.toml` together |
 | Topics | `plugins/*/plugin.toml` + one `./scripts/make-topics.sh` run |
+| Ops | `rat status` (broker, cursors, DLQ depth, sinks) · `rat dlq [--topic T] [--n N]` |
 | Docs | `docs/` |
 
 RSS **feed** = config. New **kind** of source (HN, stocks, IMAP) = plugin.
