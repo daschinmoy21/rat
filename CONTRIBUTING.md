@@ -24,6 +24,7 @@ Fix the machine if that fails.
 | Python lib | `uv add`, commit `uv.lock` |
 | Spark lib | `spark/build.sbt` (3.5.3 / 2.13.14) |
 | Tool pins | `flake.nix` and `mise.toml` together |
+| Topics | `plugins/*/plugin.toml` + one `./scripts/make-topics.sh` run |
 | Docs | `docs/` |
 
 RSS **feed** = config. New **kind** of source (HN, stocks, IMAP) = plugin.
