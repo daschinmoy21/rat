@@ -1,5 +1,6 @@
 package rat
 
+import org.apache.spark.sql.SparkSession
 import org.scalatest.funsuite.AnyFunSuite
 
 class RatConfigSpec extends AnyFunSuite {
@@ -71,5 +72,45 @@ class RatConfigSpec extends AnyFunSuite {
     assert(pattern.matcher("events.hn").matches())
     assert(pattern.matcher("events.rss").matches())
     assert(pattern.matcher("events.hn.dlq").matches() == false)
+  }
+
+  test("hive off by default, base follows sink dir") {
+    val c = RatConfig.fromEnv(Map.empty)
+    assert(!c.hiveEnabled)
+    assert(c.hiveMetastoreUri.isEmpty)
+    assert(c.hiveBase == "/tmp/rat")
+    assert(c.hiveRawLocation == "/tmp/rat/events_raw")
+    assert(c.hiveCorrelatedLocation == "/tmp/rat/correlated")
+  }
+
+  test("hive env overrides") {
+    val c = RatConfig.fromEnv(
+      Map(
+        "RAT_HIVE_ENABLED" -> "true",
+        "RAT_HIVE_METASTORE_URI" -> "thrift://localhost:9083",
+        "RAT_HIVE_MSCK_MIN_SECONDS" -> "5",
+        "RAT_SINK_DIR" -> "hdfs://nn/rat"
+      )
+    )
+    assert(c.hiveEnabled)
+    assert(c.hiveMetastoreUri == "thrift://localhost:9083")
+    assert(c.hiveMsckMinSeconds == 5)
+    assert(c.hiveBase == "hdfs://nn/rat")
+    assert(c.hiveRawLocation == "hdfs://nn/rat/events_raw")
+  }
+
+  test("configure wires hive support and metastore uri") {
+    val off = RatConfig.fromEnv(Map.empty)
+    assert(off.sparkConfs.isEmpty)
+
+    val on = RatConfig
+      .fromEnv(Map("RAT_HIVE_ENABLED" -> "true", "RAT_HIVE_METASTORE_URI" -> "thrift://m:9083"))
+    assert(on.sparkConfs == Map("hive.metastore.uris" -> "thrift://m:9083"))
+    on.configure(SparkSession.builder()) // smoke: applies without throwing
+  }
+
+  test("negative msck interval clamps to zero, invalid falls back to 30") {
+    assert(RatConfig.fromEnv(Map("RAT_HIVE_MSCK_MIN_SECONDS" -> "-5")).hiveMsckMinSeconds == 0)
+    assert(RatConfig.fromEnv(Map("RAT_HIVE_MSCK_MIN_SECONDS" -> "junk")).hiveMsckMinSeconds == 30)
   }
 }

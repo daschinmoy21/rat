@@ -3,17 +3,53 @@ package rat
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.streaming.Trigger
+import org.apache.spark.sql.streaming.StreamingQueryListener
 import org.apache.spark.sql.types._
 
 object Correlate {
+  private val log = org.slf4j.LoggerFactory.getLogger(getClass)
+
   def main(args: Array[String]): Unit = {
     val cfg = RatConfig.fromEnv(sys.env)
 
-    val spark = SparkSession
-      .builder()
-      .appName("rat-correlate")
-      .master(cfg.master)
+    val spark = cfg
+      .configure(
+        SparkSession
+          .builder()
+          .appName("rat-correlate")
+          .master(cfg.master)
+      )
       .getOrCreate()
+
+    if (cfg.hiveEnabled) {
+      Hive.bootstrap(spark, cfg)
+      // Register partitions as each micro-batch lands so Hive reads stay
+      // fresh — throttled: at most one MSCK per RAT_HIVE_MSCK_MIN_SECONDS,
+      // CAS'd so both sinks' progress events cannot repair concurrently.
+      // A failed repair rolls the throttle back so the next batch retries,
+      // and never throws into the listener bus.
+      val lastMsck = new java.util.concurrent.atomic.AtomicLong(0L)
+      spark.streams.addListener(new StreamingQueryListener {
+        override def onQueryProgress(e: StreamingQueryListener.QueryProgressEvent): Unit = {
+          val now = System.currentTimeMillis()
+          val last = lastMsck.get()
+          if (
+            now - last >= cfg.hiveMsckMinSeconds * 1000L &&
+            lastMsck.compareAndSet(last, now)
+          ) {
+            try {
+              Hive.msck(spark)
+            } catch {
+              case e: Exception =>
+                log.error("MSCK REPAIR failed; will retry next batch", e)
+                lastMsck.compareAndSet(now, last)
+            }
+          }
+        }
+        override def onQueryStarted(e: StreamingQueryListener.QueryStartedEvent): Unit = {}
+        override def onQueryTerminated(e: StreamingQueryListener.QueryTerminatedEvent): Unit = {}
+      })
+    }
 
     val raw = spark.readStream
       .format("kafka")

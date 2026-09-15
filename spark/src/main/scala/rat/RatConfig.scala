@@ -1,5 +1,7 @@
 package rat
 
+import org.apache.spark.sql.SparkSession
+
 /** Runtime config from the environment. Defaults match the in-tree single-node setup. */
 final case class RatConfig(
     bootstrap: String,
@@ -9,11 +11,30 @@ final case class RatConfig(
     watermark: String,
     startingOffsets: String,
     trigger: Option[String],
-    master: String
+    master: String,
+    hiveEnabled: Boolean,
+    hiveMetastoreUri: String,
+    hiveBase: String,
+    hiveMsckMinSeconds: Int
 ) {
   def correlatedPath: String = withScheme(s"$sinkDir/correlated")
   def rawPath: String = withScheme(s"$sinkDir/events_raw")
   def checkpoint(name: String): String = withScheme(s"$checkpointDir/$name")
+
+  /** Hive table locations follow the metastore's filesystem, not the sink scheme. */
+  def hiveRawLocation: String = s"$hiveBase/events_raw"
+  def hiveCorrelatedLocation: String = s"$hiveBase/correlated"
+
+  /** Spark confs implied by the Hive layer (metastore thrift endpoint). */
+  def sparkConfs: Map[String, String] =
+    if (hiveMetastoreUri.isEmpty) Map.empty
+    else Map("hive.metastore.uris" -> hiveMetastoreUri)
+
+  /** Shared session setup: Hive support + thrift metastore when configured. */
+  def configure(builder: SparkSession.Builder): SparkSession.Builder = {
+    val withHive = if (hiveEnabled) builder.enableHiveSupport() else builder
+    sparkConfs.foldLeft(withHive)((b, kv) => b.config(kv._1, kv._2))
+  }
 
   private def withScheme(path: String): String =
     if (path.contains("://")) path else s"file://$path"
@@ -30,7 +51,11 @@ object RatConfig {
     watermark = "10 minutes",
     startingOffsets = "latest",
     trigger = None,
-    master = "local[*]"
+    master = "local[*]",
+    hiveEnabled = false,
+    hiveMetastoreUri = "",
+    hiveBase = "/tmp/rat",
+    hiveMsckMinSeconds = 30
   )
 
   def fromEnv(env: Map[String, String]): RatConfig = {
@@ -43,7 +68,15 @@ object RatConfig {
       watermark = env.getOrElse("RAT_WATERMARK", defaults.watermark),
       startingOffsets = env.getOrElse("RAT_STARTING_OFFSETS", defaults.startingOffsets),
       trigger = env.get("RAT_TRIGGER").map(_.trim).filter(_.nonEmpty),
-      master = env.getOrElse("SPARK_MASTER", defaults.master)
+      master = env.getOrElse("SPARK_MASTER", defaults.master),
+      hiveEnabled = env.get("RAT_HIVE_ENABLED").contains("true"),
+      hiveMetastoreUri = env.getOrElse("RAT_HIVE_METASTORE_URI", defaults.hiveMetastoreUri),
+      hiveBase = env.getOrElse("RAT_HIVE_BASE", sinkDir),
+      hiveMsckMinSeconds = env
+        .getOrElse("RAT_HIVE_MSCK_MIN_SECONDS", "30")
+        .toIntOption
+        .map(_.max(0))
+        .getOrElse(30)
     )
   }
 }
