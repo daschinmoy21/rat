@@ -1,0 +1,41 @@
+services:
+  metastore:
+    image: docker.io/apache/hive:3.1.3
+    container_name: rat-hive-metastore
+    # host network: the metastore resolves table LOCATIONs itself, so it must
+    # see the same localhost:8020 (NameNode) the host-side Spark uses
+    network_mode: host
+    environment:
+      SERVICE_NAME: metastore
+      DB_DRIVER: derby
+      METASTORE_PORT: "9083"
+      HIVE_CUSTOM_CONF_DIR: /custom-conf
+      IS_RESUME: "true"   # entrypoint skips init; the wrapper below handles it
+    entrypoint: >
+      /bin/sh -c '
+      if ! /opt/hive/bin/schematool -dbType derby -info >/dev/null 2>&1; then
+        echo "initializing metastore schema";
+        /opt/hive/bin/schematool -dbType derby -initSchema;
+      fi;
+      exec /entrypoint.sh'
+    volumes:
+      - ./conf:/custom-conf:ro
+
+  hiveserver2:
+    image: docker.io/apache/hive:3.1.3
+    container_name: rat-hiveserver2
+    network_mode: host
+    environment:
+      SERVICE_NAME: hiveserver2
+      DB_DRIVER: derby
+      HIVE_CUSTOM_CONF_DIR: /custom-conf
+      IS_RESUME: "true"
+    entrypoint: >
+      /bin/sh -c '
+      if ! /opt/hive/bin/schematool -dbType derby -info >/dev/null 2>&1; then
+        echo "initializing metastore schema";
+        /opt/hive/bin/schematool -dbType derby -initSchema;
+      fi;
+      exec /entrypoint.sh'
+    volumes:
+      - ./conf:/custom-conf:ro
