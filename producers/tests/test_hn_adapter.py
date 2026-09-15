@@ -14,7 +14,7 @@ story = {"id": 1, "type": "story", "time": 1725200000,
 job = {"id": 2, "type": "job", "time": 1725200001, "title": "hire me"}
 
 
-def fake_urlopen(req):
+def fake_urlopen(req, timeout=None):
     if "topstories" in str(req):
         return io.BytesIO(json.dumps([1, 2]).encode())
     item = story if "1.json" in str(req) else job

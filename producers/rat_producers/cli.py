@@ -1,12 +1,15 @@
 import argparse
 import logging
 import os
+import signal
+import threading
 import time
 from pathlib import Path
 
 from rat_producers.app import App
 from rat_producers.loader import load_all
-from rat_producers.producer import connect, emit
+from rat_producers.producer import connect, dlq, emit
+from rat_producers.schema import check
 
 log = logging.getLogger("rat")
 
@@ -16,12 +19,17 @@ def _seconds(interval: str) -> int:
     return n * {"s": 1, "m": 60, "h": 3600}[unit]
 
 
-def run(app, cursor, producer, once=False):
-    while True:
+def run(app, cursor, producer, once=False, stop=None):
+    while stop is None or not stop.is_set():
         for name, poll in sorted(app.sources.items()):
             try:
                 since = cursor.get(name)
+                validator = app.schemas.get(name)
                 for env in poll(since):
+                    problems = check(env, validator)
+                    if problems:
+                        dlq(env, producer, "schema: " + "; ".join(problems))
+                        continue
                     emit(env, producer)
                     cursor.put(name, env["ts_ms"])
             except Exception as err:
@@ -30,7 +38,11 @@ def run(app, cursor, producer, once=False):
             return
         if not app.manifests:
             return
-        time.sleep(min(_seconds(m["interval"]) for m in app.manifests.values()))
+        wait = min(_seconds(m["interval"]) for m in app.manifests.values())
+        if stop is None:
+            time.sleep(wait)
+        elif stop.wait(wait):
+            return
 
 
 def load_app():
@@ -61,4 +73,12 @@ def main(argv=None):
         logging.getLogger("kafka").setLevel(logging.WARNING)
         from rat_producers.cursor import Cursor
         db = os.environ.get("RAT_CURSOR_DB", "rat-cursors.db")
-        run(app, Cursor(Path(db)), connect(), once=args.once)
+        stop = threading.Event()
+        signal.signal(signal.SIGTERM, lambda *_: stop.set())
+        signal.signal(signal.SIGINT, lambda *_: stop.set())
+        producer = connect()
+        try:
+            run(app, Cursor(Path(db)), producer, once=args.once, stop=stop)
+        finally:
+            producer.flush(timeout=10)
+            producer.close(timeout=10)

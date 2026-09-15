@@ -25,7 +25,7 @@ FEED = """<?xml version="1.0" encoding="UTF-8"?>
 """
 
 
-def fake_urlopen(req):
+def fake_urlopen(req, timeout=None):
     return io.BytesIO(FEED.encode())
 
 
