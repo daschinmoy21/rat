@@ -11,6 +11,8 @@ podman-compose -f infra/kafka/compose.yml up -d   # single-node KRaft, localhost
 
 Topic creation is not automatic (`auto.create.topics.enable=false` on purpose): new source = plugin + one `make-topics.sh` run. Idempotent; re-run any time.
 
+Running the whole pipe as a system (services, verification, DLQ, checkpoints): [ops.md](ops.md).
+
 Compose / Metals / scala-cli later, when the cluster exists.
 
 ## Nix

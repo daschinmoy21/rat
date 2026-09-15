@@ -1,0 +1,16 @@
+[Unit]
+Description=rat correlate (Spark structured streaming -> Parquet + Hive)
+Wants=rat-kafka.service rat-hive-metastore.service
+After=rat-kafka.service rat-hive-metastore.service network-online.target
+
+[Service]
+WorkingDirectory=%h/rat/spark
+Environment=RAT_HIVE_ENABLED=true
+Environment=RAT_HIVE_METASTORE_URI=thrift://localhost:9083
+Environment="RAT_TRIGGER=30 seconds"
+ExecStart=%h/rat/scripts/run-in-nix.sh sbt -batch run
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
