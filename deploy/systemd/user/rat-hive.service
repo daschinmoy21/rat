@@ -1,0 +1,14 @@
+[Unit]
+Description=rat Hive (metastore thrift :9083 + HiveServer2 :10000, host network)
+Wants=rat-hdfs.service
+After=rat-hdfs.service network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=%h/rat
+ExecStart=%h/rat/scripts/run-in-nix.sh podman-compose -f infra/hive/compose.yml up -d
+ExecStop=%h/rat/scripts/run-in-nix.sh podman-compose -f infra/hive/compose.yml down
+
+[Install]
+WantedBy=default.target
