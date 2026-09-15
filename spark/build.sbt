@@ -10,6 +10,7 @@ lazy val sparkJob = (project in file("."))
     libraryDependencies ++= Seq(
       "org.apache.spark" %% "spark-sql" % sparkV,
       "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkV,
+      "org.apache.spark" %% "spark-hive" % sparkV,
       "org.scalatest" %% "scalatest" % "3.2.19" % Test
     ),
     javacOptions ++= Seq("--release", "17"),
