@@ -2,6 +2,15 @@
 
 JDK 17, sbt 1.10.11, Python 3.12, uv 0.12+. `./scripts/check-deps.sh` checks that.
 
+## Broker + topics
+
+```bash
+podman-compose -f infra/kafka/compose.yml up -d   # single-node KRaft, localhost:9092
+./scripts/make-topics.sh                          # events.* + DLQs from plugin manifests
+```
+
+Topic creation is not automatic (`auto.create.topics.enable=false` on purpose): new source = plugin + one `make-topics.sh` run. Idempotent; re-run any time.
+
 Compose / Metals / scala-cli later, when the cluster exists.
 
 ## Nix
