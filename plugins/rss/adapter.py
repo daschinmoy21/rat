@@ -21,7 +21,7 @@ def _ts_ms(pub_date):
 
 
 def poll(since_ms=None):
-    with urllib.request.urlopen(_feed_url()) as r:
+    with urllib.request.urlopen(_feed_url(), timeout=10) as r:
         root = ET.fromstring(r.read())
     envelopes = []
     for item in root.findall(".//item"):
