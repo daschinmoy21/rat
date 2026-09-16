@@ -1,6 +1,6 @@
 # Ops
 
-Running the pipe as a system on one machine: broker, metastore, producers,
+Running the pipe as a system on one machine: broker, HDFS, Hive, producers,
 job, query. Dependencies come from the flake — every command assumes the
 [nix develop](setup.md) shell (or the unit wrappers that do the same).
 
@@ -10,12 +10,13 @@ job, query. Dependencies come from the flake — every command assumes the
 flowchart LR
   K["rat-kafka<br/>broker"] --> P["rat-producers<br/>plugin sources"]
   K --> S["rat-spark<br/>Correlate"]
-  M["rat-hive-metastore<br/>thrift :9083"] --> S
+  H["rat-hdfs<br/>NameNode :8020 + DataNode"] --> S
+  M["rat-hive<br/>metastore :9083 + HS2 :10000"] --> S
   P --> K
-  S --> H["rat_events + correlated<br/>Hive over Parquet"]
+  S --> T["rat_events + correlated<br/>Hive over HDFS"]
 ```
 
-1. `systemctl --user enable --now rat-kafka.service rat-hive-metastore.service`
+1. `systemctl --user enable --now rat-kafka.service rat-hdfs.service rat-hive.service`
 2. `./scripts/make-topics.sh` (also runs as `ExecStartPre` of the producers unit)
 3. `systemctl --user enable --now rat-producers.service rat-spark.service`
 
@@ -23,40 +24,77 @@ Not on NixOS / prefer by hand:
 
 ```bash
 podman-compose -f infra/kafka/compose.yml up -d
-podman-compose -f infra/hive-metastore/compose.yml up -d
+podman-compose -f infra/hadoop/compose.yml up -d
+podman-compose -f infra/hive/compose.yml up -d     # after HDFS is up
 ./scripts/make-topics.sh
 nix develop -c uv run rat run
 cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083 \
+  RAT_SINK_DIR=hdfs://localhost:8020/rat \
+  RAT_CHECKPOINT_DIR=hdfs://localhost:8020/rat/checkpoints \
   nix develop -c sbt -batch run
 ```
 
 Without units, keep those in terminals or tmux; `rat run` stops cleanly on
 SIGTERM/SIGINT (cursor is already durable, producer flushes on exit).
 
+## Query
+
+Through HiveServer2 — the read surface for humans:
+
+```bash
+podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive \
+  -e "SELECT entity, a_id, b_id, ts_ms FROM correlated ORDER BY dt DESC"
+podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive \
+  -e "SELECT event_id, source, ts_ms FROM rat_events WHERE source='hn' LIMIT 10"
+```
+
+Tables live in the `default` database (`correlated`, `rat_events`). Plain
+filters and `LIMIT`s run as fetch tasks; heavy `ORDER BY`s need a real
+execution engine (Tez/MR) which the single-node image does not provide —
+do analytics through Spark:
+
+```bash
+cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083 \
+  RAT_SINK_DIR=hdfs://localhost:8020/rat nix develop -c sbt -batch "runMain rat.Query"
+```
+
 ## Verify any time
 
 - `uv run rat status` — broker up, cursor age per source, DLQ depth, sink sizes.
 - `uv run rat dlq [--topic T] [--n N]` — what landed in the DLQ and why.
-- `cd spark && nix develop -c sbt -batch "runMain rat.Query"` — latest raw
-  envelopes + latest correlated pairs.
-- `./scripts/smoke.sh` — full fixture-driven end-to-end run; exits non-zero
-  if the pair is not exactly one row. Uses its own sink under `/tmp` and
-  refuses to wipe a custom durable `RAT_SINK_DIR`.
+- `podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive -e "SELECT ..."`
+- `podman exec rat-namenode hdfs dfs -ls /rat/correlated` — partitions on HDFS.
+- `./scripts/smoke.sh` — full fixture-driven end-to-end run against the local
+  (dev) profile; exits non-zero if the pair is not exactly one row.
 
 ## Where state lives
 
 | Path | What |
 |---|---|
 | podman volume `kafka-data` | broker log segments |
-| podman volume `hive-metastore-data` | metastore Derby db |
+| podman volume `rat_hdfs-namenode` | NameNode fsimage/edits (formatted on first boot only) |
+| podman volume `rat_hdfs-datanode` | HDFS block storage — **wipe both together** or blocks go missing |
+| metastore Derby (container layer) | table definitions only — rebuilt by the job/`rat.Query` on start, by design |
 | `$RAT_CURSOR_DB` (`~/.local/state/rat/cursors.db` under the unit) | per-source cursors |
-| `$RAT_SINK_DIR` (`/tmp/rat` default) | `correlated/` + `events_raw/` Parquet + `checkpoints/` |
+| `hdfs://localhost:8020/rat` | `correlated/` + `events_raw/` Parquet + `checkpoints/` |
 | `$RAT_DLQ_SPOOL` (`~/.local/state/rat/dlq-spool/`) | rows that failed even the DLQ write |
 
-Deleting a sink dir orphans its checkpoint: drop both together
-(`correlated/` + `checkpoints/correlate`), or the job replays into stale
-offsets. `/tmp/rat` is scratch — set `RAT_SINK_DIR` to something durable
-(`RAT_SINK_DIR=$HOME/rat-sinks`) before pointing Hive at it seriously.
+The metastore schema is intentionally ephemeral: tables are EXTERNAL, the
+files are the source of truth, and `rat.Hive` re-creates the definitions at
+startup. Wiping the metastore loses nothing.
+
+Deleting a sink tree orphans its checkpoint: drop both together
+(`/rat/correlated` + `/rat/checkpoints/correlate`), or the job replays into
+stale offsets. Deleting the **datanode volume alone** loses every block the
+namenode still references — wipe `rat_hdfs-namenode` + `rat_hdfs-datanode`
+as a pair.
+
+## Local (dev) profile
+
+The smoke script and default `RAT_SINK_DIR` point at local files
+(`/tmp/rat-smoke`, `/tmp/rat`) — same clauses, `file://` instead of
+`hdfs://`, Hive layer off. CI runs the smoke this way. Nothing in the job
+changes between profiles: paths that carry a scheme are used as-is.
 
 ## DLQ
 
@@ -77,10 +115,10 @@ REPAIR TABLE correlated;` yourself ([hive/rat_events.sql](../hive/rat_events.sql
 
 ## Cluster swap-in
 
-Everything is env: `RAT_SINK_DIR=hdfs://nn/rat` (+ matching
-`RAT_CHECKPOINT_DIR`), `RAT_HIVE_BASE=hdfs://nn/rat` for the table
-locations, `RAT_HIVE_METASTORE_URI` at the cluster metastore. No code
-changes — the same clauses the course and docs promised.
+The in-tree stack is a single-node cluster. Moving to real hardware is env
+only: `RAT_SINK_DIR` / `RAT_CHECKPOINT_DIR` / `RAT_HIVE_BASE` at the real
+NameNode (`hdfs://realnn:8020/rat`), `RAT_HIVE_METASTORE_URI` at the real
+metastore. No code changes — the same clauses the course and docs promised.
 
 ## Retention
 

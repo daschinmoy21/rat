@@ -38,4 +38,4 @@ Python: `event_id`, `ts_ms`. Scala: `eventId`, `tsMs`. Same fields. Payload stay
 
 Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, small PR, say what you ran (`uv sync`, `sbt compile`).
 
-Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` streams the `events.*` topics through the watermark join into checkpointed Parquet; with `RAT_HIVE_ENABLED=true` + a metastore ([infra/hive-metastore/compose.yml](infra/hive-metastore/compose.yml)) those land as Hive tables. `sbt "runMain rat.Query"` reads them back.
+Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` streams the `events.*` topics through the watermark join into checkpointed Parquet; with `RAT_HIVE_ENABLED=true` + HDFS and a metastore ([infra/hadoop](infra/hadoop/compose.yml) + [infra/hive](infra/hive/compose.yml)) those land as Hive tables over HDFS. `sbt "runMain rat.Query"` reads them back. Runbook: [docs/ops.md](docs/ops.md).

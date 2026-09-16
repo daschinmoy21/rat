@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- hiveserver2 uses the shared metastore; the metastore itself serves it -->
+    <property>
+        <name>hive.metastore.uris</name>
+        <value>thrift://localhost:9083</value>
+    </property>
+    <property>
+        <name>hive.metastore.warehouse.dir</name>
+        <value>hdfs://localhost:8020/rat/warehouse</value>
+    </property>
+    <property>
+        <name>hive.exec.scratchdir</name>
+        <value>hdfs://localhost:8020/rat/scratch</value>
+    </property>
+    <!-- run queries as the hiveserver2 user; no hadoop proxyuser setup needed -->
+    <property>
+        <name>hive.server2.enable.doAs</name>
+        <value>false</value>
+    </property>
+    <!-- HIVE-19054: the notification API is admin-only by default and HS2's
+         init calls it — allow for a single-tenant stack -->
+    <property>
+        <name>hive.metastore.event.db.notification.api.auth</name>
+        <value>false</value>
+    </property>
+</configuration>
