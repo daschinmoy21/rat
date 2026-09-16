@@ -41,18 +41,31 @@ eng() {  # run a container-engine command through the same prefix
 }
 
 echo "== broker =="
-if ! eng container inspect rat-kafka >/dev/null 2>&1; then
-  if command -v podman-compose >/dev/null 2>&1 || [ "$ENGINE" = "nix-podman" ]; then
-    $PREFIX podman-compose -f infra/kafka/compose.yml up -d
-  else
-    docker compose -f infra/kafka/compose.yml up -d
-  fi
+# Always up -d: inspect succeeds for a stopped container, and a rerun
+# should start it rather than spin on exec failures.
+if command -v podman-compose >/dev/null 2>&1 || [ "$ENGINE" = "nix-podman" ]; then
+  $PREFIX podman-compose -f infra/kafka/compose.yml up -d
+else
+  docker compose -f infra/kafka/compose.yml up -d
 fi
+
+fail_broker() {
+  echo "broker never came up" >&2
+  eng ps -a --filter "name=rat-kafka" >&2 || true
+  eng logs --tail 80 rat-kafka >&2 || true
+  exit 1
+}
+
+# JVM Kafka + first KRaft format on Actions is often well past 60s.
+# Probe 127.0.0.1 inside the container so localhost -> ::1 cannot miss
+# an IPv4-only bind. Bail early if the container itself has exited.
 i=0
 until eng exec rat-kafka /opt/kafka/bin/kafka-broker-api-versions.sh \
-    --bootstrap-server "$BOOTSTRAP" >/dev/null 2>&1; do
+    --bootstrap-server 127.0.0.1:9092 >/dev/null 2>&1; do
   i=$((i + 1))
-  [ "$i" -gt 30 ] && echo "broker never came up" >&2 && exit 1
+  [ "$i" -gt 90 ] && fail_broker
+  running=$(eng inspect -f '{{.State.Running}}' rat-kafka 2>/dev/null || echo false)
+  [ "$running" = "true" ] || fail_broker
   sleep 2
 done
 
@@ -74,7 +87,7 @@ echo "== correlate (bounded run) =="
 rc=0
 (cd spark && RAT_SINK_DIR="$SINK_DIR" RAT_BOOTSTRAP="$BOOTSTRAP" \
   RAT_STARTING_OFFSETS=earliest RAT_TRIGGER="2 seconds" \
-  timeout --signal=INT --kill-after=15 240 $PREFIX sbt -batch "runMain rat.Correlate") || rc=$?
+  timeout --signal=INT --kill-after=15 420 $PREFIX sbt -batch "runMain rat.Correlate") || rc=$?
 case "$rc" in
   0|124|130|143) ;;  # clean stop and the expected timeout/INT exits
   *) echo "Correlate failed rc=$rc" >&2; exit "$rc" ;;
