@@ -54,8 +54,10 @@ Hive is read-only SQL over the Parquet the job wrote — no connector, no second
 
 `RAT_HIVE_ENABLED=true` turns the layer on: the job enables Hive support, bootstraps the tables, and repairs partitions after micro-batches — throttled to one `MSCK REPAIR TABLE` per `RAT_HIVE_MSCK_MIN_SECONDS` (30s default), so fresh partitions never wait for a human and the metastore is not hammered per batch. `rat.Query` (`sbt "runMain rat.Query"`) queries the same tables; without Hive enabled it mounts the Parquet paths directly.
 
-The metastore is a separate process, not a lock inside the job: [infra/hive-metastore/compose.yml](../infra/hive-metastore/compose.yml) (single-node, Derby, `localhost:9083`). Point both the job and the query at it with `RAT_HIVE_METASTORE_URI=thrift://localhost:9083`; a cluster metastore is the same env var. DDL is mirrored in [hive/rat_events.sql](../hive/rat_events.sql) — keep it in sync with `rat.Hive`.
+The metastore is a separate process, not a lock inside the job: [infra/hive/compose.yml](../infra/hive/compose.yml) (Hive 3.1.3 — metastore thrift `localhost:9083` + HiveServer2 `localhost:10000` for beeline, on host network so table locations resolve the same for Spark and Hive). Spark 3.5's Hive 2.3.9 client is the compatibility ceiling: metastore 3.1.3, not 4.x. DDL is mirrored in [hive/rat_events.sql](../hive/rat_events.sql) — keep it in sync with `rat.Hive`.
+
+Storage follows the same pattern: [infra/hadoop/compose.yml](../infra/hadoop/compose.yml) is a single-node HDFS (NameNode :8020 + DataNode), and the prod units point the sinks at `hdfs://localhost:8020/rat`. Local paths (`file://`) stay the dev/smoke profile — paths that carry a scheme are used as-is, so a real cluster is a hostname change.
 
 ## Infra
 
-Kafka is in-tree: [infra/kafka/compose.yml](../infra/kafka/compose.yml) (single-node KRaft, `localhost:9092`). Producers run live against it. Code map: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Kafka is in-tree: [infra/kafka/compose.yml](../infra/kafka/compose.yml) (single-node KRaft, `localhost:9092`). Producers run live against it. Runbook: [ops.md](ops.md). Code map: [CONTRIBUTING.md](../CONTRIBUTING.md).

@@ -1,0 +1,15 @@
+[Unit]
+Description=rat producers (plugin sources -> Kafka)
+Wants=rat-kafka.service
+After=rat-kafka.service network-online.target
+
+[Service]
+WorkingDirectory=%h/rat
+Environment=RAT_CURSOR_DB=%h/.local/state/rat/cursors.db
+ExecStartPre=%h/rat/scripts/run-in-nix.sh %h/rat/scripts/make-topics.sh
+ExecStart=%h/rat/scripts/run-in-nix.sh uv run rat run
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
