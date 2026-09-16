@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Kafka producers for multi-source events"
 requires-python = ">=3.12"
 dependencies = [
+  "jsonschema>=4.21",
   "kafka-python>=2.0.2",
 ]
 

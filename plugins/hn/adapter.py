@@ -10,13 +10,13 @@ def register(app):
 
 def _item(item_id):
     url = f"https://hacker-news.firebaseio.com/v0/item/{item_id}.json"
-    with urllib.request.urlopen(url) as r:
+    with urllib.request.urlopen(url, timeout=10) as r:
         return json.load(r)
 
 
 def poll(since_ms=None):
     with urllib.request.urlopen(
-        "https://hacker-news.firebaseio.com/v0/topstories.json"
+        "https://hacker-news.firebaseio.com/v0/topstories.json", timeout=10
     ) as r:
         ids = json.load(r)[:30]
     envelopes = []
