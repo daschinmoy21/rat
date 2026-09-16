@@ -18,17 +18,18 @@ else
   PREFIX=""
 fi
 
-# One container engine for every exec call: podman when present (this box,
-# possibly via the flake), docker otherwise (CI).
-if command -v podman >/dev/null 2>&1; then
+# Engine and compose must be a pair. ubuntu-latest now ships podman
+# without podman-compose: picking podman then falling back to
+# `docker compose` starts a container the later `podman exec` cannot see.
+if command -v podman >/dev/null 2>&1 && command -v podman-compose >/dev/null 2>&1; then
   ENGINE=podman
 elif command -v nix >/dev/null 2>&1 && [ -f "$ROOT/flake.nix" ] \
-     && $PREFIX sh -c 'command -v podman >/dev/null 2>&1'; then
+     && $PREFIX sh -c 'command -v podman >/dev/null 2>&1 && command -v podman-compose >/dev/null 2>&1'; then
   ENGINE="nix-podman"
 elif command -v docker >/dev/null 2>&1; then
   ENGINE=docker
 else
-  echo "no container engine (podman/docker) found" >&2
+  echo "no container engine (podman-compose or docker) found" >&2
   exit 1
 fi
 
@@ -40,14 +41,20 @@ eng() {  # run a container-engine command through the same prefix
   fi
 }
 
-echo "== broker =="
+compose_up() {
+  if [ "$ENGINE" = "docker" ]; then
+    docker compose -f infra/kafka/compose.yml up -d
+  elif [ "$ENGINE" = "nix-podman" ]; then
+    $PREFIX podman-compose -f infra/kafka/compose.yml up -d
+  else
+    podman-compose -f infra/kafka/compose.yml up -d
+  fi
+}
+
+echo "== broker ($ENGINE) =="
 # Always up -d: inspect succeeds for a stopped container, and a rerun
 # should start it rather than spin on exec failures.
-if command -v podman-compose >/dev/null 2>&1 || [ "$ENGINE" = "nix-podman" ]; then
-  $PREFIX podman-compose -f infra/kafka/compose.yml up -d
-else
-  docker compose -f infra/kafka/compose.yml up -d
-fi
+compose_up
 
 fail_broker() {
   echo "broker never came up" >&2
