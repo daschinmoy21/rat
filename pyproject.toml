@@ -28,3 +28,5 @@ src = ["producers"]
 # broad excepts are the boundary policy: retry/DLQ in emit, source isolation in run
 "producers/rat_producers/producer.py" = ["BLE001"]
 "producers/rat_producers/cli.py" = ["BLE001"]
+# broker probe answers a boolean: any failure means down
+"producers/rat_producers/status.py" = ["BLE001"]
