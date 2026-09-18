@@ -1,9 +1,11 @@
 """Synthetic envelopes for the end-to-end smoke.
 
-A $AAPL pair (one per source, 30s apart, inside the watermark window)
-plus one entity-less row for the raw path. Event ids carry the run
-timestamp, so reruns add fresh pairs instead of duplicating. Prints
-the timestamp for the smoke script's assertion.
+A $AAPL trio (one per source — hn, rss, stocks — 30s steps, inside the
+watermark window) plus one entity-less row for the raw path. The third
+source pins the any-source correlate: a hard-coded hn/rss join would
+still emit the hn-rss pair but drop the two stocks pairs. Event ids
+carry the run timestamp, so reruns add fresh pairs instead of
+duplicating. Prints the timestamp for the smoke script's assertion.
 """
 
 import sys
@@ -34,6 +36,10 @@ def main():
         emit(envelope(
             f"smoke:rss:{ts}", "rss", ts + 30_000, ["AAPL"],
             {"title": "Smoke $AAPL follow-up", "link": "https://example.com/smoke-rss"},
+        ), producer)
+        emit(envelope(
+            f"smoke:stocks:{ts}", "stocks", ts + 60_000, ["AAPL"],
+            {"symbol": "AAPL", "price": 250.0},
         ), producer)
         emit(envelope(
             f"smoke:raw:{ts}", "rss", ts, [],

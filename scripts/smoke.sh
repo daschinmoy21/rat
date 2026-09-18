@@ -78,6 +78,12 @@ done
 
 echo "== topics =="
 $PREFIX ./scripts/make-topics.sh
+# The fixture pairs a third source ("stocks") against hn/rss to pin the
+# any-source correlate. It has no plugin manifest, and the broker runs with
+# auto-create off, so its topic is created here. Idempotent.
+eng exec rat-kafka /opt/kafka/bin/kafka-topics.sh \
+  --bootstrap-server "$BOOTSTRAP" --create --if-not-exists \
+  --topic events.stocks --partitions 1 --replication-factor 1 >/dev/null
 
 echo "== fixture =="
 case "$SINK_DIR" in
@@ -107,10 +113,16 @@ echo "$OUT" | tail -30
 
 RAW_ROWS=$(echo "$OUT" | grep -c "smoke:raw:$TS" || true)
 PAIR_ROWS=$(echo "$OUT" | grep -cE "smoke:hn:$TS.*smoke:rss:$TS" || true)
+STOCK_PAIRS=$(echo "$OUT" | grep -cE "smoke:(hn|rss):$TS.*smoke:stocks:$TS" || true)
 
 echo "raw rows for this run: $RAW_ROWS (need 1)"
 echo "correlated pair rows: $PAIR_ROWS (need exactly 1)"
+echo "stocks pair rows: $STOCK_PAIRS (need exactly 2: hn-stocks + rss-stocks)"
 [ "$RAW_ROWS" -ge 1 ] || { echo "FAIL: raw envelope missing from rat_events" >&2; exit 1; }
 [ "$PAIR_ROWS" -eq 1 ] || { echo "FAIL: expected exactly one correlated row" >&2; exit 1; }
+[ "$STOCK_PAIRS" -eq 2 ] || {
+  echo "FAIL: expected exactly two stocks pairs — correlate must pair any sources" >&2
+  exit 1
+}
 
-echo "SMOKE OK — raw row queryable, AAPL pair = one row"
+echo "SMOKE OK — raw row queryable, AAPL pair = one row, stocks pairs = two"
