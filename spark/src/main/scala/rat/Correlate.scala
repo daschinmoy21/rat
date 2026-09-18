@@ -1,6 +1,6 @@
 package rat
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.streaming.StreamingQueryListener
@@ -71,39 +71,6 @@ object Correlate {
       .select("e.*")
       .filter(col("event_id").isNotNull && col("ts_ms").isNotNull)
 
-    val withTime = parsed.withColumn("eventTime", (col("ts_ms") / 1000).cast("timestamp"))
-
-    val left = withTime
-      .filter(col("source") === "hn")
-      .withWatermark("eventTime", cfg.watermark)
-      .select(col("event_id").as("a_id"), col("entities"), col("ts_ms"), col("eventTime"))
-      .withColumn("entity", explode(col("entities")))
-
-    val right = withTime
-      .filter(col("source") === "rss")
-      .withWatermark("eventTime", cfg.watermark)
-      .select(col("event_id").as("b_id"), col("entities"), col("ts_ms"), col("eventTime"))
-      .withColumn("entity", explode(col("entities")))
-
-    // Join window tracks the watermark: events pair up within the same freshness bound.
-    val joined = left
-      .as("l")
-      .join(
-        right.as("r"),
-        expr(
-          s"l.entity = r.entity AND " +
-            s"l.eventTime BETWEEN r.eventTime - INTERVAL ${cfg.watermark} " +
-            s"AND r.eventTime + INTERVAL ${cfg.watermark}"
-        )
-      )
-      .select(
-        col("l.entity").as("entity"),
-        col("l.a_id"),
-        col("r.b_id"),
-        col("l.ts_ms"),
-        to_date(col("l.eventTime")).as("dt")
-      )
-
     def sink(
         df: org.apache.spark.sql.DataFrame,
         name: String,
@@ -120,10 +87,11 @@ object Correlate {
       writer.start()
     }
 
-    sink(joined, "correlate", cfg.correlatedPath, Seq("dt"))
+    sink(pairs(parsed, cfg.watermark), "correlate-v2", cfg.correlatedPath, Seq("dt"))
     sink(
       parsed
-        .filter(size(col("entities")) === 0)
+        // a missing entities array counts as entity-less for the raw sink
+        .filter(coalesce(size(col("entities")), lit(0)) === 0)
         .withColumn("dt", to_date((col("ts_ms") / 1000).cast("timestamp"))),
       "raw",
       cfg.rawPath,
@@ -131,5 +99,51 @@ object Correlate {
     )
 
     spark.streams.awaitAnyTermination()
+  }
+
+  /** Correlate envelopes from any sources on the bus: explode each envelope to one row per entity,
+    * then self-join rows sharing an entity whose event times fall within the watermark window
+    * (inclusive on both bounds, as before). l.source < r.source keeps each unordered source pair
+    * exactly once — no self, same-source, or mirrored rows — and pins a_id to the lexicographically
+    * smaller source, so hn still lands in a_id and rss in b_id like the original two-source job.
+    * Duplicate entities inside one envelope collapse and cannot multiply output; null/blank source
+    * or entity never pairs. ts_ms is the later of the pair's times, dt derives from it.
+    */
+  def pairs(df: DataFrame, watermark: String): DataFrame =
+    perEntity(df, watermark)
+      .as("l")
+      .join(
+        perEntity(df, watermark).as("r"),
+        expr(
+          s"l.entity = r.entity AND " +
+            s"l.eventTime BETWEEN r.eventTime - INTERVAL $watermark " +
+            s"AND r.eventTime + INTERVAL $watermark AND l.source < r.source"
+        )
+      )
+      .select(
+        col("l.entity").as("entity"),
+        col("l.event_id").as("a_id"),
+        col("r.event_id").as("b_id"),
+        greatest(col("l.ts_ms"), col("r.ts_ms")).as("ts_ms"),
+        to_date((greatest(col("l.ts_ms"), col("r.ts_ms")) / 1000).cast("timestamp")).as("dt")
+      )
+
+  /** One row per (envelope, entity): source and entity must be present (not null/blank), duplicate
+    * entities collapse via array_distinct. The watermark bounds the join state in streaming only —
+    * batch callers (tests) skip it and exercise the join predicate directly.
+    */
+  private def perEntity(df: DataFrame, watermark: String): DataFrame = {
+    val exploded = df
+      .withColumn("eventTime", (col("ts_ms") / 1000).cast("timestamp"))
+      .filter(col("source").isNotNull && trim(col("source")) =!= "")
+      .select(
+        col("event_id"),
+        col("source"),
+        col("ts_ms"),
+        col("eventTime"),
+        explode(array_distinct(col("entities"))).as("entity")
+      )
+      .filter(col("entity").isNotNull && trim(col("entity")) =!= "")
+    if (df.isStreaming) exploded.withWatermark("eventTime", watermark) else exploded
   }
 }

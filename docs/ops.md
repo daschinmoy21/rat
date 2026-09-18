@@ -84,8 +84,12 @@ files are the source of truth, and `rat.Hive` re-creates the definitions at
 startup. Wiping the metastore loses nothing.
 
 Deleting a sink tree orphans its checkpoint: drop both together
-(`/rat/correlated` + `/rat/checkpoints/correlate`), or the job replays into
-stale offsets. Deleting the **datanode volume alone** loses every block the
+(`/rat/correlated` + `/rat/checkpoints/correlate-v2`), or the job replays into
+stale offsets. The correlate checkpoint is versioned — `correlate-v2` since
+the join stopped hardcoding hn vs rss and now pairs any sources on entity +
+time: wipe or ignore old `checkpoints/correlate` state after upgrading, and
+never point `correlate-v2` at an existing `correlated` sink without resetting
+both. Deleting the **datanode volume alone** loses every block the
 namenode still references — wipe `rat_hdfs-namenode` + `rat_hdfs-datanode`
 as a pair.
 

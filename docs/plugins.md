@@ -44,7 +44,15 @@ def register(app):
     app.add_extractor("hn", cashtags)
 ```
 
-`poll()` returns envelopes. No entities → still emit, Spark skips the join.
+The contract is `poll` + `extract`. `register()` is the only hook core calls on
+load; register an extractor through `adapter.register` / `app.add_extractor`.
+`extract.py` is not auto-loaded — nothing named `extract.py` is discovered or
+imported, so an extractor only exists if `register()` adds it.
+
+`poll()` returns envelopes. Core always recomputes `entities` for each envelope
+from the manifest's `[entities].from_fields` and the registered extractor,
+overwriting anything `poll()` prefilled; `poll()` may therefore return
+`entities: []`. No entities → still emit, Spark skips the join.
 
 | Plugin | Core |
 |---|---|
@@ -52,7 +60,6 @@ def register(app):
 | poll / stream | Kafka client |
 | entity extract | windows, watermarks |
 | interval, topic | Hive layout |
-| extra `rat hn …` | |
 
 New RSS feed = config. New kind (HN, stocks, IMAP) = plugin. Substack is RSS. IMAP only if there is no feed.
 
@@ -68,4 +75,4 @@ payload      { "title": "...", "score": 42 }
 
 `events.py` / `Event.scala` are the envelope. Payload is `dict` / `String`.
 
-Hooks: `poll`, `extract`, `commands`. Stop there. Correlation is entity + time.
+Hooks: `poll`, `extract`. Stop there. Correlation is entity + time.

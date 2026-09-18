@@ -9,6 +9,7 @@ from rat_producers.extract import extract_entities
 
 def register(app):
     app.add_source("rss", poll=poll)
+    app.add_extractor("rss", extract_entities)
 
 
 def _feed_url():
@@ -33,7 +34,7 @@ def poll(since_ms=None):
         envelopes.append({
             "event_id": f"rss:{guid}",
             "source": "rss",
-            "entities": extract_entities(f"{title or ''} {link or ''}"),
+            "entities": [],
             "ts_ms": ts_ms,
             "payload": {"title": title, "link": link},
         })
