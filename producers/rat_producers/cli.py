@@ -9,6 +9,7 @@ from pathlib import Path
 
 from rat_producers.app import App
 from rat_producers.cursor import Cursor
+from rat_producers.extract import extract_entities
 from rat_producers.loader import load_all
 from rat_producers.producer import connect, dlq, emit
 from rat_producers.schema import check
@@ -28,13 +29,45 @@ from rat_producers.status import (
 log = logging.getLogger("rat")
 
 
+def entity_text(manifest, envelope) -> str:
+    """Text for extraction: payload values named by [entities].from_fields,
+    in field order, missing keys skipped."""
+    fields = (manifest.get("entities") or {}).get("from_fields") or []
+    payload = envelope.get("payload")
+    if not isinstance(payload, dict):
+        return ""
+    return " ".join(str(payload[f]) for f in fields if f in payload)
+
+
+def normalize_entities(entities) -> list[str]:
+    """Drop blanks and duplicates, preserving order."""
+    seen = set()
+    out = []
+    for entity in entities:
+        if not isinstance(entity, str):
+            continue
+        entity = entity.strip()
+        if not entity or entity in seen:
+            continue
+        seen.add(entity)
+        out.append(entity)
+    return out
+
+
+def extract(manifest, envelope, extractor) -> list[str]:
+    return normalize_entities(extractor(entity_text(manifest, envelope)))
+
+
 def run(app, cursor, producer, once=False, stop=None):
     while stop is None or not stop.is_set():
         for name, poll in sorted(app.sources.items()):
             try:
                 since = cursor.get(name)
+                manifest = app.manifests.get(name, {})
                 validator = app.schemas.get(name)
+                extractor = app.extractors.get(name, extract_entities)
                 for env in poll(since):
+                    env["entities"] = extract(manifest, env, extractor)
                     problems = check(env, validator)
                     if problems:
                         dlq(env, producer, "schema: " + "; ".join(problems))

@@ -38,7 +38,7 @@ def test_poll_maps_items_to_envelopes():
     ]
     env = envs[0]
     assert env["source"] == "rss"
-    assert env["entities"] == ["TSLA"]
+    assert env["entities"] == []  # core fills entities from from_fields
     assert env["ts_ms"] == 1725192000000
     assert env["payload"] == {"title": "$TSLA rebounds",
                               "link": "https://example.com/tesla"}

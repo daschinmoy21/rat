@@ -28,7 +28,7 @@ def test_poll_maps_items_to_envelopes():
     env = envs[0]
     assert env["event_id"] == "hn:1"
     assert env["source"] == "hn"
-    assert env["entities"] == ["AAPL"]
+    assert env["entities"] == []  # core fills entities from from_fields
     assert env["ts_ms"] == 1725200000000
     assert env["payload"] == {"title": "$AAPL does a thing",
                               "url": "https://example.com", "score": 42}

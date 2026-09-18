@@ -6,6 +6,7 @@ from rat_producers.extract import extract_entities
 
 def register(app):
     app.add_source("hn", poll=poll)
+    app.add_extractor("hn", extract_entities)
 
 
 def _item(item_id):
@@ -31,7 +32,7 @@ def poll(since_ms=None):
         envelopes.append({
             "event_id": f"hn:{item['id']}",
             "source": "hn",
-            "entities": extract_entities(" ".join(filter(None, [title, url]))),
+            "entities": [],
             "ts_ms": ts_ms,
             "payload": {"title": title, "url": url, "score": item.get("score")},
         })
