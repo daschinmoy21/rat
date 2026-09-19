@@ -62,6 +62,7 @@ cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 
 - `uv run rat status` — broker up, cursor age per source, DLQ depth, sink sizes.
 - `uv run rat dlq [--topic T] [--n N]` — what landed in the DLQ and why.
+- `podman ps` — inspect status and port bindings of kafka, hdfs, and hive containers.
 - `podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive -e "SELECT ..."`
 - `podman exec rat-namenode hdfs dfs -ls /rat/correlated` — partitions on HDFS.
 - `./scripts/smoke.sh` — full fixture-driven end-to-end run against the local
