@@ -101,7 +101,7 @@ changes between profiles: paths that carry a scheme are used as-is.
 
 A message reaches `events.<source>.dlq` when emit exhausts its retry budget
 or the payload fails the plugin schema. `rat dlq` shows the count and the
-`rat.error` reason. Rows that fail even the DLQ write spool to
+`rat.error` reason. Inspect specific failures using `uv run rat dlq --topic <topic> --n <count>`. Rows that fail even the DLQ write spool to
 `$RAT_DLQ_SPOOL` as JSON lines — re-emit them with
 `uv run python scripts/fixture.py`-style code or replay by hand once the
 broker is healthy, then clear the spool file.
