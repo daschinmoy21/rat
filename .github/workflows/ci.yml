@@ -71,3 +71,30 @@ jobs:
           restore-keys: ${{ runner.os }}-sbt-
       - name: End-to-end smoke (broker, topics, fixture, Correlate, Query)
         run: ./scripts/smoke.sh
+
+  e2e-hive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [producers, scala]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: coursier/setup-action@v2
+        with:
+          apps: sbt:1.10.11
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('spark/build.sbt', 'spark/project/build.properties') }}
+          restore-keys: ${{ runner.os }}-sbt-
+      - name: Real HDFS + HiveServer2 + Beeline smoke
+        run: ./scripts/smoke-hive.sh
+

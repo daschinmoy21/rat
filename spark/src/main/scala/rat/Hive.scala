@@ -34,14 +34,40 @@ object Hive {
     )
   }
 
-  /** Create tables if missing, then register every partition directory on disk. */
+  /** Create tables if missing, ensuring locations exist on the filesystem first, then register
+    * every partition directory on disk.
+    */
   def bootstrap(spark: SparkSession, cfg: RatConfig): Unit = {
+    ensureLocations(spark, cfg)
     ddl(cfg).foreach(spark.sql)
     msck(spark)
   }
 
+  def ensureLocations(spark: SparkSession, cfg: RatConfig): Unit = {
+    val hadoopConf = spark.sparkContext.hadoopConfiguration
+    Seq(cfg.hiveRawLocation, cfg.hiveCorrelatedLocation).foreach { loc =>
+      try {
+        val path = new org.apache.hadoop.fs.Path(loc)
+        val fs = path.getFileSystem(hadoopConf)
+        if (!fs.exists(path)) {
+          fs.mkdirs(path)
+        }
+      } catch {
+        case _: Exception =>
+      }
+    }
+  }
+
   def msck(spark: SparkSession): Unit = {
-    spark.sql("MSCK REPAIR TABLE rat_events")
-    spark.sql("MSCK REPAIR TABLE correlated")
+    try {
+      spark.sql("MSCK REPAIR TABLE rat_events")
+    } catch {
+      case _: Exception =>
+    }
+    try {
+      spark.sql("MSCK REPAIR TABLE correlated")
+    } catch {
+      case _: Exception =>
+    }
   }
 }

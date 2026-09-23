@@ -1,0 +1,16 @@
+# Systemd drop-in override example
+#
+# To customize settings for a unit (e.g. rat-spark), create a drop-in:
+#   mkdir -p ~/.config/systemd/user/rat-spark.service.d/
+#   cp override.conf.example ~/.config/systemd/user/rat-spark.service.d/override.conf
+#
+# Then reload:
+#   systemctl --user daemon-reload
+
+[Service]
+# Override repository root if different from default (%h/rat)
+Environment="RAT_ROOT=/home/custom/path/to/rat"
+
+# Customize Spark trigger, sinks, or broker endpoints:
+# Environment="RAT_TRIGGER=10 seconds"
+# Environment="RAT_BOOTSTRAP=kafka-broker:9092"

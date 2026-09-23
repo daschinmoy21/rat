@@ -5,9 +5,9 @@ After=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=%h/rat
-ExecStart=%h/rat/scripts/run-in-nix.sh podman-compose -f infra/hadoop/compose.yml up -d
-ExecStop=%h/rat/scripts/run-in-nix.sh podman-compose -f infra/hadoop/compose.yml down
+EnvironmentFile=-%h/.config/rat/env
+ExecStart=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$$ROOT/scripts/run-in-nix.sh" podman-compose -f "$$ROOT/infra/hadoop/compose.yml" up -d'
+ExecStop=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$$ROOT/scripts/run-in-nix.sh" podman-compose -f "$$ROOT/infra/hadoop/compose.yml" down'
 
 [Install]
 WantedBy=default.target

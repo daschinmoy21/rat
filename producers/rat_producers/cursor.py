@@ -1,9 +1,11 @@
 import sqlite3
+from pathlib import Path
 
 
 class Cursor:
     def __init__(self, path):
-        self.path = path
+        self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
         con = sqlite3.connect(self.path)
         con.execute(
             "CREATE TABLE IF NOT EXISTS cursors (name TEXT PRIMARY KEY, value INTEGER)")

@@ -16,9 +16,16 @@ flowchart LR
   S --> T["rat_events + correlated<br/>Hive over HDFS"]
 ```
 
-1. `systemctl --user enable --now rat-kafka.service rat-hdfs.service rat-hive.service`
-2. `./scripts/make-topics.sh` (also runs as `ExecStartPre` of the producers unit)
-3. `systemctl --user enable --now rat-producers.service rat-spark.service`
+Quickest start with systemd user units:
+```bash
+./deploy/install.sh --start
+```
+Or manually step-by-step:
+1. `./deploy/install.sh` (installs units and writes `~/.config/rat/env` with `RAT_ROOT`)
+2. `systemctl --user enable --now rat-kafka.service rat-hdfs.service rat-hive.service`
+3. `systemctl --user enable --now rat-producers.service rat-spark.service` (producers unit automatically provisions topics via `ExecStartPre`)
+
+Full deployment runbook, drop-ins, and production cluster swap-in: [deploy/README.md](../deploy/README.md).
 
 Not on NixOS / prefer by hand:
 
@@ -66,6 +73,7 @@ cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 - `podman exec rat-namenode hdfs dfs -ls /rat/correlated` — partitions on HDFS.
 - `./scripts/smoke.sh` — full fixture-driven end-to-end run against the local
   (dev) profile; exits non-zero if the pair is not exactly one row.
+- `./scripts/smoke-hive.sh` — live end-to-end smoke test against real HDFS + HiveServer2 + beeline.
 
 ## Where state lives
 

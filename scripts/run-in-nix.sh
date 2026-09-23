@@ -3,7 +3,7 @@
 # Used by the systemd user units so services see the same tools as the shell.
 set -eu
 
-ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+ROOT=${RAT_ROOT:-$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)}
 
 if command -v nix >/dev/null 2>&1 && [ -f "$ROOT/flake.nix" ]; then
   if [ "$#" -eq 0 ]; then
