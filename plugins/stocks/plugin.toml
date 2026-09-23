@@ -1,0 +1,12 @@
+name = "stocks"
+topic = "events.stocks"
+interval = "60s"
+
+[config]
+symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
+
+[payload]
+schema = "schema.json"
+
+[entities]
+from_fields = ["symbol"]

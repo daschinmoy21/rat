@@ -87,13 +87,31 @@ def run(app, cursor, producer, once=False, stop=None):
             return
 
 
-def load_app():
-    app = App()
-    load_all(app, [
-        "plugins",
+def default_plugin_roots() -> list[Path]:
+    roots: list[Path] = []
+    if "RAT_PLUGINS_DIR" in os.environ:
+        roots.append(Path(os.environ["RAT_PLUGINS_DIR"]))
+    elif "RAT_ROOT" in os.environ:
+        roots.append(Path(os.environ["RAT_ROOT"]) / "plugins")
+
+    in_tree = Path(__file__).resolve().parents[2] / "plugins"
+    if in_tree.is_dir() and in_tree not in roots:
+        roots.append(in_tree)
+
+    cwd_plugins = Path("plugins").resolve()
+    if cwd_plugins.is_dir() and cwd_plugins not in [r.resolve() for r in roots if r.exists()]:
+        roots.append(Path("plugins"))
+
+    roots.extend([
         Path("/var/lib/rat/plugins"),
         Path.home() / ".config" / "rat" / "plugins",
     ])
+    return roots
+
+
+def load_app(roots=None):
+    app = App()
+    load_all(app, default_plugin_roots() if roots is None else roots)
     return app
 
 
@@ -192,7 +210,7 @@ def main(argv=None):
         stop = threading.Event()
         signal.signal(signal.SIGTERM, lambda *_: stop.set())
         signal.signal(signal.SIGINT, lambda *_: stop.set())
-        producer = connect()
+        producer = connect(_bootstrap())
         try:
             run(app, Cursor(Path(db)), producer, once=args.once, stop=stop)
         finally:

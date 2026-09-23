@@ -79,8 +79,8 @@ done
 echo "== topics =="
 $PREFIX ./scripts/make-topics.sh
 # The fixture pairs a third source ("stocks") against hn/rss to pin the
-# any-source correlate. It has no plugin manifest, and the broker runs with
-# auto-create off, so its topic is created here. Idempotent.
+# any-source correlate. It is provisioned from plugins/stocks/plugin.toml
+# and guarded here as an idempotent check.
 eng exec rat-kafka /opt/kafka/bin/kafka-topics.sh \
   --bootstrap-server "$BOOTSTRAP" --create --if-not-exists \
   --topic events.stocks --partitions 1 --replication-factor 1 >/dev/null

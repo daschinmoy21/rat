@@ -116,8 +116,11 @@ def emit(envelope, producer, max_attempts=3):
     dlq(envelope, producer, f"send failed after {max_attempts} attempts: {last}")
 
 
-def connect(bootstrap="localhost:9092"):
+def connect(bootstrap=None):
     from kafka import KafkaProducer
+    if bootstrap is None:
+        bootstrap = os.environ.get("RAT_BOOTSTRAP", "localhost:9092")
     return KafkaProducer(
         bootstrap_servers=bootstrap, acks="all", retries=5, linger_ms=5, max_block_ms=10000
     )
+
