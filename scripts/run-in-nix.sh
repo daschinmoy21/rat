@@ -1,6 +1,7 @@
 #!/bin/sh
 # Run a command inside the repo's nix develop shell; bare when nix is absent.
 # Used by the systemd user units so services see the same tools as the shell.
+# Falls back directly to exec "$@" when Nix or flake.nix is not detected.
 set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
