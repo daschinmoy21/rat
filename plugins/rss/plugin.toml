@@ -3,7 +3,9 @@ topic = "events.rss"
 interval = "5m"
 
 [config]
-url = "https://hnrss.org/frontpage"
+urls = [
+    "https://hnrss.org/frontpage",
+]
 
 [payload]
 schema = "schema.json"
