@@ -2,9 +2,9 @@
 
 Kafka → Spark Structured Streaming → Hive/HDFS.
 
-Python producers. Scala 2.13 Spark job (3.5.3). Sources are plugins. Kafka in-tree, `Correlate` streams to Parquet, Hive reads those paths. Runbook: [docs/ops.md](docs/ops.md).
+Python producers. Scala 2.13 Spark job (3.5.3). Sources are plugins. Kafka in-tree, `Correlate` streams to Parquet, Hive reads those paths. Runbooks: [docs/ops.md](docs/ops.md) · [deploy/README.md](deploy/README.md).
 
-[overview](docs/overview.md) · [architecture](docs/architecture.md) · [plugins](docs/plugins.md) · [setup](docs/setup.md) · [ops](docs/ops.md) · [contributing](CONTRIBUTING.md)
+[overview](docs/overview.md) · [architecture](docs/architecture.md) · [plugins](docs/plugins.md) · [setup](docs/setup.md) · [ops](docs/ops.md) · [deploy](deploy/README.md) · [contributing](CONTRIBUTING.md)
 
 ```bash
 git clone git@github.com:daschinmoy21/rat.git
