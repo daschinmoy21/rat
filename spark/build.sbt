@@ -41,6 +41,7 @@ lazy val sparkJob = (project in file("."))
     scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
     run / fork := true,
     Test / fork := true,
+    Compile / run / mainClass := Some("rat.Correlate"),
     run / javaOptions ++= sparkJavaOptions,
     Test / javaOptions ++= sparkJavaOptions
   )

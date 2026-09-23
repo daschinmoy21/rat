@@ -16,3 +16,12 @@ def test_put_never_moves_backwards(tmp_path):
     c.put("hn", 2)
     c.put("hn", 1)  # out-of-order feed items must not lower the high-water mark
     assert c.get("hn") == 2
+
+
+def test_nested_missing_parent_directory_created(tmp_path):
+    deep_path = tmp_path / "deep" / "nested" / "dir" / "cursors.db"
+    assert not deep_path.parent.exists()
+    c = Cursor(deep_path)
+    c.put("hn", 100)
+    assert c.get("hn") == 100
+

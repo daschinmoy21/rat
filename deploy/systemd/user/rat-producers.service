@@ -4,10 +4,10 @@ Wants=rat-kafka.service
 After=rat-kafka.service network-online.target
 
 [Service]
-WorkingDirectory=%h/rat
+EnvironmentFile=-%h/.config/rat/env
 Environment=RAT_CURSOR_DB=%h/.local/state/rat/cursors.db
-ExecStartPre=%h/rat/scripts/run-in-nix.sh %h/rat/scripts/make-topics.sh
-ExecStart=%h/rat/scripts/run-in-nix.sh uv run rat run
+ExecStartPre=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; cd "$$ROOT" && exec "$$ROOT/scripts/run-in-nix.sh" "$$ROOT/scripts/make-topics.sh"'
+ExecStart=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; cd "$$ROOT" && exec "$$ROOT/scripts/run-in-nix.sh" uv run rat run'
 Restart=on-failure
 RestartSec=5
 

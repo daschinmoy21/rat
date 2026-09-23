@@ -4,13 +4,13 @@ Wants=rat-kafka.service rat-hive.service
 After=rat-kafka.service rat-hive.service network-online.target
 
 [Service]
-WorkingDirectory=%h/rat/spark
+EnvironmentFile=-%h/.config/rat/env
 Environment=RAT_HIVE_ENABLED=true
 Environment=RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 Environment=RAT_SINK_DIR=hdfs://localhost:8020/rat
 Environment=RAT_CHECKPOINT_DIR=hdfs://localhost:8020/rat/checkpoints
 Environment="RAT_TRIGGER=30 seconds"
-ExecStart=%h/rat/scripts/run-in-nix.sh sbt -batch run
+ExecStart=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; cd "$$ROOT/spark" && exec "$$ROOT/scripts/run-in-nix.sh" sbt -batch "runMain rat.Correlate"'
 Restart=on-failure
 RestartSec=10
 
