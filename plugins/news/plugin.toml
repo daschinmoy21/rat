@@ -1,0 +1,14 @@
+name = "news"
+topic = "events.news"
+interval = "2m"
+
+# One Yahoo Finance headline feed per symbol. Keep this list in step with
+# plugins/stocks so headlines and quotes share entities and can correlate.
+[config]
+symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
+
+[payload]
+schema = "schema.json"
+
+[entities]
+from_fields = ["symbol"]

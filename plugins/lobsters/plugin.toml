@@ -1,0 +1,9 @@
+name = "lobsters"
+topic = "events.lobsters"
+interval = "5m"
+
+[payload]
+schema = "schema.json"
+
+[entities]
+from_fields = ["title", "url"]
