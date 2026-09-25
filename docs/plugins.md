@@ -4,7 +4,7 @@
 
 Source: [rat-plugins.tldraw](rat-plugins.tldraw).
 
-Core does not know HN, RSS, or stocks. A plugin is a directory containing a manifest (`plugin.toml`), payload schema (`schema.json`), and poller adapter (`adapter.py`). Drop it into a plugin root, run `./scripts/make-topics.sh` to provision its Kafka topics, and the source is live.
+Core does not know HN, RSS, stocks, news, or Lobsters. A plugin is a directory containing a manifest (`plugin.toml`), payload schema (`schema.json`), and poller adapter (`adapter.py`). Drop it into a plugin root, run `./scripts/make-topics.sh` to provision its Kafka topics, and the source is live.
 
 Spark reads the envelope only. If adding a source requires editing Scala code or rebuilding the Spark job, the architectural boundary failed.
 
@@ -90,8 +90,10 @@ uv run rat plugins
 
 Output:
 ```text
-hn      events.hn      60s
-rss     events.rss     5m
+hn  events.hn  60s
+lobsters  events.lobsters  5m
+news  events.news  2m
+rss  events.rss  5m
 stocks  events.stocks  60s
 ```
 
@@ -246,6 +248,15 @@ urls = [
 ```
 
 ### Stocks Watchlist Override (`~/.config/rat/stocks.toml`)
+
+```toml
+[config]
+symbols = ["AAPL", "MSFT", "GOOGL", "NVDA", "TSLA"]
+```
+
+### News Watchlist Override (`~/.config/rat/news.toml`)
+
+`news` pulls Yahoo Finance headlines per symbol and tags each headline with that symbol, so it pairs with `stocks` quotes for the same ticker. Keep both watchlists in step:
 
 ```toml
 [config]
