@@ -125,6 +125,22 @@ class Feed:
             return [self.buckets.get(s, 0) for s in range(now - n, now)]
 
 
+def _sync_consumer(consumer, assigned, topics):
+    tps = {TopicPartition(t, p) for t in topics
+           for p in consumer.partitions_for_topic(t) or ()}
+    if tps == assigned:
+        return assigned
+    live = assigned & tps
+    kept = {tp: consumer.position(tp) for tp in live}
+    new = tps - assigned
+    consumer.assign(list(tps))
+    for tp, pos in kept.items():
+        consumer.seek(tp, pos)
+    if new:
+        consumer.seek_to_beginning(*new)
+    return tps
+
+
 def consume(feed, bootstrap, stop, refresh_s=10):
     """Tail every events.* topic from the beginning, picking up new topics
     as they appear. Reconnects after broker errors."""
@@ -140,17 +156,7 @@ def consume(feed, bootstrap, stop, refresh_s=10):
             while not stop.is_set():
                 if time.time() - refreshed >= refresh_s:
                     topics = sorted(t for t in consumer.topics() if TOPICS.match(t))
-                    tps = {TopicPartition(t, p) for t in topics
-                           for p in consumer.partitions_for_topic(t) or ()}
-                    new = tps - assigned
-                    if new:
-                        # assign() replaces the assignment; keep old positions
-                        kept = {tp: consumer.position(tp) for tp in assigned}
-                        consumer.assign(list(tps | assigned))
-                        for tp, pos in kept.items():
-                            consumer.seek(tp, pos)
-                        consumer.seek_to_beginning(*new)
-                        assigned |= new
+                    assigned = _sync_consumer(consumer, assigned, topics)
                     with feed.lock:
                         feed.broker = {"up": True, "error": None, "topics": len(topics)}
                     refreshed = time.time()
@@ -380,7 +386,7 @@ def _handler(dash, stop, tick_s=1.0):
                     if v != version:
                         version = v
                         msg["stored"] = data
-            except (BrokenPipeError, ConnectionResetError):
+            except OSError:
                 return
 
     return Handler

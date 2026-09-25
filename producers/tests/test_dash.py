@@ -3,16 +3,93 @@ import os
 import threading
 import urllib.request
 from http.server import ThreadingHTTPServer
+from importlib import resources
 
 import pytest
+from kafka.structs import TopicPartition
 
 from rat_producers.app import App
-from rat_producers.dash import Dash, Feed, Store, _handler, spark_progress, summary
+from rat_producers.dash import (
+    Dash,
+    Feed,
+    Store,
+    _handler,
+    _sync_consumer,
+    spark_progress,
+    summary,
+)
 
 
 def env(event_id, source="hn", entities=(), ts_ms=1000, **payload):
     return json.dumps({"event_id": event_id, "source": source, "entities": list(entities),
                        "ts_ms": ts_ms, "payload": payload}).encode()
+
+
+class FakeConsumer:
+    def __init__(self, positions):
+        self.positions = positions
+        self.assigned = None
+        self.seeks = {}
+        self.beginnings = []
+
+    def partitions_for_topic(self, topic):
+        return [0]
+
+    def position(self, tp):
+        return self.positions[tp]
+
+    def assign(self, tps):
+        self.assigned = set(tps)
+
+    def seek(self, tp, offset):
+        self.seeks[tp] = offset
+
+    def seek_to_beginning(self, *tps):
+        self.beginnings.extend(tps)
+
+
+def test_sync_consumer_replaces_deleted_topics_and_preserves_positions():
+    hn = TopicPartition("events.hn", 0)
+    removed = TopicPartition("events.removed", 0)
+    added = TopicPartition("events.news", 0)
+    consumer = FakeConsumer({hn: 42})
+
+    assigned = _sync_consumer(
+        consumer, {hn, removed}, ["events.hn", "events.news"])
+
+    assert assigned == {hn, added}
+    assert consumer.assigned == {hn, added}
+    assert consumer.seeks == {hn: 42}
+    assert set(consumer.beginnings) == {added}
+
+
+def test_dashboard_bounds_dlq_buffers():
+    page = resources.files("rat_producers").joinpath("dash.html").read_text()
+    assert "const DLQ_CAP = 500;" in page
+    assert "if (S.dlq.length > DLQ_CAP)" in page
+    assert "S.dlq.splice(0, S.dlq.length - DLQ_CAP)" in page
+    assert "if (S.pendingDlq.length > DLQ_CAP)" in page
+    assert "S.pendingDlq.splice(0, S.pendingDlq.length - DLQ_CAP)" in page
+
+
+def test_sse_treats_oserror_as_disconnect():
+    class DisconnectingDash:
+        @staticmethod
+        def snapshot():
+            return {"seq": 0, "version": 0}
+
+    class DisconnectingWriter:
+        @staticmethod
+        def write(data):
+            raise ConnectionAbortedError("browser closed")
+
+    Handler = _handler(DisconnectingDash(), threading.Event())
+    handler = object.__new__(Handler)
+    handler.send_response = lambda *args: None
+    handler.send_header = lambda *args: None
+    handler.end_headers = lambda *args: None
+    handler.wfile = DisconnectingWriter()
+    handler._stream()
 
 
 def test_summary_prefers_quote_then_title():

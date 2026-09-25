@@ -119,6 +119,7 @@ const bytes = (n) => { let u = ["B", "KiB", "MiB", "GiB"], i = 0; while (n >= 10
 const num = (n) => Number(n || 0).toLocaleString("en-US");
 const bar = (frac) => { const p = Math.max(0, Math.min(1, frac || 0)); return `<span class="bar"><i style="--w:${(p * 100).toFixed(1)}%"></i><span>${pad(Math.round(p * 100))}%</span></span>`; };
 const SPARK = "·▁▂▃▄▅▆▇█";
+const DLQ_CAP = 500;
 const sparkline = (xs) => { const max = Math.max(1, ...xs); return xs.map((x) => SPARK[x ? Math.max(1, Math.round((x / max) * 8)) : 0]).join(""); };
 const srcOf = (id) => (id || "").split(":")[0];
 
@@ -330,6 +331,7 @@ const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(() 
 function ingest(events, dlq) {
   for (const e of events) { if (e.event_id) S.byId.set(e.event_id, e); }
   S.events.push(...events); S.dlq.push(...dlq);
+  if (S.dlq.length > DLQ_CAP) S.dlq.splice(0, S.dlq.length - DLQ_CAP);
   if (S.events.length > S.cap) {
     for (const old of S.events.splice(0, S.events.length - S.cap)) if (S.byId.get(old.event_id) === old) S.byId.delete(old.event_id);
   }
@@ -343,7 +345,7 @@ function connect() {
     if (msg.reset) { S.events = []; S.dlq = []; S.byId.clear(); S.pending = []; S.pendingDlq = []; }
     if (msg.stats) S.stats = msg.stats;
     if (msg.stored) S.stored = msg.stored;
-    if (S.paused && !msg.reset) { S.pending.push(...msg.events); S.pendingDlq.push(...msg.dlq); msg.events.forEach((e) => e.event_id && S.byId.set(e.event_id, e)); }
+    if (S.paused && !msg.reset) { S.pending.push(...msg.events); S.pendingDlq.push(...msg.dlq); if (S.pendingDlq.length > DLQ_CAP) S.pendingDlq.splice(0, S.pendingDlq.length - DLQ_CAP); msg.events.forEach((e) => e.event_id && S.byId.set(e.event_id, e)); }
     else ingest(msg.events, msg.dlq);
     status(); schedule();
   };
