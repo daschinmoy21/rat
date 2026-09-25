@@ -13,4 +13,6 @@ direnv allow          # or: nix develop
 # no Nix: JDK 17, sbt, uv → uv sync --frozen
 ./scripts/check-deps.sh
 cd spark && sbt compile
+# Verify pipeline and broker health:
+uv run rat status
 ```
