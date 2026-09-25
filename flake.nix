@@ -51,6 +51,8 @@
             export SBT_OPTS="''${SBT_OPTS:--Xmx2G -Xms512M}"
             export UV_PYTHON="${python}/bin/python"
             export UV_PYTHON_DOWNLOADS=never
+            # pip wheels with C++ extensions (duckdb for `rat dash`) need libstdc++
+            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
             if [ -S "/run/user/$(id -u)/podman/podman.sock" ]; then
               export DOCKER_HOST="unix:///run/user/$(id -u)/podman/podman.sock"
             fi

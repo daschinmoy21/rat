@@ -196,6 +196,11 @@ def main(argv=None):
                             help="one DLQ topic (default: every source's)")
     dlq_parser.add_argument("--n", type=int, default=5,
                             help="recent messages to print (default 5)")
+    dash_parser = sub.add_parser("dash", help="live web view of kafka, spark and parquet")
+    dash_parser.add_argument("--host", default="127.0.0.1")
+    dash_parser.add_argument("--port", type=int, default=8765)
+    dash_parser.add_argument("--cap", type=int, default=5000,
+                             help="envelopes kept in memory (default 5000)")
     args = parser.parse_args(argv)
 
     app = load_app()
@@ -220,3 +225,13 @@ def main(argv=None):
         print_status(app)
     elif args.cmd == "dlq":
         print_dlq(app, args)
+    elif args.cmd == "dash":
+        from rat_producers.dash import serve
+        logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
+        logging.getLogger("kafka").setLevel(logging.ERROR)
+        sink_dir = os.environ.get("RAT_SINK_DIR", "/tmp/rat")
+        serve(app, host=args.host, port=args.port, cap=args.cap, bootstrap=_bootstrap(),
+              sink_dir=sink_dir,
+              checkpoint_dir=os.environ.get("RAT_CHECKPOINT_DIR",
+                                            os.path.join(sink_dir, "checkpoints")),
+              cursor_db=os.environ.get("RAT_CURSOR_DB", "rat-cursors.db"))

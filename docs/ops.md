@@ -68,6 +68,7 @@ cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 ## Verify any time
 
 - `uv run rat status` — broker up, cursor age per source, DLQ depth, sink sizes.
+- `uv run rat dash` — the same, live in a browser at `127.0.0.1:8765`, plus the event stream, correlated pairs and stored rows with filter, sort and group ([GETSTARTED](../GETSTARTED.md#6-watch-it-in-the-dashboard-terminal-3)).
 - `uv run rat dlq [--topic T] [--n N]` — what landed in the DLQ and why.
 - `podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive -e "SELECT ..."`
 - `podman exec rat-namenode hdfs dfs -ls /rat/correlated` — partitions on HDFS.
