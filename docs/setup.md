@@ -13,7 +13,7 @@ Topic creation is not automatic (`auto.create.topics.enable=false` on purpose): 
 
 Running the whole pipe as a system (services, verification, DLQ, checkpoints): [ops.md](ops.md).
 
-Compose / Metals / scala-cli later, when the cluster exists.
+The Nix shell includes Podman, Docker Compose, Metals, scala-cli, coursier, and scalafmt.
 
 ## Nix
 
@@ -21,7 +21,7 @@ Compose / Metals / scala-cli later, when the cluster exists.
 direnv allow    # or nix develop
 ```
 
-Flake gives the four tools. `uv sync` still installs Python packages.
+The flake supplies the toolchain, container runtime, Compose, and Scala tooling. `uv sync` still installs Python packages.
 
 ## Not Nix
 
