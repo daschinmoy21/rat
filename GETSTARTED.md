@@ -278,7 +278,36 @@ RAT_CURSOR_DB=/tmp/rat-live-cursors.db uv run rat dlq --n 10
 
 `rat status` does not prove Spark is healthy. Check terminal 1 for that.
 
-### 6. Query the results
+### 6. Watch it in the dashboard (terminal 3)
+
+```bash
+RAT_SINK_DIR=/tmp/rat-live \
+RAT_CURSOR_DB=/tmp/rat-live-cursors.db \
+uv run rat dash
+```
+
+Open <http://127.0.0.1:8765/>. It shows the whole pipeline live: what Kafka carries, how far Spark has committed and what landed in Parquet. It binds to localhost only; use `--host` and `--port` to change that.
+
+| View | Key | Shows |
+|---|---|---|
+| pipeline | `1` | Per source: message count, share of traffic, cursor age and DLQ count. Also Kafka throughput for the last 60s, each Spark query's last committed batch, and row counts and sizes for both Parquet sinks. |
+| stream | `2` | Every envelope on `events.*`, read from the start of each topic and updated live. `Enter` opens the full JSON. `Space` pauses the feed. |
+| correlated | `3` | Rows from the `correlated` Parquet sink. Each `a_id`/`b_id` is resolved to its headline or quote, and `Δt` is the gap between the two events. |
+| stored | `4` | Rows from the `events_raw` Parquet sink. |
+| dlq | `5` | Rejected envelopes and the `rat.error` reason. |
+
+Every table view supports the same keys:
+
+- `/` filters. Plain words match any column. `key:value` matches one column, e.g. `source:news` or `entity:tsla`. A leading `-` negates, e.g. `-hn`.
+- `s` cycles the sort column and `r` reverses the order. Clicking a column header does the same.
+- `g` cycles grouping. The stream view groups by source, entity, day or topic. The correlated view groups by entity, source pair or day. `Enter` on a group header folds it.
+- `↑`/`↓` (or `j`/`k`) move the selection. `Esc` clears the filter, grouping and open rows.
+
+The URL hash tracks the current view, so `http://127.0.0.1:8765/#correlated` links straight to it.
+
+The dashboard holds the newest 5000 envelopes in memory (`--cap`). Pipeline counts still cover every message read. Parquet is re-read every 5 seconds with DuckDB. On NixOS, DuckDB needs `libstdc++`: the Nix dev shell sets `LD_LIBRARY_PATH` for it. Outside that shell, the pipeline view reports `duckdb unavailable` and the Kafka views keep working.
+
+### 7. Query the results
 
 Give Spark 30–60 seconds after the producers finish so the batch commits. Querying too early shows empty or partial tables. Then run:
 

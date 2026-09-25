@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rat dash</title>
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --bg: #141414;
+  --fg: #ecebe8;
+  --text: #b9b7b2;
+  --muted: #6d6b67;
+  --dim: #34332f;
+  --line: #242422;
+  --sel: #1d1d1b;
+  --bad: #c9765f;
+  --good: #9aa77c;
+  --mono: "JetBrains Mono", "Iosevka", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  --sans: "Inter", "Helvetica Neue", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font: 13px/1.65 var(--mono); padding: 40px 48px 72px; max-width: 1280px; }
+h1 { font: 500 30px/1.1 var(--sans); color: var(--fg); margin: 0; letter-spacing: -.01em; }
+.sub { color: var(--muted); margin-top: 6px; }
+.label { font: 500 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.live { display: flex; gap: 10px; align-items: center; }
+.dot { width: 7px; height: 7px; background: var(--muted); display: inline-block; }
+.dot.on { background: var(--fg); animation: blink 1.2s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .15; } }
+
+nav { display: flex; gap: 28px; margin: 36px 0 28px; flex-wrap: wrap; }
+nav a { cursor: pointer; color: var(--muted); text-decoration: none; }
+nav a b { color: var(--dim); font-weight: 400; margin-right: 6px; }
+nav a.on { color: var(--fg); }
+nav a.on b { color: var(--muted); }
+
+section { margin-bottom: 30px; }
+section > .label { margin-bottom: 12px; }
+.tree { white-space: pre; overflow-x: auto; }
+.row { display: flex; gap: 0; }
+.g { color: var(--dim); }
+.m { color: var(--muted); }
+.f { color: var(--fg); }
+.bad { color: var(--bad); }
+.good { color: var(--good); }
+
+.bar { display: inline-flex; align-items: center; gap: 10px; vertical-align: middle; }
+.bar i { display: inline-block; width: 140px; height: 11px; border: 1px solid var(--dim); position: relative; }
+.bar i::after { content: ""; position: absolute; inset: 1px auto 1px 1px; width: var(--w, 0%);
+  background: repeating-linear-gradient(-45deg, var(--text) 0 1px, transparent 1px 4px); }
+.bar span { color: var(--muted); min-width: 3ch; }
+
+.spark { letter-spacing: 1px; color: var(--text); }
+
+.tools { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.tools input { background: transparent; border: 0; border-bottom: 1px solid var(--dim); color: var(--fg);
+  font: 13px var(--mono); padding: 3px 0; width: 340px; outline: none; }
+.tools input:focus { border-color: var(--muted); }
+.tools input::placeholder { color: var(--dim); }
+.tools .opt { cursor: pointer; }
+.tools .opt em { font-style: normal; color: var(--fg); }
+
+table { border-collapse: collapse; width: 100%; }
+th { text-align: left; font: 500 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); padding: 0 16px 10px 0; cursor: pointer; white-space: nowrap; user-select: none; }
+th.on { color: var(--fg); }
+td { padding: 1px 16px 1px 0; white-space: nowrap; vertical-align: top; color: var(--text); }
+td.wrap { white-space: normal; min-width: 280px; }
+td.t { color: var(--muted); }
+tr.r td:first-child::before { content: "└ "; color: var(--dim); }
+tr.r.sel td { color: var(--fg); background: var(--sel); }
+tr.r.sel td:first-child::before { content: "▸ "; color: var(--fg); }
+tr.r { cursor: default; }
+tr.grp td { padding-top: 14px; color: var(--fg); cursor: pointer; }
+tr.grp td .m { margin-left: 10px; }
+tr.grp.sel td { background: var(--sel); }
+tr.det td { padding: 6px 0 12px 22px; }
+tr.det pre { margin: 0; color: var(--muted); white-space: pre-wrap; word-break: break-all; }
+.more { color: var(--muted); padding-top: 10px; }
+.empty { color: var(--muted); padding: 12px 0; }
+.scroll { overflow-x: auto; }
+a.ext { color: inherit; text-decoration: none; border-bottom: 1px solid var(--dim); }
+
+footer { position: fixed; left: 0; right: 0; bottom: 0; padding: 14px 48px; background: var(--bg);
+  border-top: 1px solid var(--line); }
+footer .label { letter-spacing: .16em; }
+@media (max-width: 700px) {
+  body { padding: 24px 16px 96px; }
+  footer { padding: 12px 16px; }
+  .tools input { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="head">
+  <div>
+    <h1>rat</h1>
+    <div class="sub">sources → kafka → spark → parquet</div>
+  </div>
+  <div class="live label"><span id="dot" class="dot"></span><span id="conn">connecting</span><span id="clock"></span></div>
+</div>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer><span class="label" id="hint"></span></footer>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pad = (n) => String(n).padStart(2, "0");
+const utc = (ms) => { if (ms == null) return "-"; const d = new Date(ms);
+  return `${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`; };
+const ago = (ms) => { if (ms == null) return "-"; const s = ms / 1000;
+  return s < 1 ? "now" : s < 60 ? `${s | 0}s` : s < 3600 ? `${(s / 60) | 0}m` : s < 86400 ? `${(s / 3600) | 0}h` : `${(s / 86400) | 0}d`; };
+const bytes = (n) => { let u = ["B", "KiB", "MiB", "GiB"], i = 0; while (n >= 1024 && i < 3) { n /= 1024; i++; } return i ? `${n.toFixed(1)} ${u[i]}` : `${n} B`; };
+const num = (n) => Number(n || 0).toLocaleString("en-US");
+const bar = (frac) => { const p = Math.max(0, Math.min(1, frac || 0)); return `<span class="bar"><i style="--w:${(p * 100).toFixed(1)}%"></i><span>${pad(Math.round(p * 100))}%</span></span>`; };
+const SPARK = "·▁▂▃▄▅▆▇█";
+const sparkline = (xs) => { const max = Math.max(1, ...xs); return xs.map((x) => SPARK[x ? Math.max(1, Math.round((x / max) * 8)) : 0]).join(""); };
+const srcOf = (id) => (id || "").split(":")[0];
+
+// ---- state ---------------------------------------------------------------
+const S = {
+  stats: null, events: [], dlq: [], stored: { correlated: [], events_raw: [], totals: {} },
+  byId: new Map(), connected: false, paused: false, pending: [], pendingDlq: [],
+  view: 0, cap: 5000,
+};
+
+// ---- views ---------------------------------------------------------------
+// A table view: rows(), columns with value/render, filterable text, groupable keys.
+const col = (key, label, get, opts = {}) => ({ key, label, get, ...opts });
+const VIEWS = [
+  { id: "pipeline", label: "pipeline" },
+  {
+    id: "stream", label: "stream", note: "every envelope on events.* — newest first",
+    rows: () => S.events,
+    cols: [
+      col("time", "time", (r) => r.ts_ms, { fmt: utc, cls: "t" }),
+      col("source", "source", (r) => r.source),
+      col("entity", "entities", (r) => r.entities.join(" "), { cls: "f" }),
+      col("summary", "summary", (r) => r.summary, { wrap: true }),
+      col("offset", "topic@off", (r) => `${r.topic}@${r.offset}`, { cls: "t" }),
+    ],
+    groups: { source: (r) => [r.source], entity: (r) => (r.entities.length ? r.entities : ["(none)"]), day: (r) => [utc(r.ts_ms).slice(0, 5)], topic: (r) => [r.topic] },
+    sort: "time",
+    detail: (r) => ({ event_id: r.event_id, source: r.source, entities: r.entities, ts_ms: r.ts_ms, payload: r.payload, topic: r.topic, partition: r.partition, offset: r.offset }),
+  },
+  {
+    id: "correlated", label: "correlated", note: "pairs Spark joined on a shared entity — read from parquet",
+    rows: () => S.stored.correlated,
+    cols: [
+      col("time", "time", (r) => r.ts_ms, { fmt: utc, cls: "t" }),
+      col("entity", "entity", (r) => r.entity, { cls: "f" }),
+      col("pair", "pair", (r) => `${srcOf(r.a_id)} × ${srcOf(r.b_id)}`),
+      col("a", "a", (r) => S.byId.get(r.a_id)?.summary ?? r.a_id, { wrap: true }),
+      col("b", "b", (r) => S.byId.get(r.b_id)?.summary ?? r.b_id, { wrap: true }),
+      col("gap", "Δt", (r) => { const a = S.byId.get(r.a_id), b = S.byId.get(r.b_id); return a && b ? Math.abs(a.ts_ms - b.ts_ms) : null; }, { fmt: (v) => (v == null ? "-" : ago(v)), cls: "t" }),
+    ],
+    groups: { entity: (r) => [r.entity], pair: (r) => [`${srcOf(r.a_id)} × ${srcOf(r.b_id)}`], day: (r) => [r.dt] },
+    sort: "time",
+    detail: (r) => ({ entity: r.entity, dt: r.dt, ts_ms: r.ts_ms, a: S.byId.get(r.a_id) ? pick(S.byId.get(r.a_id)) : r.a_id, b: S.byId.get(r.b_id) ? pick(S.byId.get(r.b_id)) : r.b_id }),
+  },
+  {
+    id: "stored", label: "stored", note: "events_raw — entity-less envelopes persisted as parquet",
+    rows: () => S.stored.events_raw,
+    cols: [
+      col("time", "time", (r) => r.ts_ms, { fmt: utc, cls: "t" }),
+      col("source", "source", (r) => r.source),
+      col("dt", "dt", (r) => r.dt, { cls: "t" }),
+      col("summary", "summary", (r) => r.summary, { wrap: true }),
+    ],
+    groups: { source: (r) => [r.source], dt: (r) => [r.dt] },
+    sort: "time",
+    detail: (r) => r,
+  },
+  {
+    id: "dlq", label: "dlq", note: "envelopes rejected by schema checks, with the reason",
+    rows: () => S.dlq,
+    cols: [
+      col("time", "time", (r) => r.ts_ms, { fmt: utc, cls: "t" }),
+      col("topic", "topic", (r) => r.topic),
+      col("error", "error", (r) => r.error || "-", { cls: "bad", wrap: true }),
+      col("summary", "summary", (r) => r.summary, { wrap: true }),
+    ],
+    groups: { topic: (r) => [r.topic], error: (r) => [(r.error || "-").split(":")[0]] },
+    sort: "time",
+    detail: (r) => r,
+  },
+];
+const pick = (e) => ({ event_id: e.event_id, source: e.source, ts_ms: e.ts_ms, payload: e.payload });
+// per-view UI state
+const UI = VIEWS.map((v) => ({ q: "", sort: v.sort, desc: true, group: null, sel: 0, open: new Set(), shut: new Set() }));
+
+// ---- filtering / sorting / grouping --------------------------------------
+// query: space-separated terms; key:value targets a column or group key, -term negates.
+function matcher(q, view) {
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean).map((t) => {
+    const neg = t.startsWith("-") && t.length > 1; if (neg) t = t.slice(1);
+    const i = t.indexOf(":"); const key = i > 0 ? t.slice(0, i) : null; const val = i > 0 ? t.slice(i + 1) : t;
+    return { neg, key, val };
+  });
+  if (!terms.length) return () => true;
+  const text = (r, key) => {
+    if (key) {
+      const c = view.cols.find((c) => c.key === key || c.label === key);
+      if (c) { const v = c.get(r); return String(c.fmt ? c.fmt(v) : v ?? "").toLowerCase(); }
+      if (view.groups[key]) return view.groups[key](r).join(" ").toLowerCase();
+      return "";
+    }
+    return view.cols.map((c) => { const v = c.get(r); return c.fmt ? c.fmt(v) : v ?? ""; }).join(" ").toLowerCase();
+  };
+  return (r) => terms.every(({ neg, key, val }) => text(r, key).includes(val) !== neg);
+}
+
+function build(view, ui) {
+  const c = view.cols.find((c) => c.key === ui.sort) || view.cols[0];
+  const rows = view.rows().filter(matcher(ui.q, view));
+  const cmp = (a, b) => { const x = c.get(a), y = c.get(b);
+    const r = x == null ? 1 : y == null ? -1 : typeof x === "number" && typeof y === "number" ? x - y : String(x).localeCompare(String(y));
+    return ui.desc ? -r : r; };
+  rows.sort(cmp);
+  // flat list of display items: {kind:"g", key, n} | {kind:"r", row}
+  const items = [];
+  if (!ui.group) { rows.forEach((row) => items.push({ kind: "r", row })); return { items, n: rows.length }; }
+  const buckets = new Map();
+  for (const r of rows) for (const k of view.groups[ui.group](r)) {
+    if (!buckets.has(k)) buckets.set(k, []); buckets.get(k).push(r);
+  }
+  [...buckets.entries()].sort((a, b) => b[1].length - a[1].length || String(a[0]).localeCompare(String(b[0])))
+    .forEach(([k, rs]) => { items.push({ kind: "g", key: k, n: rs.length }); if (!ui.shut.has(k)) rs.forEach((row) => items.push({ kind: "r", row, gk: k })); });
+  return { items, n: rows.length, groups: buckets.size };
+}
+
+// ---- render --------------------------------------------------------------
+const LIMIT = 400;
+let built = null;
+
+function renderNav() {
+  $("nav").innerHTML = VIEWS.map((v, i) => {
+    let n = "";
+    if (v.id === "stream") n = S.events.length; else if (v.id === "correlated") n = S.stored.totals?.correlated ?? 0;
+    else if (v.id === "stored") n = S.stored.totals?.events_raw ?? 0; else if (v.id === "dlq") n = S.dlq.length;
+    return `<a class="label ${i === S.view ? "on" : ""}" data-v="${i}"><b>${i + 1}</b>${v.label}${n !== "" ? ` <span class="m">${num(n)}</span>` : ""}</a>`;
+  }).join("");
+}
+
+function renderPipeline() {
+  const st = S.stats; if (!st) return `<div class="empty">waiting for the first snapshot…</div>`;
+  const total = st.sources.reduce((a, s) => a + s.count, 0) || 1;
+  const w = Math.max(8, ...st.sources.map((s) => s.name.length));
+  const tw = Math.max(10, ...st.sources.map((s) => s.topic.length));
+  const src = st.sources.map((s) => {
+    const cur = s.cursor ? `cursor ${ago(st.now - s.cursor)} ago` : "cursor -";
+    const state = s.state === "ok" ? `<span class="good">ok</span>` : `<span class="m">${s.state}</span>`;
+    const dlq = s.dlq ? `  <span class="bad">dlq ${s.dlq}</span>` : "";
+    return `<span class="g">└</span> <span class="f">${s.name.padEnd(w)}</span>  <span class="m">${s.topic.padEnd(tw)}</span>  ${num(s.count).padStart(6)}  ${bar(s.count / total)}  <span class="m">every ${s.interval.padEnd(4)} ${cur.padEnd(18)}</span> ${state}${dlq}`;
+  }).join("\n");
+  const rate = st.rate; const last10 = rate.slice(-10).reduce((a, b) => a + b, 0) / 10;
+  const b = st.broker;
+  const broker = `<span class="g">└</span> <span class="f">${esc(b.bootstrap)}</span>  ${b.up ? `<span class="good">up</span>` : `<span class="bad">down</span>`}  <span class="m">${b.up ? `${b.topics} topics · ${num(Object.values(st.topics).reduce((a, c) => a + c, 0))} messages read` : esc(b.error || "")}</span>`;
+  const spark = st.spark.length ? st.spark.map((q) => {
+    const running = q.planned != null && q.planned !== q.committed;
+    const fresh = q.committed_ago_ms != null && q.committed_ago_ms < 120000;
+    return `<span class="g">└</span> <span class="f">${esc(q.name).padEnd(14)}</span>  batch ${String(q.committed ?? "-").padStart(5)}  <span class="m">committed ${q.committed_ago_ms == null ? "never" : ago(q.committed_ago_ms) + " ago"}</span>  ${running ? `<span class="f">running #${q.planned}</span>` : fresh ? `<span class="good">active</span>` : `<span class="m">idle</span>`}`;
+  }).join("\n") : `<span class="g">└</span> <span class="m">no checkpoints under ${esc(st.sink_dir)} yet — start rat.Correlate</span>`;
+  const sinkTotal = Object.values(st.sinks).reduce((a, s) => a + s.bytes, 0) || 1;
+  const sinks = Object.entries(st.sinks).map(([k, s]) =>
+    `<span class="g">└</span> <span class="f">${k.padEnd(12)}</span>  ${num(s.rows).padStart(7)} rows  ${bytes(s.bytes).padStart(10)}  ${bar(s.bytes / sinkTotal)}`).join("\n");
+  const err = st.store_error ? `\n<span class="g">└</span> <span class="bad">${esc(st.store_error)}</span>` : "";
+  return `
+  <section><div class="label">sources</div><div class="tree">${src || '<span class="m">no plugins loaded</span>'}</div></section>
+  <section><div class="label">kafka</div><div class="tree">${broker}
+<span class="g">└</span> <span class="spark">${sparkline(rate)}</span>  <span class="m">last 60s · ${last10.toFixed(1)} msg/s</span></div></section>
+  <section><div class="label">spark</div><div class="tree">${spark}</div></section>
+  <section><div class="label">parquet · ${esc(st.sink_dir)}</div><div class="tree">${sinks}${err}</div></section>`;
+}
+
+function renderTable() {
+  const view = VIEWS[S.view], ui = UI[S.view];
+  built = build(view, ui);
+  if (ui.sel >= built.items.length) ui.sel = Math.max(0, built.items.length - 1);
+  const groupNames = Object.keys(view.groups);
+  const cur = view.cols.find((c) => c.key === ui.sort);
+  const pend = S.view === 1 && S.paused ? `<span class="label f">paused · ${S.pending.length} new</span>` : "";
+  const tools = `<div class="tools">
+    <input id="q" placeholder="/ filter — tsla  source:news  -hn" value="${esc(ui.q)}" spellcheck="false">
+    <span class="label opt" data-a="sort">sort <em>${cur.label} ${ui.desc ? "↓" : "↑"}</em></span>
+    <span class="label opt" data-a="group">group <em>${ui.group || "none"}</em></span>
+    <span class="label">${num(built.n)} rows${built.groups ? ` · ${built.groups} groups` : ""}</span>${pend}
+  </div><div class="label m" style="margin-bottom:14px;letter-spacing:.08em;text-transform:none">${esc(view.note)}${S.view === 1 ? ` · ring holds ${num(S.cap)}` : ""}</div>`;
+  if (!built.items.length) return tools + `<div class="empty">nothing here yet${ui.q ? " for this filter" : ""}.</div>`;
+  const head = `<tr>${view.cols.map((c) => `<th data-s="${c.key}" class="${c.key === ui.sort ? "on" : ""}">${c.label}${c.key === ui.sort ? (ui.desc ? " ↓" : " ↑") : ""}</th>`).join("")}</tr>`;
+  const lo = Math.max(0, Math.min(ui.sel - LIMIT / 2, built.items.length - LIMIT)), hi = Math.min(built.items.length, lo + LIMIT);
+  let body = "";
+  for (let i = lo; i < hi; i++) {
+    const it = built.items[i], sel = i === ui.sel ? " sel" : "";
+    if (it.kind === "g") {
+      body += `<tr class="grp${sel}" data-i="${i}"><td colspan="${view.cols.length}">${ui.shut.has(it.key) ? "+" : "−"} ${esc(it.key)}<span class="m">${it.n}</span></td></tr>`;
+      continue;
+    }
+    body += `<tr class="r${sel}" data-i="${i}">${view.cols.map((c) => {
+      const v = c.get(it.row); const t = c.fmt ? c.fmt(v) : v ?? "";
+      return `<td class="${c.cls || ""}${c.wrap ? " wrap" : ""}">${esc(t)}</td>`; }).join("")}</tr>`;
+    if (ui.open.has(rowKey(it.row))) body += `<tr class="det"><td colspan="${view.cols.length}"><pre>${link(esc(JSON.stringify(view.detail(it.row), null, 2)))}</pre></td></tr>`;
+  }
+  const more = built.items.length > hi || lo > 0 ? `<div class="more">showing ${lo + 1}–${hi} of ${num(built.items.length)} · ↑/↓ to move the window</div>` : "";
+  return tools + `<div class="scroll"><table>${head}${body}</table></div>${more}`;
+}
+const rowKey = (r) => r.seq ?? `${r.a_id}|${r.b_id}|${r.event_id}`;
+const link = (s) => s.replace(/&quot;(https?:\/\/[^&\s]+)&quot;/g, '&quot;<a class="ext" href="$1" target="_blank" rel="noopener">$1</a>&quot;');
+
+function render() {
+  renderNav();
+  const q = document.activeElement?.id === "q" ? document.activeElement : null;
+  const caret = q ? q.selectionStart : null;
+  $("main").innerHTML = S.view === 0 ? renderPipeline() : renderTable();
+  if (q) { const n = $("q"); if (n) { n.focus(); n.setSelectionRange(caret, caret); } }
+  const sel = document.querySelector("tr.sel"); if (sel && moved) { sel.scrollIntoView({ block: "nearest" }); moved = false; }
+  $("hint").textContent = S.view === 0
+    ? "press 1–5 to switch views"
+    : "press ↑ / ↓ to scroll · enter open · / filter · s sort · r reverse · g group" + (S.view === 1 ? " · space pause" : "") + " · esc clear";
+}
+let moved = false, queued = false;
+const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; render(); }); } };
+
+// ---- data ----------------------------------------------------------------
+function ingest(events, dlq) {
+  for (const e of events) { if (e.event_id) S.byId.set(e.event_id, e); }
+  S.events.push(...events); S.dlq.push(...dlq);
+  if (S.events.length > S.cap) {
+    for (const old of S.events.splice(0, S.events.length - S.cap)) if (S.byId.get(old.event_id) === old) S.byId.delete(old.event_id);
+  }
+}
+function connect() {
+  const es = new EventSource("api/stream");
+  es.onopen = () => { S.connected = true; status(); };
+  es.onerror = () => { S.connected = false; status(); };
+  es.onmessage = (m) => {
+    const msg = JSON.parse(m.data);
+    if (msg.reset) { S.events = []; S.dlq = []; S.byId.clear(); S.pending = []; S.pendingDlq = []; }
+    if (msg.stats) S.stats = msg.stats;
+    if (msg.stored) S.stored = msg.stored;
+    if (S.paused && !msg.reset) { S.pending.push(...msg.events); S.pendingDlq.push(...msg.dlq); msg.events.forEach((e) => e.event_id && S.byId.set(e.event_id, e)); }
+    else ingest(msg.events, msg.dlq);
+    status(); schedule();
+  };
+}
+function status() {
+  $("dot").className = "dot" + (S.connected ? " on" : "");
+  $("conn").textContent = S.connected ? (S.paused ? "paused" : "live") : "reconnecting";
+}
+setInterval(() => { const d = new Date(); $("clock").textContent = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}Z`; }, 1000);
+
+// ---- input ---------------------------------------------------------------
+function go(v) { S.view = v; moved = true; history.replaceState(null, "", "#" + VIEWS[v].id); schedule(); }
+function cycleSort(ui, view) { const ks = view.cols.map((c) => c.key); ui.sort = ks[(ks.indexOf(ui.sort) + 1) % ks.length]; }
+function cycleGroup(ui, view) { const ks = [null, ...Object.keys(view.groups)]; ui.group = ks[(ks.indexOf(ui.group) + 1) % ks.length]; ui.sel = 0; ui.shut.clear(); }
+function togglePause() {
+  S.paused = !S.paused;
+  if (!S.paused) { ingest(S.pending, S.pendingDlq); S.pending = []; S.pendingDlq = []; }
+  status(); schedule();
+}
+function activate(ui, i) {
+  const it = built?.items[i]; if (!it) return;
+  if (it.kind === "g") { ui.shut.has(it.key) ? ui.shut.delete(it.key) : ui.shut.add(it.key); }
+  else { const k = rowKey(it.row); ui.open.has(k) ? ui.open.delete(k) : ui.open.add(k); }
+  schedule();
+}
+document.addEventListener("keydown", (e) => {
+  const inQ = e.target.id === "q";
+  const view = VIEWS[S.view], ui = UI[S.view];
+  if (inQ) {
+    if (e.key === "Escape" || e.key === "Enter" || e.key === "ArrowDown") { e.target.blur(); e.preventDefault(); }
+    return;
+  }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (/^[1-5]$/.test(e.key)) return go(+e.key - 1);
+  if (e.key === "Tab") { e.preventDefault(); return go((S.view + (e.shiftKey ? VIEWS.length - 1 : 1)) % VIEWS.length); }
+  if (e.key === " " ) { e.preventDefault(); return togglePause(); }
+  if (S.view === 0) return;
+  const n = built?.items.length || 0;
+  const step = { ArrowDown: 1, j: 1, ArrowUp: -1, k: -1, PageDown: 20, PageUp: -20, End: n, Home: -n }[e.key];
+  if (step) { e.preventDefault(); ui.sel = Math.max(0, Math.min(n - 1, ui.sel + step)); moved = true; return schedule(); }
+  if (e.key === "Enter") return activate(ui, ui.sel);
+  if (e.key === "/") { e.preventDefault(); return $("q")?.focus(); }
+  if (e.key === "s") { cycleSort(ui, view); return schedule(); }
+  if (e.key === "r" || e.key === "S") { ui.desc = !ui.desc; return schedule(); }
+  if (e.key === "g") { cycleGroup(ui, view); return schedule(); }
+  if (e.key === "Escape") { ui.q = ""; ui.group = null; ui.open.clear(); ui.sel = 0; return schedule(); }
+});
+document.addEventListener("input", (e) => { if (e.target.id === "q") { UI[S.view].q = e.target.value; UI[S.view].sel = 0; schedule(); } });
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("[data-v]"); if (a) return go(+a.dataset.v);
+  const view = VIEWS[S.view], ui = UI[S.view];
+  const th = e.target.closest("th[data-s]");
+  if (th) { if (ui.sort === th.dataset.s) ui.desc = !ui.desc; else { ui.sort = th.dataset.s; ui.desc = true; } return schedule(); }
+  const opt = e.target.closest("[data-a]");
+  if (opt) { opt.dataset.a === "sort" ? cycleSort(ui, view) : cycleGroup(ui, view); return schedule(); }
+  const tr = e.target.closest("tr[data-i]");
+  if (tr && !e.target.closest("a")) { const i = +tr.dataset.i; if (ui.sel === i) activate(ui, i); else { ui.sel = i; schedule(); } }
+});
+
+S.view = Math.max(0, VIEWS.findIndex((v) => "#" + v.id === location.hash));
+render();
+connect();
+</script>
+</body>
+</html>

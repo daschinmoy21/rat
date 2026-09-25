@@ -14,3 +14,5 @@ direnv allow          # or: nix develop
 ./scripts/check-deps.sh
 cd spark && sbt compile
 ```
+
+See what the pipeline is doing with `uv run rat dash`, a live local dashboard of the Kafka stream, Spark progress and Parquet sinks. The steps are in the [getting started guide](GETSTARTED.md#6-watch-it-in-the-dashboard-terminal-3).
