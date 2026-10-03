@@ -70,6 +70,7 @@ cd spark && RAT_HIVE_ENABLED=true RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 - `uv run rat status` — broker up, cursor age per source, DLQ depth, sink sizes.
 - `uv run rat dash` — the same, live in a browser at `127.0.0.1:8765`, plus the event stream, correlated pairs and stored rows with filter, sort and group ([GETSTARTED](../GETSTARTED.md#6-watch-it-in-the-dashboard-terminal-3)).
 - `uv run rat dlq [--topic T] [--n N]` — what landed in the DLQ and why.
+- `podman ps` — inspect status and port bindings of kafka, hdfs, and hive containers.
 - `podman exec rat-hiveserver2 beeline -u jdbc:hive2://localhost:10000 -n hive -e "SELECT ..."`
 - `podman exec rat-namenode hdfs dfs -ls /rat/correlated` — partitions on HDFS.
 - `./scripts/smoke.sh` — full fixture-driven end-to-end run against the local
@@ -113,7 +114,7 @@ changes between profiles: paths that carry a scheme are used as-is.
 
 A message reaches `events.<source>.dlq` when emit exhausts its retry budget
 or the payload fails the plugin schema. `rat dlq` shows the count and the
-`rat.error` reason. Rows that fail even the DLQ write spool to
+`rat.error` reason. Inspect specific failures using `uv run rat dlq --topic <topic> --n <count>`. Rows that fail even the DLQ write spool to
 `$RAT_DLQ_SPOOL` as JSON lines — re-emit them with
 `uv run python scripts/fixture.py`-style code or replay by hand once the
 broker is healthy, then clear the spool file.

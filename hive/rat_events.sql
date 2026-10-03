@@ -3,6 +3,7 @@
 -- Spark owns the files. Locations follow RAT_HIVE_BASE (default = RAT_SINK_DIR);
 -- on a cluster swap '/tmp/rat' to the matching hdfs:// path on the same clause.
 
+-- Raw event envelopes partitioned by ingestion date (YYYY-MM-DD) and source plugin
 CREATE EXTERNAL TABLE IF NOT EXISTS rat_events (
   event_id STRING,
   entities ARRAY<STRING>,

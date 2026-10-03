@@ -13,6 +13,8 @@ direnv allow          # or: nix develop
 # no Nix: JDK 17, sbt, uv → uv sync --frozen
 ./scripts/check-deps.sh
 cd spark && sbt compile
+# Verify pipeline and broker health:
+uv run rat status
 ```
 
 See what the pipeline is doing with `uv run rat dash`, a live local dashboard of the Kafka stream, Spark progress and Parquet sinks. The steps are in the [getting started guide](GETSTARTED.md#6-watch-it-in-the-dashboard-terminal-3).

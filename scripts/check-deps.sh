@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Verifies host prerequisites for the rat pipeline:
+# - Java 17 (required by Spark 3.5.3 Structured Streaming)
+# - sbt 1.10+ (Scala build tool)
+# - uv (Python dependency and packaging manager)
+# - Python 3.12+ (modern typing and adapter runtime)
 set -euo pipefail
 
 fail=0

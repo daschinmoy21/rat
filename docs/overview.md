@@ -14,6 +14,6 @@ Batch is too slow. Minutes of delay, not hours.
 4. Parquet on HDFS, Hive on that path. Fresh first.
 5. Python ingest. Scala 2.13 job (Spark 3.5).
 
-Done: a source shows up in Hive without a one-off path. Two sources sharing an entity in one window become one row.
+Done: a source shows up in Hive without a one-off path. Two sources sharing an entity in one window become one row. Raw envelopes land in `rat_events`, while paired events land in `correlated`.
 
 Not multi-tenant. Not Splunk. Not a warehouse. Archive later is a different job on the same files.

@@ -22,7 +22,7 @@ ts_ms       event time
 payload     plugin JSON
 ```
 
-No entity → land raw, skip the join. Sources are plugins: [plugins.md](plugins.md).
+No entity → land raw, skip the join. Events bearing matching entities within the watermark window are joined and written to `correlated`. Sources are plugins: [plugins.md](plugins.md).
 
 ## Job
 
