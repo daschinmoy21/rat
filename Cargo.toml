@@ -1,0 +1,17 @@
+# Rust port of the Spark/HDFS/Hive pipeline. See docs/rust-interface.md.
+[workspace]
+members = ["rust/rat-rs"]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.97"
+license = "MIT"
+
+[profile.release]
+codegen-units = 4
+debug = "line-tables-only"
+
+# Keep debug test builds of the heavy deps (parquet, datafusion) usable.
+[profile.dev.package."*"]
+opt-level = 1
