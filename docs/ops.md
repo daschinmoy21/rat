@@ -1,5 +1,8 @@
 # Ops
 
+These runbooks cover the original JVM stack. See [Rust operations and migration](rust-migration.md)
+for `rat-engine`, Iggy, local Parquet and DataFusion.
+
 Running the pipe as a system on one machine: broker, HDFS, Hive, producers,
 job, query. Dependencies come from the flake — every command assumes the
 [nix develop](setup.md) shell (or the unit wrappers that do the same).

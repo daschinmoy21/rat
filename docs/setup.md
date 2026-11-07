@@ -1,6 +1,9 @@
 # Setup
 
-JDK 17, sbt 1.10.11, Python 3.12, uv 0.12+. `./scripts/check-deps.sh` checks that.
+For the Rust stack use the [Rust quickstart](rust-migration.md) and
+`./scripts/check-deps.sh`. This page covers the original JVM setup:
+JDK 17, sbt 1.10.11, Python 3.12, uv 0.12+.
+`./scripts/check-deps.sh --legacy` checks that.
 
 ## Broker + topics
 

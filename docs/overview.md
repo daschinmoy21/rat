@@ -1,5 +1,8 @@
 # What this is
 
+This is the legacy overview. The new implementation uses Iggy, a Rust engine,
+local Parquet and DataFusion: [Rust quickstart](rust-migration.md).
+
 Group pipeline for our own sources. Kafka in, Spark joins while events are still new, Hive after.
 
 Not a product. Not a SIEM. Useful source → plugin. Useless source → skip.

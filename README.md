@@ -1,20 +1,30 @@
 # rat
 
-Kafka → Spark Structured Streaming → Hive/HDFS.
+Python source plugins → Apache Iggy → Rust correlation engine → partitioned Parquet.
+Query the output with Apache DataFusion, in the same Rust binary. The Rust
+stack needs no JVM. Existing Python adapters and their manifests keep working.
 
-Python producers. Scala 2.13 Spark job (3.5.3). Sources are plugins. Kafka in-tree, `Correlate` streams to Parquet, Hive reads those paths. Runbooks: [docs/ops.md](docs/ops.md) · [deploy/README.md](deploy/README.md).
-
-[getting started](GETSTARTED.md) · [overview](docs/overview.md) · [architecture](docs/architecture.md) · [plugins](docs/plugins.md) · [setup](docs/setup.md) · [ops](docs/ops.md) · [deploy](deploy/README.md) · [contributing](CONTRIBUTING.md)
+[Rust migration and quickstart](docs/rust-migration.md) ·
+[CLI reference](docs/rust-interface.md) · [Iggy protocol](docs/iggy-interface.md) ·
+[resource measurements](docs/resource-comparison.md) ·
+[Python versus Lua](docs/python-vs-lua.md) · [plugins](docs/plugins.md)
 
 ```bash
-git clone git@github.com:daschinmoy21/rat.git
-cd rat
-direnv allow          # or: nix develop
-# no Nix: JDK 17, sbt, uv → uv sync --frozen
-./scripts/check-deps.sh
-cd spark && sbt compile
-# Verify pipeline and broker health:
-uv run rat status
+# Rust 1.97+, Python 3.12+, uv, Podman + podman-compose
+uv sync --frozen
+cargo build --locked --release -p rat-rs
+./scripts/iggy-up.sh
+export RAT_BROKER=iggy RAT_SINK_DIR="$HOME/.local/share/rat/sink"
+target/release/rat-rs consume  # terminal 1
+uv run rat run               # terminal 2, same exported env
+target/release/rat-rs query   # terminal 3, same RAT_SINK_DIR
 ```
 
-See what the pipeline is doing with `uv run rat dash`, a live local dashboard of the Kafka stream, Spark progress and Parquet sinks. The steps are in the [getting started guide](GETSTARTED.md#6-watch-it-in-the-dashboard-terminal-3).
+`uv run rat status`, `uv run rat dlq`, and `uv run rat dash` support Iggy when
+`RAT_BROKER=iggy`. The dashboard's Spark-progress section is legacy-only.
+
+The original Kafka/Spark/HDFS/Hive implementation remains under `spark/`,
+`hive/`, and `infra/{kafka,hadoop,hive}/` for comparison and existing cluster
+users. Its [getting started guide](GETSTARTED.md) and [deployment guide](deploy/README.md)
+describe that legacy stack. Local Parquet replaces single-node HDFS; it does
+not provide HDFS replication or HiveServer2 compatibility.

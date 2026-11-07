@@ -1,5 +1,11 @@
 # Plugin System
 
+The Python plugin API below also works with the Rust stack. Set
+`RAT_BROKER=iggy` and provision topics with `uv run rat topics`. Kafka/Spark
+references and diagrams below describe the original backend; see
+[Rust migration](rust-migration.md) for the new runtime and
+[Python versus Lua](python-vs-lua.md) for the language assessment.
+
 ![hn, rss, and stocks fan into core, then Kafka, then Spark](rat-plugins.jpg)
 
 Source: [rat-plugins.tldraw](rat-plugins.tldraw).
