@@ -1,5 +1,8 @@
 # Getting started
 
+This guide describes the original Kafka/Spark/HDFS/Hive stack. For the JVM-free
+path, start with the [Rust quickstart](docs/rust-migration.md).
+
 `rat` is a single-machine event pipeline:
 
 ```text
@@ -96,7 +99,7 @@ Install the locked Python environment and verify the checkout:
 
 ```bash
 uv sync --frozen
-./scripts/check-deps.sh
+./scripts/check-deps.sh --legacy
 uv run rat plugins
 (cd spark && sbt -batch compile)
 ```

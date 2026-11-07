@@ -1,0 +1,16 @@
+[Unit]
+Description=rat iggy broker (Apache Iggy 0.9.0, single node via podman-compose)
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=-%h/.config/rat/env
+ExecStart=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$$ROOT/scripts/run-in-nix.sh" podman-compose -f "$$ROOT/infra/iggy/compose.yml" up -d'
+# Block until /ping answers so producers and the engine start against a live broker.
+ExecStartPost=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$$ROOT/scripts/iggy-wait.sh"'
+ExecStop=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$$ROOT/scripts/run-in-nix.sh" podman-compose -f "$$ROOT/infra/iggy/compose.yml" down'
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

@@ -1,5 +1,8 @@
 # Architecture
 
+This page describes the legacy JVM stack. See [Rust migration](rust-migration.md)
+and [Rust design](rust-port.md) for the new Iggy/Rust/Parquet/DataFusion path.
+
 ![plugins to Kafka to Spark to parquet/HDFS to Hive](rat-pipe.jpg)
 
 Source: [rat-pipe.tldraw](rat-pipe.tldraw). Kafka buffers. Spark correlates. Hive is read-only SQL.

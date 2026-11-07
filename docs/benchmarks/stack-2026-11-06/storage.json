@@ -1,0 +1,23 @@
+{
+  "legacy": {
+    "events_raw": {
+      "parquet_files": 32,
+      "parquet_bytes": 88827
+    },
+    "correlated": {
+      "parquet_files": 473,
+      "parquet_bytes": 756828
+    }
+  },
+  "rust": {
+    "events_raw": {
+      "parquet_files": 12,
+      "parquet_bytes": 63699
+    },
+    "correlated": {
+      "parquet_files": 12,
+      "parquet_bytes": 104913
+    },
+    "checkpoint_bytes": 504288
+  }
+}

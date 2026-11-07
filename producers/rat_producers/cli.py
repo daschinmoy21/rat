@@ -7,11 +7,12 @@ import threading
 import time
 from pathlib import Path
 
+from rat_producers import iggy
 from rat_producers.app import App
 from rat_producers.cursor import Cursor
 from rat_producers.extract import extract_entities
 from rat_producers.loader import load_all
-from rat_producers.producer import connect, dlq, emit
+from rat_producers.producer import backend, connect, dlq, emit
 from rat_producers.schema import check
 from rat_producers.status import (
     age,
@@ -124,10 +125,38 @@ def _bootstrap():
     return os.environ.get("RAT_BOOTSTRAP", "localhost:9092")
 
 
+def _iggy_client():
+    return iggy.IggyClient.from_env()
+
+
+def _broker_label():
+    if backend() == "iggy":
+        cfg = iggy.config_from_env()
+        return f"iggy {cfg['url']} stream={cfg['stream']}"
+    return _bootstrap()
+
+
+def _depths(app):
+    """DLQ depth per topic from the selected backend."""
+    if backend() == "iggy":
+        return iggy.dlq_depths(_iggy_client(), dlq_topics(app))
+    consumer = _consumer(_bootstrap())
+    try:
+        return dlq_depths(consumer, dlq_topics(app))
+    finally:
+        consumer.close()
+
+
+def _broker_up():
+    if backend() == "iggy":
+        return _iggy_client().ping()
+    return broker_ok(_bootstrap())
+
+
 def print_status(app):
-    bootstrap = _bootstrap()
-    up = broker_ok(bootstrap)
-    print(f"broker   {bootstrap}   {'up' if up else 'DOWN'}")
+    label = _broker_label()
+    up = _broker_up()
+    print(f"broker   {label}   {'up' if up else 'DOWN'}")
 
     db = os.environ.get("RAT_CURSOR_DB", "rat-cursors.db")
     rows = cursor_rows(app, Cursor(Path(db)))
@@ -141,11 +170,7 @@ def print_status(app):
 
     if up:
         try:
-            consumer = _consumer(bootstrap)
-            try:
-                depths = dlq_depths(consumer, dlq_topics(app))
-            finally:
-                consumer.close()
+            depths = _depths(app)
             print("dlq      " + "  ".join(f"{t}={d}" for t, d in depths.items()))
         except Exception as err:
             # broker dropped between the probe and the depth fetch
@@ -158,6 +183,9 @@ def print_status(app):
 
 
 def print_dlq(app, args):
+    if backend() == "iggy":
+        print_dlq_iggy(app, args)
+        return
     bootstrap = _bootstrap()
     # consumer construction is lazy: probe first, then guard every fetch
     if not broker_ok(bootstrap):
@@ -184,6 +212,49 @@ def print_dlq(app, args):
         consumer.close()
 
 
+def _print_dlq_rows(depths, rows):
+    for t, d in depths.items():
+        print(f"{t}  {d} messages")
+    for row in rows:
+        print(f"{row['topic']}  offset={row['offset']}  "
+              f"error={row['error'] or '-'}")
+        print("  " + json.dumps(row["value"], sort_keys=True))
+
+
+def print_dlq_iggy(app, args):
+    label = _broker_label()
+    client = _iggy_client()
+    if not client.ping():
+        print(f"broker {label}: DOWN")
+        return
+    topics = [args.topic] if args.topic else dlq_topics(app)
+    try:
+        depths = iggy.dlq_depths(client, topics)
+        rows = [r for t in topics for r in iggy.peek(client, t, n=args.n)]
+        _print_dlq_rows(depths, rows)
+    except Exception as err:
+        print(f"broker {label}: error fetching DLQ state ({err})")
+
+
+def provision_topics(app, wait_s=0):
+    """Create the Iggy stream + every plugin topic and its DLQ. Kafka keeps
+    scripts/make-topics.sh."""
+    if backend() != "iggy":
+        print("RAT_BROKER=kafka: use ./scripts/make-topics.sh (needs the kafka container)")
+        return 1
+    client = _iggy_client()
+    if wait_s and not iggy.wait_ready(client, timeout_s=wait_s):
+        print(f"broker {_broker_label()}: not ready after {wait_s}s")
+        return 1
+    topics = iggy.plugin_topics(app.manifests.values())
+    if not topics:
+        print("no plugin topics found")
+        return 1
+    iggy.provision(client, topics)
+    print("topics   " + " ".join(client.topics()))
+    return 0
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="rat")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -191,6 +262,9 @@ def main(argv=None):
     run_parser = sub.add_parser("run")
     run_parser.add_argument("--once", action="store_true")
     sub.add_parser("status")
+    topics_parser = sub.add_parser("topics", help="create iggy stream/topics (RAT_BROKER=iggy)")
+    topics_parser.add_argument("--wait", type=int, default=0,
+                               help="seconds to wait for the broker /ping first")
     dlq_parser = sub.add_parser("dlq")
     dlq_parser.add_argument("--topic", default=None,
                             help="one DLQ topic (default: every source's)")
@@ -223,6 +297,8 @@ def main(argv=None):
             producer.close(timeout=10)
     elif args.cmd == "status":
         print_status(app)
+    elif args.cmd == "topics":
+        return provision_topics(app, wait_s=args.wait)
     elif args.cmd == "dlq":
         print_dlq(app, args)
     elif args.cmd == "dash":
@@ -230,7 +306,7 @@ def main(argv=None):
         logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
         logging.getLogger("kafka").setLevel(logging.ERROR)
         sink_dir = os.environ.get("RAT_SINK_DIR", "/tmp/rat")
-        serve(app, host=args.host, port=args.port, cap=args.cap, bootstrap=_bootstrap(),
+        serve(app, host=args.host, port=args.port, cap=args.cap, bootstrap=_broker_label(),
               sink_dir=sink_dir,
               checkpoint_dir=os.environ.get("RAT_CHECKPOINT_DIR",
                                             os.path.join(sink_dir, "checkpoints")),

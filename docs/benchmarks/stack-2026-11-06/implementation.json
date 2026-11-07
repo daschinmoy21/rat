@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-11-06T11:20:42.078547+00:00",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "release_binary_bytes": 522605400,
+  "release_binary_sha256": "2c0093740af1f31cc1bddb6b1014ef39a24aa9b564128300a51ab4477a89a0b5",
+  "files": {
+    "Cargo.lock": "34d70e21f5ea29a5b628af52ad29358b1d58fb0773634cf100c0c4296dfc4579",
+    "Cargo.toml": "6939d74132cdbeb5bc4bdd80bb84a3ca0321d0bdda9f5cbde6918fd943213334",
+    "producers/rat_producers/iggy.py": "d175c563e86917de481abed5904dfbc4cd45550da3e989a817866dbf4d8b3c3d",
+    "rust/rat-rs/Cargo.toml": "acb274eb2e27a4d1a86191a6459c7dd0b0094ed88077f766420ed38b2236f13c",
+    "rust/rat-rs/src/checkpoint.rs": "472a1e1cad10361f5df7c33998f27da234a72f801ab11a925807eaf70fbd1cef",
+    "rust/rat-rs/src/digest.rs": "8a4299295e751335314fe1cff624c1200ddb007ded570e49678e4c130dd9c195",
+    "rust/rat-rs/src/engine.rs": "4c99374115601b1c391a4c3504c38eecbeec56743cb74e2894dbabc9773aecae",
+    "rust/rat-rs/src/envelope.rs": "cad80a0931fae99e7e692a8d4fa2d167464f7daf6d34edaab78c90b18fde2739",
+    "rust/rat-rs/src/generate.rs": "b3453bb5c0de2aa500647e94be441b554c9747a85ec79defde8409899cb801e4",
+    "rust/rat-rs/src/iggy.rs": "4913bab61664dcbaee669fffff863a8afd7f7b29c77480559fa8a9c7f240e1ca",
+    "rust/rat-rs/src/interval.rs": "d5eebd6824039584b8134243536b3e0c82dd87062dfd62d446c3fc2106545b7e",
+    "rust/rat-rs/src/lib.rs": "88d11bf791ac6ba6f1f75586524d3c354bdd41529b642293c4fb60ed6fa30621",
+    "rust/rat-rs/src/main.rs": "b29ca5b54d3143df84b335063d4ced28eb869e21874de6815684bd1f8edae1f2",
+    "rust/rat-rs/src/pipeline.rs": "8ff763af45688baa35036ab26c1faf7e1790e0124e61c847a319da1dece62d0b",
+    "rust/rat-rs/src/query.rs": "41803930d84baacc952e7aba09817334d657aaa89362e2673397f92d1ed7b4b1",
+    "rust/rat-rs/src/sink.rs": "caefd23d178fbdf673bee5df1e8266c7ffa864f792ba05ba8b7065a4f2310499",
+    "rust/rat-rs/src/source_file.rs": "b15752bba06d5aca9c8f23dceb551632db6a998c3e505a51204f85a8950ed6d1",
+    "rust/rat-rs/tests/correlate.rs": "ad366fa65002c4c7fe4c8d0c8c401960ca7d496c82eda52f6b785ba1635f6172",
+    "rust/rat-rs/tests/pipeline.rs": "1828202f506ac4cd12299670431001435178fe7ba4412064a77945e769ac3d3e"
+  }
+}

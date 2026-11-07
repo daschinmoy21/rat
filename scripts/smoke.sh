@@ -8,12 +8,16 @@ set -eu
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$ROOT"
 
+# This smoke drives Spark, which reads Kafka only: pin the fixture to Kafka
+# even when the shell exports RAT_BROKER=iggy.
+export RAT_BROKER=kafka
+
 SINK_DIR=${RAT_SINK_DIR:-/tmp/rat-smoke}
 BOOTSTRAP=${RAT_BOOTSTRAP:-localhost:9092}
 
 # nix shell when the machine has it; bare commands in CI.
 if command -v nix >/dev/null 2>&1 && [ -f "$ROOT/flake.nix" ]; then
-  PREFIX="nix develop -c"
+  PREFIX="nix develop .#legacy -c"
 else
   PREFIX=""
 fi

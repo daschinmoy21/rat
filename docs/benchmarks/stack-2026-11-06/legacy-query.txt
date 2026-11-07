@@ -1,0 +1,43 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://localhost:10000
+Connected to: Apache Hive (version 3.1.3)
+Driver: Hive JDBC (version 3.1.3)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+INFO  : Compiling command(queryId=hive_20261106104646_7d841e7e-aad6-49d6-bbf3-1c1a4fc053d3): SELECT entity, a_id, b_id, ts_ms FROM correlated LIMIT 3
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:entity, type:string, comment:null), FieldSchema(name:a_id, type:string, comment:null), FieldSchema(name:b_id, type:string, comment:null), FieldSchema(name:ts_ms, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20261106104646_7d841e7e-aad6-49d6-bbf3-1c1a4fc053d3); Time taken: 7.171 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20261106104646_7d841e7e-aad6-49d6-bbf3-1c1a4fc053d3): SELECT entity, a_id, b_id, ts_ms FROM correlated LIMIT 3
+INFO  : Completed executing command(queryId=hive_20261106104646_7d841e7e-aad6-49d6-bbf3-1c1a4fc053d3); Time taken: 0.006 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+entity,a_id,b_id,ts_ms
+ENTITY1151,bench:1151:0,bench:1151:1,1700000030000
+ENTITY1382,bench:1382:0,bench:1382:1,1700000030000
+ENTITY2165,bench:2165:0,bench:2165:1,1700000030000
+3 rows selected (8.932 seconds)
+INFO  : Compiling command(queryId=hive_20261106104655_f163e1c2-d14c-4ddd-8e92-85b305cc16b8): SELECT event_id, source, ts_ms FROM rat_events LIMIT 3
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:event_id, type:string, comment:null), FieldSchema(name:source, type:string, comment:null), FieldSchema(name:ts_ms, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20261106104655_f163e1c2-d14c-4ddd-8e92-85b305cc16b8); Time taken: 0.33 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20261106104655_f163e1c2-d14c-4ddd-8e92-85b305cc16b8): SELECT event_id, source, ts_ms FROM rat_events LIMIT 3
+INFO  : Completed executing command(queryId=hive_20261106104655_f163e1c2-d14c-4ddd-8e92-85b305cc16b8); Time taken: 0.003 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+event_id,source,ts_ms
+bench:1:3,rss,1700000090000
+bench:2438:3,rss,1700000090000
+bench:2443:3,rss,1700000090000
+3 rows selected (0.477 seconds)
+Beeline version 3.1.3 by Apache Hive
+[WARN] Failed to create directory: /home/hive/.beeline
+No such file or directory
+Closing: 0: jdbc:hive2://localhost:10000

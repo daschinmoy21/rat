@@ -1,0 +1,14 @@
+{
+  "command": [
+    "target/release/rat-rs",
+    "query",
+    "--sink-dir",
+    "/home/crimxnhaze/.local/state/rat/bench-20261106/final-sink"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.02848939085379243,
+  "cpu_seconds": 0.021214999999999998,
+  "sampled_peak_rss_mib": 49.234375,
+  "kernel_peak_rss_mib": 49.5078125,
+  "cpu_percent_one_core": 74.46631663300697
+}

@@ -1,0 +1,2296 @@
+{
+  "recorded_at": "2026-11-06T10:45:52.826212+00:00",
+  "duration_s": 30.002909254981205,
+  "logical_cpus": 4,
+  "cgroups": {
+    "rat-kafka": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_bfc3cb296638f26856a2b161f936fc685540ff5366382b76c2a3338a1b44de13.slice/libpod-ed12c9f6f83143aba33023e3dc54856e3c1e58b39ca42aaf048c5ab0cb9cb5e9.scope/container",
+    "rat-namenode": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_eab4d7a856eafffbd5ba8a36635eecd08f4f9bfd48e10a8a7b6820c70947e58e.slice/libpod-1c863c0decbfc619094eed353ec6617e11849d633a88c627043c75f4688e56fd.scope/container",
+    "rat-datanode": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_eab4d7a856eafffbd5ba8a36635eecd08f4f9bfd48e10a8a7b6820c70947e58e.slice/libpod-e46fd4a6c0c9da2557f24fe6cdf9ca206064034825dc6ebb572511cdcc456952.scope/container",
+    "rat-hive-metastore": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_837a119812ef6ef6299731eab7445348ed71da2d6c013e0a9d65f16dd0b84992.slice/libpod-09d2f02984ced17011224000ea63f60925e243b230d2be4acdb05a3d1f4202a3.scope/container",
+    "rat-hiveserver2": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_837a119812ef6ef6299731eab7445348ed71da2d6c013e0a9d65f16dd0b84992.slice/libpod-86ad7525281f01e2b41e1b870f4c53699e348223874b21fe7dfe5db9369b2d07.scope/container",
+    "rat-bench-spark.scope": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rat-bench-spark.scope"
+  },
+  "summary": {
+    "rat-kafka": {
+      "mean_memory_mib": 280.23374495967744,
+      "mean_working_set_mib": 270.11277721774195,
+      "peak_working_set_mib": 277.91796875,
+      "mean_anon_mib": 251.91141633064515,
+      "mean_swap_mib": 89.84614415322581,
+      "cpu_seconds": 0.642163,
+      "cpu_percent_one_core": 2.1403357739162763,
+      "read_bytes": 233472,
+      "write_bytes": 303104
+    },
+    "rat-namenode": {
+      "mean_memory_mib": 531.1788054435484,
+      "mean_working_set_mib": 492.6774193548387,
+      "peak_working_set_mib": 671.390625,
+      "mean_anon_mib": 453.65196572580646,
+      "mean_swap_mib": 4.160282258064516,
+      "cpu_seconds": 4.011224,
+      "cpu_percent_one_core": 13.36945016201734,
+      "read_bytes": 24576,
+      "write_bytes": 2396160
+    },
+    "rat-datanode": {
+      "mean_memory_mib": 479.4117943548387,
+      "mean_working_set_mib": 459.08001512096774,
+      "peak_working_set_mib": 459.66796875,
+      "mean_anon_mib": 441.17074092741933,
+      "mean_swap_mib": 5.066154233870968,
+      "cpu_seconds": 1.104143,
+      "cpu_percent_one_core": 3.6801197864393287,
+      "read_bytes": 458752,
+      "write_bytes": 3063808
+    },
+    "rat-hive-metastore": {
+      "mean_memory_mib": 275.75718245967744,
+      "mean_working_set_mib": 242.79410282258064,
+      "peak_working_set_mib": 245.44140625,
+      "mean_anon_mib": 222.02734375,
+      "mean_swap_mib": 294.4194808467742,
+      "cpu_seconds": 0.050291,
+      "cpu_percent_one_core": 0.16762041164941524,
+      "read_bytes": 159744,
+      "write_bytes": 3764224
+    },
+    "rat-hiveserver2": {
+      "mean_memory_mib": 314.8879788306452,
+      "mean_working_set_mib": 314.83102318548384,
+      "peak_working_set_mib": 315.8046875,
+      "mean_anon_mib": 310.1188256048387,
+      "mean_swap_mib": 211.71534778225808,
+      "cpu_seconds": 0.294356,
+      "cpu_percent_one_core": 0.9810915251531144,
+      "read_bytes": 122880,
+      "write_bytes": 1155072
+    },
+    "rat-bench-spark.scope": {
+      "mean_memory_mib": 1017.265625,
+      "mean_working_set_mib": 1016.2421875,
+      "peak_working_set_mib": 1019.953125,
+      "mean_anon_mib": 995.6456653225806,
+      "mean_swap_mib": 121.69266633064517,
+      "cpu_seconds": 1.417723,
+      "cpu_percent_one_core": 4.725285098026365,
+      "read_bytes": 94208,
+      "write_bytes": 1060864
+    },
+    "TOTAL": {
+      "mean_memory_mib": 2898.7351310483873,
+      "mean_working_set_mib": 2795.7375252016127,
+      "peak_working_set_mib": 2980.89453125,
+      "mean_anon_mib": 2674.5259576612902,
+      "mean_swap_mib": 726.9000756048387,
+      "cpu_seconds": 7.5199,
+      "cpu_percent_one_core": 25.063902757201838,
+      "read_bytes": 1093632,
+      "write_bytes": 11743232
+    }
+  },
+  "samples": [
+    {
+      "elapsed_s": 5.010515451431274e-07,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 302026752,
+          "working_set_bytes": 291418112,
+          "anon_bytes": 272408576,
+          "swap_bytes": 85438464,
+          "cpu_usec": 48503637,
+          "rbytes": 127901696,
+          "wbytes": 42823680,
+          "rios": 3579,
+          "wios": 11399
+        },
+        "rat-namenode": {
+          "memory_bytes": 692633600,
+          "working_set_bytes": 652640256,
+          "anon_bytes": 610451456,
+          "swap_bytes": 4325376,
+          "cpu_usec": 53020829,
+          "rbytes": 142970880,
+          "wbytes": 105807872,
+          "rios": 8100,
+          "wios": 45016
+        },
+        "rat-datanode": {
+          "memory_bytes": 502501376,
+          "working_set_bytes": 481452032,
+          "anon_bytes": 463220736,
+          "swap_bytes": 4288512,
+          "cpu_usec": 26151396,
+          "rbytes": 36474880,
+          "wbytes": 53186560,
+          "rios": 2763,
+          "wios": 12765
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 291926016,
+          "working_set_bytes": 257363968,
+          "anon_bytes": 236482560,
+          "swap_bytes": 305049600,
+          "cpu_usec": 33524912,
+          "rbytes": 198844416,
+          "wbytes": 359632896,
+          "rios": 20811,
+          "wios": 86272
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 332767232,
+          "working_set_bytes": 331145216,
+          "anon_bytes": 326193152,
+          "swap_bytes": 220979200,
+          "cpu_usec": 14626283,
+          "rbytes": 45993984,
+          "wbytes": 226373632,
+          "rios": 3711,
+          "wios": 54937
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1070571520,
+          "working_set_bytes": 1069498368,
+          "anon_bytes": 1044922368,
+          "swap_bytes": 126664704,
+          "cpu_usec": 118537853,
+          "rbytes": 38699008,
+          "wbytes": 126476288,
+          "rios": 4436,
+          "wios": 30878
+        }
+      }
+    },
+    {
+      "elapsed_s": 1.003010433865711,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 297328640,
+          "working_set_bytes": 286715904,
+          "anon_bytes": 267694080,
+          "swap_bytes": 90140672,
+          "cpu_usec": 48517359,
+          "rbytes": 127909888,
+          "wbytes": 42835968,
+          "rios": 3581,
+          "wios": 11406
+        },
+        "rat-namenode": {
+          "memory_bytes": 702263296,
+          "working_set_bytes": 662130688,
+          "anon_bytes": 619790336,
+          "swap_bytes": 4325376,
+          "cpu_usec": 54654874,
+          "rbytes": 142995456,
+          "wbytes": 105807872,
+          "rios": 8106,
+          "wios": 45016
+        },
+        "rat-datanode": {
+          "memory_bytes": 503017472,
+          "working_set_bytes": 481857536,
+          "anon_bytes": 463540224,
+          "swap_bytes": 4247552,
+          "cpu_usec": 26366342,
+          "rbytes": 36724736,
+          "wbytes": 53190656,
+          "rios": 2824,
+          "wios": 12766
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 290566144,
+          "working_set_bytes": 256004096,
+          "anon_bytes": 233431040,
+          "swap_bytes": 308101120,
+          "cpu_usec": 33526188,
+          "rbytes": 198848512,
+          "wbytes": 362512384,
+          "rios": 20812,
+          "wios": 86975
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 331018240,
+          "working_set_bytes": 331018240,
+          "anon_bytes": 325120000,
+          "swap_bytes": 222052352,
+          "cpu_usec": 14634059,
+          "rbytes": 45993984,
+          "wbytes": 227446784,
+          "rios": 3711,
+          "wios": 55199
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1067012096,
+          "working_set_bytes": 1065938944,
+          "anon_bytes": 1044303872,
+          "swap_bytes": 127246336,
+          "cpu_usec": 118547069,
+          "rbytes": 38699008,
+          "wbytes": 127094784,
+          "rios": 4436,
+          "wios": 31029
+        }
+      }
+    },
+    {
+      "elapsed_s": 2.005080078030005,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 297336832,
+          "working_set_bytes": 286724096,
+          "anon_bytes": 267702272,
+          "swap_bytes": 90140672,
+          "cpu_usec": 48534563,
+          "rbytes": 127913984,
+          "wbytes": 42844160,
+          "rios": 3582,
+          "wios": 11412
+        },
+        "rat-namenode": {
+          "memory_bytes": 744345600,
+          "working_set_bytes": 704004096,
+          "anon_bytes": 661643264,
+          "swap_bytes": 4325376,
+          "cpu_usec": 55933589,
+          "rbytes": 142995456,
+          "wbytes": 105807872,
+          "rios": 8106,
+          "wios": 45016
+        },
+        "rat-datanode": {
+          "memory_bytes": 503279616,
+          "working_set_bytes": 481996800,
+          "anon_bytes": 463642624,
+          "swap_bytes": 4247552,
+          "cpu_usec": 26697725,
+          "rbytes": 36864000,
+          "wbytes": 53190656,
+          "rios": 2858,
+          "wios": 12766
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 290566144,
+          "working_set_bytes": 256004096,
+          "anon_bytes": 233431040,
+          "swap_bytes": 308101120,
+          "cpu_usec": 33527390,
+          "rbytes": 198848512,
+          "wbytes": 362512384,
+          "rios": 20812,
+          "wios": 86975
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 331018240,
+          "working_set_bytes": 331018240,
+          "anon_bytes": 325120000,
+          "swap_bytes": 222052352,
+          "cpu_usec": 14641799,
+          "rbytes": 45993984,
+          "wbytes": 227446784,
+          "rios": 3711,
+          "wios": 55199
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1067020288,
+          "working_set_bytes": 1065947136,
+          "anon_bytes": 1044320256,
+          "swap_bytes": 127246336,
+          "cpu_usec": 118567773,
+          "rbytes": 38699008,
+          "wbytes": 127094784,
+          "rios": 4436,
+          "wios": 31029
+        }
+      }
+    },
+    {
+      "elapsed_s": 3.0109141119755805,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292622336,
+          "working_set_bytes": 282009600,
+          "anon_bytes": 262987776,
+          "swap_bytes": 94859264,
+          "cpu_usec": 48547644,
+          "rbytes": 127913984,
+          "wbytes": 42852352,
+          "rios": 3582,
+          "wios": 11418
+        },
+        "rat-namenode": {
+          "memory_bytes": 540295168,
+          "working_set_bytes": 499900416,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56792248,
+          "rbytes": 142995456,
+          "wbytes": 105881600,
+          "rios": 8106,
+          "wios": 45027
+        },
+        "rat-datanode": {
+          "memory_bytes": 502734848,
+          "working_set_bytes": 481398784,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5447680,
+          "cpu_usec": 27158180,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288808960,
+          "working_set_bytes": 254246912,
+          "anon_bytes": 232554496,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33529580,
+          "rbytes": 198848512,
+          "wbytes": 363323392,
+          "rios": 20812,
+          "wios": 87173
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222048256,
+          "cpu_usec": 14649461,
+          "rbytes": 45998080,
+          "wbytes": 227467264,
+          "rios": 3712,
+          "wios": 55204
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066692608,
+          "working_set_bytes": 1065619456,
+          "anon_bytes": 1044058112,
+          "swap_bytes": 127725568,
+          "cpu_usec": 118816563,
+          "rbytes": 38776832,
+          "wbytes": 127537152,
+          "rios": 4455,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 4.012335564009845,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293482496,
+          "working_set_bytes": 282869760,
+          "anon_bytes": 263847936,
+          "swap_bytes": 94859264,
+          "cpu_usec": 48578786,
+          "rbytes": 127913984,
+          "wbytes": 42864640,
+          "rios": 3582,
+          "wios": 11425
+        },
+        "rat-namenode": {
+          "memory_bytes": 540278784,
+          "working_set_bytes": 499884032,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56945890,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502706176,
+          "working_set_bytes": 481370112,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5447680,
+          "cpu_usec": 27177065,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288808960,
+          "working_set_bytes": 254246912,
+          "anon_bytes": 232554496,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33530887,
+          "rbytes": 198848512,
+          "wbytes": 363335680,
+          "rios": 20812,
+          "wios": 87175
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222048256,
+          "cpu_usec": 14658282,
+          "rbytes": 45998080,
+          "wbytes": 227467264,
+          "rios": 3712,
+          "wios": 55204
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066917888,
+          "working_set_bytes": 1065844736,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127725568,
+          "cpu_usec": 119497678,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 5.013935043942183,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293498880,
+          "working_set_bytes": 282886144,
+          "anon_bytes": 263847936,
+          "swap_bytes": 94859264,
+          "cpu_usec": 48597198,
+          "rbytes": 127930368,
+          "wbytes": 42872832,
+          "rios": 3586,
+          "wios": 11431
+        },
+        "rat-namenode": {
+          "memory_bytes": 540278784,
+          "working_set_bytes": 499884032,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56949327,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502706176,
+          "working_set_bytes": 481370112,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5447680,
+          "cpu_usec": 27179805,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288813056,
+          "working_set_bytes": 254251008,
+          "anon_bytes": 232554496,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33532455,
+          "rbytes": 198848512,
+          "wbytes": 363335680,
+          "rios": 20812,
+          "wios": 87175
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222048256,
+          "cpu_usec": 14667886,
+          "rbytes": 45998080,
+          "wbytes": 227467264,
+          "rios": 3712,
+          "wios": 55204
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066917888,
+          "working_set_bytes": 1065844736,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127725568,
+          "cpu_usec": 119507251,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 6.015228695934638,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293507072,
+          "working_set_bytes": 282894336,
+          "anon_bytes": 263860224,
+          "swap_bytes": 94838784,
+          "cpu_usec": 48615688,
+          "rbytes": 127930368,
+          "wbytes": 42889216,
+          "rios": 3586,
+          "wios": 11439
+        },
+        "rat-namenode": {
+          "memory_bytes": 540274688,
+          "working_set_bytes": 499879936,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56952084,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5443584,
+          "cpu_usec": 27182707,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288813056,
+          "working_set_bytes": 254251008,
+          "anon_bytes": 232554496,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33534129,
+          "rbytes": 198848512,
+          "wbytes": 363335680,
+          "rios": 20812,
+          "wios": 87175
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222044160,
+          "cpu_usec": 14676826,
+          "rbytes": 45998080,
+          "wbytes": 227467264,
+          "rios": 3712,
+          "wios": 55204
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066909696,
+          "working_set_bytes": 1065836544,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127664128,
+          "cpu_usec": 119527383,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 7.017095084069297,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292937728,
+          "working_set_bytes": 282324992,
+          "anon_bytes": 263290880,
+          "swap_bytes": 94838784,
+          "cpu_usec": 48637555,
+          "rbytes": 127930368,
+          "wbytes": 42897408,
+          "rios": 3586,
+          "wios": 11445
+        },
+        "rat-namenode": {
+          "memory_bytes": 540274688,
+          "working_set_bytes": 499879936,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56955586,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5443584,
+          "cpu_usec": 27186942,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288817152,
+          "working_set_bytes": 254255104,
+          "anon_bytes": 232554496,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33535613,
+          "rbytes": 198852608,
+          "wbytes": 363335680,
+          "rios": 20813,
+          "wios": 87175
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222044160,
+          "cpu_usec": 14686595,
+          "rbytes": 45998080,
+          "wbytes": 227467264,
+          "rios": 3712,
+          "wios": 55204
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066909696,
+          "working_set_bytes": 1065836544,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127664128,
+          "cpu_usec": 119537516,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 8.018693330930546,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292945920,
+          "working_set_bytes": 282333184,
+          "anon_bytes": 263294976,
+          "swap_bytes": 94838784,
+          "cpu_usec": 48656252,
+          "rbytes": 127930368,
+          "wbytes": 42905600,
+          "rios": 3586,
+          "wios": 11451
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56958170,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5443584,
+          "cpu_usec": 27189251,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288817152,
+          "working_set_bytes": 254255104,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33537069,
+          "rbytes": 198852608,
+          "wbytes": 363335680,
+          "rios": 20813,
+          "wios": 87175
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329949184,
+          "working_set_bytes": 329940992,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222044160,
+          "cpu_usec": 14695861,
+          "rbytes": 45998080,
+          "wbytes": 227475456,
+          "rios": 3712,
+          "wios": 55206
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066893312,
+          "working_set_bytes": 1065820160,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127664128,
+          "cpu_usec": 119566167,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 9.020615044981241,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292937728,
+          "working_set_bytes": 282324992,
+          "anon_bytes": 263294976,
+          "swap_bytes": 94838784,
+          "cpu_usec": 48675509,
+          "rbytes": 127930368,
+          "wbytes": 42917888,
+          "rios": 3586,
+          "wios": 11458
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56961070,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5443584,
+          "cpu_usec": 27192288,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288817152,
+          "working_set_bytes": 254255104,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308977664,
+          "cpu_usec": 33538427,
+          "rbytes": 198852608,
+          "wbytes": 363343872,
+          "rios": 20813,
+          "wios": 87177
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329965568,
+          "working_set_bytes": 329957376,
+          "anon_bytes": 325111808,
+          "swap_bytes": 222044160,
+          "cpu_usec": 14705737,
+          "rbytes": 46014464,
+          "wbytes": 227475456,
+          "rios": 3716,
+          "wios": 55206
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066807296,
+          "working_set_bytes": 1065734144,
+          "anon_bytes": 1044164608,
+          "swap_bytes": 127664128,
+          "cpu_usec": 119576203,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 10.022003774996847,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292941824,
+          "working_set_bytes": 282329088,
+          "anon_bytes": 263299072,
+          "swap_bytes": 94830592,
+          "cpu_usec": 48695554,
+          "rbytes": 127930368,
+          "wbytes": 42926080,
+          "rios": 3586,
+          "wios": 11464
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56965656,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27195828,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288817152,
+          "working_set_bytes": 254255104,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308973568,
+          "cpu_usec": 33539938,
+          "rbytes": 198852608,
+          "wbytes": 363343872,
+          "rios": 20813,
+          "wios": 87177
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329965568,
+          "working_set_bytes": 329957376,
+          "anon_bytes": 325115904,
+          "swap_bytes": 222044160,
+          "cpu_usec": 14717094,
+          "rbytes": 46014464,
+          "wbytes": 227475456,
+          "rios": 3716,
+          "wios": 55206
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066807296,
+          "working_set_bytes": 1065734144,
+          "anon_bytes": 1044168704,
+          "swap_bytes": 127660032,
+          "cpu_usec": 119605868,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 11.023420229088515,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292941824,
+          "working_set_bytes": 282329088,
+          "anon_bytes": 263299072,
+          "swap_bytes": 94826496,
+          "cpu_usec": 48713745,
+          "rbytes": 127930368,
+          "wbytes": 42934272,
+          "rios": 3586,
+          "wios": 11470
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56969612,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27198585,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288866304,
+          "working_set_bytes": 254304256,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308973568,
+          "cpu_usec": 33541637,
+          "rbytes": 198852608,
+          "wbytes": 363343872,
+          "rios": 20813,
+          "wios": 87177
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329969664,
+          "working_set_bytes": 329961472,
+          "anon_bytes": 325115904,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14728953,
+          "rbytes": 46014464,
+          "wbytes": 227475456,
+          "rios": 3716,
+          "wios": 55206
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066807296,
+          "working_set_bytes": 1065734144,
+          "anon_bytes": 1044168704,
+          "swap_bytes": 127660032,
+          "cpu_usec": 119618051,
+          "rbytes": 38785024,
+          "wbytes": 127537152,
+          "rios": 4457,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 12.025240723975003,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292720640,
+          "working_set_bytes": 282107904,
+          "anon_bytes": 263077888,
+          "swap_bytes": 94826496,
+          "cpu_usec": 48743597,
+          "rbytes": 127930368,
+          "wbytes": 42942464,
+          "rios": 3586,
+          "wios": 11476
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56973035,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27201389,
+          "rbytes": 36929536,
+          "wbytes": 55283712,
+          "rios": 2872,
+          "wios": 13273
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288866304,
+          "working_set_bytes": 254304256,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308973568,
+          "cpu_usec": 33543268,
+          "rbytes": 198852608,
+          "wbytes": 363343872,
+          "rios": 20813,
+          "wios": 87177
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329969664,
+          "working_set_bytes": 329961472,
+          "anon_bytes": 325115904,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14739869,
+          "rbytes": 46014464,
+          "wbytes": 227475456,
+          "rios": 3716,
+          "wios": 55206
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066803200,
+          "working_set_bytes": 1065730048,
+          "anon_bytes": 1044172800,
+          "swap_bytes": 127660032,
+          "cpu_usec": 119647265,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 13.02657202607952,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292720640,
+          "working_set_bytes": 282107904,
+          "anon_bytes": 263077888,
+          "swap_bytes": 94826496,
+          "cpu_usec": 48761707,
+          "rbytes": 127930368,
+          "wbytes": 42950656,
+          "rios": 3586,
+          "wios": 11482
+        },
+        "rat-namenode": {
+          "memory_bytes": 540254208,
+          "working_set_bytes": 499859456,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56977139,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27205303,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 288878592,
+          "working_set_bytes": 254316544,
+          "anon_bytes": 232558592,
+          "swap_bytes": 308973568,
+          "cpu_usec": 33545059,
+          "rbytes": 198856704,
+          "wbytes": 363343872,
+          "rios": 20814,
+          "wios": 87177
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 329969664,
+          "working_set_bytes": 329961472,
+          "anon_bytes": 325115904,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14750450,
+          "rbytes": 46014464,
+          "wbytes": 227483648,
+          "rios": 3716,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066803200,
+          "working_set_bytes": 1065730048,
+          "anon_bytes": 1044172800,
+          "swap_bytes": 127660032,
+          "cpu_usec": 119657072,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 14.027870324905962,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292749312,
+          "working_set_bytes": 282136576,
+          "anon_bytes": 263081984,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48785978,
+          "rbytes": 127963136,
+          "wbytes": 42962944,
+          "rios": 3594,
+          "wios": 11489
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56980616,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502661120,
+          "working_set_bytes": 481325056,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27207733,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289017856,
+          "working_set_bytes": 254451712,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33553423,
+          "rbytes": 198991872,
+          "wbytes": 363368448,
+          "rios": 20847,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330055680,
+          "working_set_bytes": 330047488,
+          "anon_bytes": 325152768,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14765422,
+          "rbytes": 46092288,
+          "wbytes": 227483648,
+          "rios": 3735,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066700800,
+          "working_set_bytes": 1065627648,
+          "anon_bytes": 1044103168,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119679260,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 15.030421582050622,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292769792,
+          "working_set_bytes": 282157056,
+          "anon_bytes": 263081984,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48802038,
+          "rbytes": 127979520,
+          "wbytes": 42971136,
+          "rios": 3598,
+          "wios": 11495
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56984002,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27210192,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289021952,
+          "working_set_bytes": 254455808,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33555071,
+          "rbytes": 198991872,
+          "wbytes": 363368448,
+          "rios": 20847,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330063872,
+          "working_set_bytes": 330055680,
+          "anon_bytes": 325152768,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14779304,
+          "rbytes": 46100480,
+          "wbytes": 227483648,
+          "rios": 3737,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066700800,
+          "working_set_bytes": 1065627648,
+          "anon_bytes": 1044103168,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119688385,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 16.033361384877935,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293728256,
+          "working_set_bytes": 283115520,
+          "anon_bytes": 264007680,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48829008,
+          "rbytes": 128020480,
+          "wbytes": 42979328,
+          "rios": 3605,
+          "wios": 11501
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56987644,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27217904,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289021952,
+          "working_set_bytes": 254455808,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33556611,
+          "rbytes": 198991872,
+          "wbytes": 363368448,
+          "rios": 20847,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330063872,
+          "working_set_bytes": 330055680,
+          "anon_bytes": 325169152,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14789865,
+          "rbytes": 46100480,
+          "wbytes": 227483648,
+          "rios": 3737,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066696704,
+          "working_set_bytes": 1065623552,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119709406,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 17.036494970088825,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292831232,
+          "working_set_bytes": 282218496,
+          "anon_bytes": 263106560,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48845840,
+          "rbytes": 128020480,
+          "wbytes": 42987520,
+          "rios": 3605,
+          "wios": 11507
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56990676,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27220478,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289021952,
+          "working_set_bytes": 254455808,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33557968,
+          "rbytes": 198991872,
+          "wbytes": 363368448,
+          "rios": 20847,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325169152,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14804506,
+          "rbytes": 46116864,
+          "wbytes": 227483648,
+          "rios": 3741,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066696704,
+          "working_set_bytes": 1065623552,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119719272,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 18.03793055494316,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292896768,
+          "working_set_bytes": 282284032,
+          "anon_bytes": 263147520,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48872979,
+          "rbytes": 128053248,
+          "wbytes": 42995712,
+          "rios": 3611,
+          "wios": 11513
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56993908,
+          "rbytes": 142995456,
+          "wbytes": 108171264,
+          "rios": 8106,
+          "wios": 45547
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27223200,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289021952,
+          "working_set_bytes": 254455808,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33559438,
+          "rbytes": 198991872,
+          "wbytes": 363368448,
+          "rios": 20847,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325177344,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14815489,
+          "rbytes": 46116864,
+          "wbytes": 227483648,
+          "rios": 3741,
+          "wios": 55208
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066688512,
+          "working_set_bytes": 1065615360,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119746257,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 19.039336503017694,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 292909056,
+          "working_set_bytes": 282296320,
+          "anon_bytes": 263151616,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48889919,
+          "rbytes": 128057344,
+          "wbytes": 43008000,
+          "rios": 3612,
+          "wios": 11520
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 56997235,
+          "rbytes": 142995456,
+          "wbytes": 108179456,
+          "rios": 8106,
+          "wios": 45549
+        },
+        "rat-datanode": {
+          "memory_bytes": 502669312,
+          "working_set_bytes": 481333248,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27226953,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289026048,
+          "working_set_bytes": 254459904,
+          "anon_bytes": 232685568,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33560709,
+          "rbytes": 198995968,
+          "wbytes": 363368448,
+          "rios": 20848,
+          "wios": 87179
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325177344,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14826364,
+          "rbytes": 46116864,
+          "wbytes": 227500032,
+          "rios": 3741,
+          "wios": 55210
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066688512,
+          "working_set_bytes": 1065615360,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119755633,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 20.040809213882312,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293900288,
+          "working_set_bytes": 283287552,
+          "anon_bytes": 264142848,
+          "swap_bytes": 94822400,
+          "cpu_usec": 48925791,
+          "rbytes": 128081920,
+          "wbytes": 43016192,
+          "rios": 3618,
+          "wios": 11526
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57000240,
+          "rbytes": 142995456,
+          "wbytes": 108179456,
+          "rios": 8106,
+          "wios": 45549
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5439488,
+          "cpu_usec": 27229272,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289026048,
+          "working_set_bytes": 254459904,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308854784,
+          "cpu_usec": 33562278,
+          "rbytes": 198995968,
+          "wbytes": 363380736,
+          "rios": 20848,
+          "wios": 87181
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325177344,
+          "swap_bytes": 222040064,
+          "cpu_usec": 14834389,
+          "rbytes": 46116864,
+          "wbytes": 227500032,
+          "rios": 3741,
+          "wios": 55210
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066680320,
+          "working_set_bytes": 1065607168,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127655936,
+          "cpu_usec": 119775897,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 21.042879580054432,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293904384,
+          "working_set_bytes": 283291648,
+          "anon_bytes": 264142848,
+          "swap_bytes": 94785536,
+          "cpu_usec": 48938934,
+          "rbytes": 128086016,
+          "wbytes": 43024384,
+          "rios": 3619,
+          "wios": 11532
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57002995,
+          "rbytes": 142995456,
+          "wbytes": 108179456,
+          "rios": 8106,
+          "wios": 45549
+        },
+        "rat-datanode": {
+          "memory_bytes": 502665216,
+          "working_set_bytes": 481329152,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27231384,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289030144,
+          "working_set_bytes": 254464000,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33563360,
+          "rbytes": 198995968,
+          "wbytes": 363380736,
+          "rios": 20848,
+          "wios": 87181
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325177344,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14843683,
+          "rbytes": 46116864,
+          "wbytes": 227500032,
+          "rios": 3741,
+          "wios": 55210
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066528768,
+          "working_set_bytes": 1065455616,
+          "anon_bytes": 1044107264,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119788611,
+          "rbytes": 38789120,
+          "wbytes": 127537152,
+          "rios": 4458,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 22.04668765887618,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293003264,
+          "working_set_bytes": 282390528,
+          "anon_bytes": 263249920,
+          "swap_bytes": 94785536,
+          "cpu_usec": 48954598,
+          "rbytes": 128090112,
+          "wbytes": 43048960,
+          "rios": 3620,
+          "wios": 11539
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57008679,
+          "rbytes": 142995456,
+          "wbytes": 108179456,
+          "rios": 8106,
+          "wios": 45549
+        },
+        "rat-datanode": {
+          "memory_bytes": 502673408,
+          "working_set_bytes": 481337344,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27234561,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289030144,
+          "working_set_bytes": 254464000,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33564518,
+          "rbytes": 198995968,
+          "wbytes": 363380736,
+          "rios": 20848,
+          "wios": 87181
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14852507,
+          "rbytes": 46116864,
+          "wbytes": 227500032,
+          "rios": 3741,
+          "wios": 55210
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066426368,
+          "working_set_bytes": 1065353216,
+          "anon_bytes": 1043894272,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119807986,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 23.050905498908833,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293003264,
+          "working_set_bytes": 282390528,
+          "anon_bytes": 263249920,
+          "swap_bytes": 94785536,
+          "cpu_usec": 48970165,
+          "rbytes": 128090112,
+          "wbytes": 43057152,
+          "rios": 3620,
+          "wios": 11545
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57011201,
+          "rbytes": 142995456,
+          "wbytes": 108179456,
+          "rios": 8106,
+          "wios": 45549
+        },
+        "rat-datanode": {
+          "memory_bytes": 502673408,
+          "working_set_bytes": 481337344,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27236763,
+          "rbytes": 36929536,
+          "wbytes": 55844864,
+          "rios": 2872,
+          "wios": 13406
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289030144,
+          "working_set_bytes": 254464000,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33565784,
+          "rbytes": 198995968,
+          "wbytes": 363380736,
+          "rios": 20848,
+          "wios": 87181
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14862809,
+          "rbytes": 46116864,
+          "wbytes": 227500032,
+          "rios": 3741,
+          "wios": 55210
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066401792,
+          "working_set_bytes": 1065328640,
+          "anon_bytes": 1043894272,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119815915,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 24.052300799870864,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 294707200,
+          "working_set_bytes": 284094464,
+          "anon_bytes": 264949760,
+          "swap_bytes": 94785536,
+          "cpu_usec": 49037504,
+          "rbytes": 128094208,
+          "wbytes": 43069440,
+          "rios": 3621,
+          "wios": 11552
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57013798,
+          "rbytes": 142995456,
+          "wbytes": 108195840,
+          "rios": 8106,
+          "wios": 45550
+        },
+        "rat-datanode": {
+          "memory_bytes": 502673408,
+          "working_set_bytes": 481337344,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27239233,
+          "rbytes": 36929536,
+          "wbytes": 56250368,
+          "rios": 2872,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289030144,
+          "working_set_bytes": 254464000,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33567176,
+          "rbytes": 198995968,
+          "wbytes": 363380736,
+          "rios": 20848,
+          "wios": 87181
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14871486,
+          "rbytes": 46116864,
+          "wbytes": 227520512,
+          "rios": 3741,
+          "wios": 55211
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066414080,
+          "working_set_bytes": 1065340928,
+          "anon_bytes": 1043902464,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119870907,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 25.05359058594331,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 294707200,
+          "working_set_bytes": 284094464,
+          "anon_bytes": 264949760,
+          "swap_bytes": 94785536,
+          "cpu_usec": 49054463,
+          "rbytes": 128094208,
+          "wbytes": 43077632,
+          "rios": 3621,
+          "wios": 11558
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57018403,
+          "rbytes": 142995456,
+          "wbytes": 108195840,
+          "rios": 8106,
+          "wios": 45550
+        },
+        "rat-datanode": {
+          "memory_bytes": 502673408,
+          "working_set_bytes": 481337344,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27242723,
+          "rbytes": 36929536,
+          "wbytes": 56250368,
+          "rios": 2872,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289038336,
+          "working_set_bytes": 254472192,
+          "anon_bytes": 232689664,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33568637,
+          "rbytes": 199004160,
+          "wbytes": 363388928,
+          "rios": 20850,
+          "wios": 87183
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14880264,
+          "rbytes": 46116864,
+          "wbytes": 227520512,
+          "rios": 3741,
+          "wios": 55211
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1066258432,
+          "working_set_bytes": 1065185280,
+          "anon_bytes": 1043902464,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119879534,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 26.055077210068703,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 294731776,
+          "working_set_bytes": 284119040,
+          "anon_bytes": 264978432,
+          "swap_bytes": 94785536,
+          "cpu_usec": 49069913,
+          "rbytes": 128094208,
+          "wbytes": 43085824,
+          "rios": 3621,
+          "wios": 11564
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57020750,
+          "rbytes": 142995456,
+          "wbytes": 108195840,
+          "rios": 8106,
+          "wios": 45550
+        },
+        "rat-datanode": {
+          "memory_bytes": 502673408,
+          "working_set_bytes": 481337344,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27244702,
+          "rbytes": 36929536,
+          "wbytes": 56250368,
+          "rios": 2872,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289038336,
+          "working_set_bytes": 254472192,
+          "anon_bytes": 232693760,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33569754,
+          "rbytes": 199004160,
+          "wbytes": 363388928,
+          "rios": 20850,
+          "wios": 87183
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 222031872,
+          "cpu_usec": 14887629,
+          "rbytes": 46116864,
+          "wbytes": 227520512,
+          "rios": 3741,
+          "wios": 55211
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1065766912,
+          "working_set_bytes": 1064693760,
+          "anon_bytes": 1043378176,
+          "swap_bytes": 127651840,
+          "cpu_usec": 119894829,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 27.058485033921897,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293064704,
+          "working_set_bytes": 282451968,
+          "anon_bytes": 263311360,
+          "swap_bytes": 94773248,
+          "cpu_usec": 49083938,
+          "rbytes": 128094208,
+          "wbytes": 43094016,
+          "rios": 3621,
+          "wios": 11570
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57023253,
+          "rbytes": 142995456,
+          "wbytes": 108195840,
+          "rios": 8106,
+          "wios": 45550
+        },
+        "rat-datanode": {
+          "memory_bytes": 502681600,
+          "working_set_bytes": 481345536,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27246749,
+          "rbytes": 36929536,
+          "wbytes": 56250368,
+          "rios": 2872,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289046528,
+          "working_set_bytes": 254480384,
+          "anon_bytes": 232693760,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33570902,
+          "rbytes": 199004160,
+          "wbytes": 363388928,
+          "rios": 20850,
+          "wios": 87183
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325181440,
+          "swap_bytes": 221986816,
+          "cpu_usec": 14895528,
+          "rbytes": 46116864,
+          "wbytes": 227520512,
+          "rios": 3741,
+          "wios": 55211
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1065635840,
+          "working_set_bytes": 1064562688,
+          "anon_bytes": 1043378176,
+          "swap_bytes": 127647744,
+          "cpu_usec": 119901996,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 28.059842896880582,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293113856,
+          "working_set_bytes": 282501120,
+          "anon_bytes": 263356416,
+          "swap_bytes": 94773248,
+          "cpu_usec": 49101204,
+          "rbytes": 128094208,
+          "wbytes": 43102208,
+          "rios": 3621,
+          "wios": 11576
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57026312,
+          "rbytes": 142995456,
+          "wbytes": 108195840,
+          "rios": 8106,
+          "wios": 45550
+        },
+        "rat-datanode": {
+          "memory_bytes": 502681600,
+          "working_set_bytes": 481345536,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27249929,
+          "rbytes": 36929536,
+          "wbytes": 56250368,
+          "rios": 2872,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289046528,
+          "working_set_bytes": 254480384,
+          "anon_bytes": 232693760,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33572114,
+          "rbytes": 199004160,
+          "wbytes": 363388928,
+          "rios": 20850,
+          "wios": 87183
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325185536,
+          "swap_bytes": 221986816,
+          "cpu_usec": 14903221,
+          "rbytes": 46116864,
+          "wbytes": 227520512,
+          "rios": 3741,
+          "wios": 55211
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1065639936,
+          "working_set_bytes": 1064566784,
+          "anon_bytes": 1043279872,
+          "swap_bytes": 127647744,
+          "cpu_usec": 119923211,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 29.061195210088044,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293601280,
+          "working_set_bytes": 282988544,
+          "anon_bytes": 263852032,
+          "swap_bytes": 94773248,
+          "cpu_usec": 49122933,
+          "rbytes": 128094208,
+          "wbytes": 43114496,
+          "rios": 3621,
+          "wios": 11583
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57029062,
+          "rbytes": 142995456,
+          "wbytes": 108204032,
+          "rios": 8106,
+          "wios": 45552
+        },
+        "rat-datanode": {
+          "memory_bytes": 502685696,
+          "working_set_bytes": 481349632,
+          "anon_bytes": 462508032,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27253455,
+          "rbytes": 36933632,
+          "wbytes": 56250368,
+          "rios": 2873,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289046528,
+          "working_set_bytes": 254480384,
+          "anon_bytes": 232693760,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33573702,
+          "rbytes": 199004160,
+          "wbytes": 363388928,
+          "rios": 20850,
+          "wios": 87183
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325185536,
+          "swap_bytes": 221986816,
+          "cpu_usec": 14911511,
+          "rbytes": 46116864,
+          "wbytes": 227528704,
+          "rios": 3741,
+          "wios": 55213
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1065639936,
+          "working_set_bytes": 1064566784,
+          "anon_bytes": 1043279872,
+          "swap_bytes": 127647744,
+          "cpu_usec": 119931527,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    },
+    {
+      "elapsed_s": 30.00290975603275,
+      "groups": {
+        "rat-kafka": {
+          "memory_bytes": 293666816,
+          "working_set_bytes": 283054080,
+          "anon_bytes": 263852032,
+          "swap_bytes": 94773248,
+          "cpu_usec": 49145800,
+          "rbytes": 128135168,
+          "wbytes": 43126784,
+          "rios": 3631,
+          "wios": 11590
+        },
+        "rat-namenode": {
+          "memory_bytes": 540250112,
+          "working_set_bytes": 499855360,
+          "anon_bytes": 459087872,
+          "swap_bytes": 4366336,
+          "cpu_usec": 57032053,
+          "rbytes": 142995456,
+          "wbytes": 108204032,
+          "rios": 8106,
+          "wios": 45552
+        },
+        "rat-datanode": {
+          "memory_bytes": 502685696,
+          "working_set_bytes": 481349632,
+          "anon_bytes": 462512128,
+          "swap_bytes": 5394432,
+          "cpu_usec": 27255539,
+          "rbytes": 36933632,
+          "wbytes": 56250368,
+          "rios": 2873,
+          "wios": 13504
+        },
+        "rat-hive-metastore": {
+          "memory_bytes": 289046528,
+          "working_set_bytes": 254480384,
+          "anon_bytes": 232693760,
+          "swap_bytes": 308838400,
+          "cpu_usec": 33575203,
+          "rbytes": 199004160,
+          "wbytes": 363397120,
+          "rios": 20850,
+          "wios": 87185
+        },
+        "rat-hiveserver2": {
+          "memory_bytes": 330084352,
+          "working_set_bytes": 330076160,
+          "anon_bytes": 325185536,
+          "swap_bytes": 221986816,
+          "cpu_usec": 14920639,
+          "rbytes": 46116864,
+          "wbytes": 227528704,
+          "rios": 3741,
+          "wios": 55213
+        },
+        "rat-bench-spark.scope": {
+          "memory_bytes": 1065652224,
+          "working_set_bytes": 1064579072,
+          "anon_bytes": 1043279872,
+          "swap_bytes": 127647744,
+          "cpu_usec": 119955576,
+          "rbytes": 38793216,
+          "wbytes": 127537152,
+          "rios": 4459,
+          "wios": 31137
+        }
+      }
+    }
+  ],
+  "method": "cgroup v2; working set = memory.current - inactive_file; CPU 100% = one core; excludes build tools and other services"
+}

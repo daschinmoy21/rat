@@ -1,0 +1,45 @@
+[package]
+name = "rat-rs"
+version = "0.1.0"
+description = "Rust port of the rat correlate job: JSONL/Iggy in, partitioned Parquet out, SQL read side"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "rat-rs"
+path = "src/main.rs"
+
+[features]
+default = ["sql"]
+# SQL read side (`rat-rs query`, `rat-rs sql`). Pure Rust (Apache DataFusion).
+# `--no-default-features` builds only the writer path, much faster to compile.
+sql = ["dep:datafusion"]
+# HTTPS to Iggy. Off by default: the in-tree broker is plain HTTP on localhost.
+tls = ["reqwest/rustls"]
+
+[dependencies]
+anyhow = "1.0.100"
+arrow-array = "58.4"
+arrow-schema = "58.4"
+base64 = "0.22"
+chrono = { version = "0.4.42", default-features = false, features = ["clock", "std"] }
+clap = { version = "4.6", features = ["derive", "env"] }
+datafusion = { version = "54.1", default-features = false, features = [
+  "parquet",
+  "sql",
+  "nested_expressions",
+  "datetime_expressions",
+  "string_expressions",
+  "unicode_expressions",
+  "regex_expressions",
+], optional = true }
+parquet = { version = "58.4", default-features = false, features = ["arrow", "snap"] }
+regex-lite = "0.1.9"
+reqwest = { version = "0.13", default-features = false, features = ["json", "query"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.145", features = ["preserve_order"] }
+tokio = { version = "1.48", features = ["rt", "rt-multi-thread", "time", "signal", "macros"] }
+
+[dev-dependencies]
+tempfile = "3.27"

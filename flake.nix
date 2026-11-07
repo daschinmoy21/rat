@@ -1,5 +1,5 @@
 {
-  description = "Kafka → Spark Structured Streaming → Hive/HDFS (Python producers, Scala job)";
+  description = "Python source plugins → Iggy → Rust correlation and DataFusion SQL";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,12 +20,12 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            java
-            sbt
-            scala-cli
-            metals
-            coursier
-            scalafmt
+            rustc
+            cargo
+            rustfmt
+            clippy
+            pkg-config
+            stdenv.cc
 
             python
             uv
@@ -33,6 +33,7 @@
             ruff # python lint/format LSP via `ruff server`
 
             podman
+            podman-compose
             docker-compose
 
             # language servers
@@ -46,9 +47,6 @@
           ];
 
           shellHook = ''
-            export JAVA_HOME="${java.home}"
-            export PATH="$JAVA_HOME/bin:$PATH"
-            export SBT_OPTS="''${SBT_OPTS:--Xmx2G -Xms512M}"
             export UV_PYTHON="${python}/bin/python"
             export UV_PYTHON_DOWNLOADS=never
             # pip wheels with C++ extensions (duckdb for `rat dash`) need libstdc++
@@ -63,9 +61,19 @@
               export VIRTUAL_ENV="$PWD/.venv"
               export PATH="$VIRTUAL_ENV/bin:$PATH"
             fi
-            echo "rat  producers=python  spark=scala"
-            echo "java $(java -version 2>&1 | head -n1)"
+            echo "rat  producers=python  broker=iggy  engine=rust"
             echo "uv $(uv --version)  python $(python --version 2>/dev/null | awk '{print $2}')"
+          '';
+        };
+        # Retain the JVM tools for historical comparison / existing clusters.
+        devShells.legacy = pkgs.mkShell {
+          packages = with pkgs; [ java sbt scala-cli scalafmt python uv podman podman-compose ];
+          shellHook = ''
+            export JAVA_HOME="${java.home}"
+            export PATH="$JAVA_HOME/bin:$PATH"
+            export UV_PYTHON="${python}/bin/python"
+            export UV_PYTHON_DOWNLOADS=never
+            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
           '';
         };
       });

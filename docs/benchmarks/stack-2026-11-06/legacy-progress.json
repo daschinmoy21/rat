@@ -1,0 +1,2057 @@
+[
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:40:22.001Z",
+    "batchId": 0,
+    "numInputRows": 0,
+    "inputRowsPerSecond": 0.0,
+    "processedRowsPerSecond": 0.0,
+    "durationMs": {
+      "addBatch": 2539,
+      "commitOffsets": 504,
+      "getBatch": 33,
+      "latestOffset": 99,
+      "queryPlanning": 220,
+      "triggerExecution": 3937,
+      "walCommit": 530
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": null,
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 0,
+        "inputRowsPerSecond": 0.0,
+        "processedRowsPerSecond": 0.0,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:40:25.958Z",
+    "batchId": 1,
+    "numInputRows": 0,
+    "inputRowsPerSecond": 0.0,
+    "processedRowsPerSecond": 0.0,
+    "durationMs": {
+      "addBatch": 54267,
+      "commitOffsets": 16,
+      "getBatch": 0,
+      "latestOffset": 40,
+      "queryPlanning": 165,
+      "triggerExecution": 54669,
+      "walCommit": 168
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 0,
+        "inputRowsPerSecond": 0.0,
+        "processedRowsPerSecond": 0.0,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "2cbe748a-fdf3-4e80-821d-36ccc1d6a035",
+    "runId": "1c6cc45e-d91e-4d6f-8e4f-78085fda7d9f",
+    "name": null,
+    "timestamp": "2026-11-06T10:40:22.000Z",
+    "batchId": 0,
+    "numInputRows": 0,
+    "inputRowsPerSecond": 0.0,
+    "processedRowsPerSecond": 0.0,
+    "durationMs": {
+      "addBatch": 57635,
+      "commitOffsets": 27,
+      "getBatch": 35,
+      "latestOffset": 95,
+      "queryPlanning": 767,
+      "triggerExecution": 59103,
+      "walCommit": 526
+    },
+    "eventTime": {
+      "watermark": "1970-01-01T00:00:00.000Z"
+    },
+    "stateOperators": [
+      {
+        "operatorName": "symmetricHashJoin",
+        "numRowsTotal": 0,
+        "numRowsUpdated": 0,
+        "allUpdatesTimeMs": 12856,
+        "numRowsRemoved": 0,
+        "allRemovalsTimeMs": 7,
+        "commitTimeMs": 203604,
+        "memoryUsedBytes": 185600,
+        "numRowsDroppedByWatermark": 0,
+        "numShufflePartitions": 200,
+        "numStateStoreInstances": 800,
+        "customMetrics": {
+          "loadedMapCacheHitCount": 0,
+          "loadedMapCacheMissCount": 0,
+          "stateOnCurrentVersionSizeBytes": 32000
+        }
+      }
+    ],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": null,
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 0,
+        "inputRowsPerSecond": 0.0,
+        "processedRowsPerSecond": 0.0,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/correlated]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:41:20.633Z",
+    "batchId": 2,
+    "numInputRows": 0,
+    "inputRowsPerSecond": 0.0,
+    "processedRowsPerSecond": 0.0,
+    "durationMs": {
+      "addBatch": 591,
+      "commitOffsets": 17,
+      "getBatch": 1,
+      "latestOffset": 31,
+      "queryPlanning": 88,
+      "triggerExecution": 774,
+      "walCommit": 44
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 0,
+        "inputRowsPerSecond": 0.0,
+        "processedRowsPerSecond": 0.0,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "2cbe748a-fdf3-4e80-821d-36ccc1d6a035",
+    "runId": "1c6cc45e-d91e-4d6f-8e4f-78085fda7d9f",
+    "name": null,
+    "timestamp": "2026-11-06T10:41:21.111Z",
+    "batchId": 1,
+    "numInputRows": 0,
+    "inputRowsPerSecond": 0.0,
+    "processedRowsPerSecond": 0.0,
+    "durationMs": {
+      "addBatch": 39330,
+      "commitOffsets": 436,
+      "getBatch": 1,
+      "latestOffset": 24,
+      "queryPlanning": 182,
+      "triggerExecution": 40399,
+      "walCommit": 425
+    },
+    "eventTime": {
+      "watermark": "1970-01-01T00:00:00.000Z"
+    },
+    "stateOperators": [
+      {
+        "operatorName": "symmetricHashJoin",
+        "numRowsTotal": 0,
+        "numRowsUpdated": 0,
+        "allUpdatesTimeMs": 2032,
+        "numRowsRemoved": 0,
+        "allRemovalsTimeMs": 0,
+        "commitTimeMs": 147127,
+        "memoryUsedBytes": 332800,
+        "numRowsDroppedByWatermark": 0,
+        "numShufflePartitions": 200,
+        "numStateStoreInstances": 800,
+        "customMetrics": {
+          "loadedMapCacheHitCount": 400,
+          "loadedMapCacheMissCount": 0,
+          "stateOnCurrentVersionSizeBytes": 41600
+        }
+      }
+    ],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 0,
+        "inputRowsPerSecond": 0.0,
+        "processedRowsPerSecond": 0.0,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/correlated]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:41:38.000Z",
+    "batchId": 3,
+    "numInputRows": 10,
+    "inputRowsPerSecond": 5.0,
+    "processedRowsPerSecond": 0.42272573554277987,
+    "durationMs": {
+      "addBatch": 23145,
+      "commitOffsets": 30,
+      "getBatch": 0,
+      "latestOffset": 31,
+      "queryPlanning": 26,
+      "triggerExecution": 23656,
+      "walCommit": 421
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 2,
+            "3": 2,
+            "4": 0,
+            "5": 1
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 2,
+            "3": 2,
+            "4": 0,
+            "5": 1
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 10,
+        "inputRowsPerSecond": 5.0,
+        "processedRowsPerSecond": 0.42272573554277987,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:42:01.658Z",
+    "batchId": 4,
+    "numInputRows": 2472,
+    "inputRowsPerSecond": 104.48896779102206,
+    "processedRowsPerSecond": 1286.829776158251,
+    "durationMs": {
+      "addBatch": 1800,
+      "commitOffsets": 29,
+      "getBatch": 0,
+      "latestOffset": 22,
+      "queryPlanning": 34,
+      "triggerExecution": 1921,
+      "walCommit": 33
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 1,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 2,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 2,
+            "3": 2,
+            "4": 0,
+            "5": 1
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 118,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 226,
+            "4": 217,
+            "5": 198
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 118,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 226,
+            "4": 217,
+            "5": 198
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 2472,
+        "inputRowsPerSecond": 104.48896779102206,
+        "processedRowsPerSecond": 1286.829776158251,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:42:03.583Z",
+    "batchId": 5,
+    "numInputRows": 133,
+    "inputRowsPerSecond": 69.0909090909091,
+    "processedRowsPerSecond": 2.312078436826368,
+    "durationMs": {
+      "addBatch": 57026,
+      "commitOffsets": 17,
+      "getBatch": 1,
+      "latestOffset": 25,
+      "queryPlanning": 19,
+      "triggerExecution": 57524,
+      "walCommit": 433
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 118,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 114,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 226,
+            "4": 217,
+            "5": 198
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.rss": {
+            "0": 198,
+            "1": 226,
+            "2": 202,
+            "3": 245,
+            "4": 230,
+            "5": 206
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.rss": {
+            "0": 198,
+            "1": 226,
+            "2": 202,
+            "3": 245,
+            "4": 230,
+            "5": 206
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 133,
+        "inputRowsPerSecond": 69.0909090909091,
+        "processedRowsPerSecond": 2.312078436826368,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "2cbe748a-fdf3-4e80-821d-36ccc1d6a035",
+    "runId": "1c6cc45e-d91e-4d6f-8e4f-78085fda7d9f",
+    "name": null,
+    "timestamp": "2026-11-06T10:42:01.518Z",
+    "batchId": 2,
+    "numInputRows": 2474,
+    "inputRowsPerSecond": 61.22701512114238,
+    "processedRowsPerSecond": 41.28976267565673,
+    "durationMs": {
+      "addBatch": 58685,
+      "commitOffsets": 430,
+      "getBatch": 0,
+      "latestOffset": 44,
+      "queryPlanning": 318,
+      "triggerExecution": 59917,
+      "walCommit": 434
+    },
+    "eventTime": {
+      "avg": "2023-11-14T22:13:49.983Z",
+      "max": "2023-11-14T22:14:20.000Z",
+      "min": "2023-11-14T22:13:20.000Z",
+      "watermark": "1970-01-01T00:00:00.000Z"
+    },
+    "stateOperators": [
+      {
+        "operatorName": "symmetricHashJoin",
+        "numRowsTotal": 3712,
+        "numRowsUpdated": 3712,
+        "allUpdatesTimeMs": 4166,
+        "numRowsRemoved": 0,
+        "allRemovalsTimeMs": 0,
+        "commitTimeMs": 170082,
+        "memoryUsedBytes": 1655680,
+        "numRowsDroppedByWatermark": 0,
+        "numShufflePartitions": 200,
+        "numStateStoreInstances": 800,
+        "customMetrics": {
+          "loadedMapCacheHitCount": 800,
+          "loadedMapCacheMissCount": 0,
+          "stateOnCurrentVersionSizeBytes": 1101840
+        }
+      }
+    ],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.rss": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 113,
+            "4": 117,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 112,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 225,
+            "4": 216,
+            "5": 196
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 113,
+            "4": 117,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 112,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 225,
+            "4": 216,
+            "5": 196
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 2474,
+        "inputRowsPerSecond": 61.22701512114238,
+        "processedRowsPerSecond": 41.28976267565673,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/correlated]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:43:01.109Z",
+    "batchId": 6,
+    "numInputRows": 6946,
+    "inputRowsPerSecond": 120.7454020790599,
+    "processedRowsPerSecond": 3161.5839781520253,
+    "durationMs": {
+      "addBatch": 1679,
+      "commitOffsets": 430,
+      "getBatch": 0,
+      "latestOffset": 32,
+      "queryPlanning": 18,
+      "triggerExecution": 2197,
+      "walCommit": 34
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 87,
+            "1": 116,
+            "2": 103,
+            "3": 123,
+            "4": 124,
+            "5": 101
+          },
+          "events.rss": {
+            "0": 198,
+            "1": 226,
+            "2": 202,
+            "3": 245,
+            "4": 230,
+            "5": 206
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 404,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 776,
+            "1": 796,
+            "2": 771,
+            "3": 827,
+            "4": 770,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 404,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 776,
+            "1": 796,
+            "2": 771,
+            "3": 827,
+            "4": 770,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 6946,
+        "inputRowsPerSecond": 120.7454020790599,
+        "processedRowsPerSecond": 3161.5839781520253,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "2cbe748a-fdf3-4e80-821d-36ccc1d6a035",
+    "runId": "1c6cc45e-d91e-4d6f-8e4f-78085fda7d9f",
+    "name": null,
+    "timestamp": "2026-11-06T10:43:01.443Z",
+    "batchId": 3,
+    "numInputRows": 7107,
+    "inputRowsPerSecond": 118.59824780976221,
+    "processedRowsPerSecond": 120.49030245490302,
+    "durationMs": {
+      "addBatch": 58350,
+      "commitOffsets": 428,
+      "getBatch": 0,
+      "latestOffset": 25,
+      "queryPlanning": 132,
+      "triggerExecution": 58984,
+      "walCommit": 34
+    },
+    "eventTime": {
+      "avg": "2023-11-14T22:13:50.000Z",
+      "max": "2023-11-14T22:14:20.000Z",
+      "min": "2023-11-14T22:13:20.000Z",
+      "watermark": "2023-11-14T22:04:20.000Z"
+    },
+    "stateOperators": [
+      {
+        "operatorName": "symmetricHashJoin",
+        "numRowsTotal": 14372,
+        "numRowsUpdated": 10660,
+        "allUpdatesTimeMs": 3191,
+        "numRowsRemoved": 0,
+        "allRemovalsTimeMs": 0,
+        "commitTimeMs": 175185,
+        "memoryUsedBytes": 5630216,
+        "numRowsDroppedByWatermark": 0,
+        "numShufflePartitions": 200,
+        "numStateStoreInstances": 800,
+        "customMetrics": {
+          "loadedMapCacheHitCount": 1200,
+          "loadedMapCacheMissCount": 0,
+          "stateOnCurrentVersionSizeBytes": 4169824
+        }
+      }
+    ],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 113,
+            "4": 117,
+            "5": 98
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 84,
+            "1": 107,
+            "2": 100,
+            "3": 112,
+            "4": 117,
+            "5": 98
+          },
+          "events.rss": {
+            "0": 190,
+            "1": 215,
+            "2": 195,
+            "3": 225,
+            "4": 216,
+            "5": 196
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 404,
+            "1": 393,
+            "2": 392,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 404,
+            "1": 393,
+            "2": 391,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 780,
+            "1": 798,
+            "2": 773,
+            "3": 828,
+            "4": 771,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 404,
+            "1": 393,
+            "2": 392,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 404,
+            "1": 393,
+            "2": 391,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 780,
+            "1": 798,
+            "2": 773,
+            "3": 828,
+            "4": 771,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 7107,
+        "inputRowsPerSecond": 118.59824780976221,
+        "processedRowsPerSecond": 120.49030245490302,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/correlated]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:43:03.310Z",
+    "batchId": 7,
+    "numInputRows": 193,
+    "inputRowsPerSecond": 87.68741481144934,
+    "processedRowsPerSecond": 3.2447881640887695,
+    "durationMs": {
+      "addBatch": 58927,
+      "commitOffsets": 65,
+      "getBatch": 1,
+      "latestOffset": 12,
+      "queryPlanning": 25,
+      "triggerExecution": 59480,
+      "walCommit": 449
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 403,
+            "1": 392,
+            "2": 389,
+            "3": 404,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 776,
+            "1": 796,
+            "2": 771,
+            "3": 827,
+            "4": 770,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 410,
+            "1": 405,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 410,
+            "1": 404,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.rss": {
+            "0": 797,
+            "1": 817,
+            "2": 787,
+            "3": 838,
+            "4": 786,
+            "5": 852
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 410,
+            "1": 405,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 410,
+            "1": 404,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.rss": {
+            "0": 797,
+            "1": 817,
+            "2": 787,
+            "3": 838,
+            "4": 786,
+            "5": 852
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 193,
+        "inputRowsPerSecond": 87.68741481144934,
+        "processedRowsPerSecond": 3.2447881640887695,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "e50a480a-0336-477f-930d-f3e46cf44068",
+    "runId": "de999472-f160-415f-a8fc-990e37cca4c1",
+    "name": null,
+    "timestamp": "2026-11-06T10:44:02.795Z",
+    "batchId": 8,
+    "numInputRows": 246,
+    "inputRowsPerSecond": 4.135496343616038,
+    "processedRowsPerSecond": 5.445971973168626,
+    "durationMs": {
+      "addBatch": 44667,
+      "commitOffsets": 413,
+      "getBatch": 0,
+      "latestOffset": 16,
+      "queryPlanning": 20,
+      "triggerExecution": 45171,
+      "walCommit": 46
+    },
+    "stateOperators": [],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 410,
+            "1": 405,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 410,
+            "1": 404,
+            "2": 399,
+            "3": 411,
+            "4": 408,
+            "5": 406
+          },
+          "events.rss": {
+            "0": 797,
+            "1": 817,
+            "2": 787,
+            "3": 838,
+            "4": 786,
+            "5": 852
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.rss": {
+            "0": 824,
+            "1": 834,
+            "2": 808,
+            "3": 859,
+            "4": 807,
+            "5": 868
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.rss": {
+            "0": 824,
+            "1": 834,
+            "2": 808,
+            "3": 859,
+            "4": 807,
+            "5": 868
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 246,
+        "inputRowsPerSecond": 4.135496343616038,
+        "processedRowsPerSecond": 5.445971973168626,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/events_raw]",
+      "numOutputRows": -1
+    }
+  },
+  {
+    "id": "2cbe748a-fdf3-4e80-821d-36ccc1d6a035",
+    "runId": "1c6cc45e-d91e-4d6f-8e4f-78085fda7d9f",
+    "name": null,
+    "timestamp": "2026-11-06T10:44:00.429Z",
+    "batchId": 4,
+    "numInputRows": 419,
+    "inputRowsPerSecond": 7.10338046316075,
+    "processedRowsPerSecond": 8.658992746285312,
+    "durationMs": {
+      "addBatch": 47198,
+      "commitOffsets": 434,
+      "getBatch": 0,
+      "latestOffset": 27,
+      "queryPlanning": 256,
+      "triggerExecution": 48389,
+      "walCommit": 468
+    },
+    "eventTime": {
+      "avg": "2023-11-14T22:13:50.095Z",
+      "max": "2023-11-14T22:14:20.000Z",
+      "min": "2023-11-14T22:13:20.000Z",
+      "watermark": "2023-11-14T22:04:20.000Z"
+    },
+    "stateOperators": [
+      {
+        "operatorName": "symmetricHashJoin",
+        "numRowsTotal": 15000,
+        "numRowsUpdated": 628,
+        "allUpdatesTimeMs": 2240,
+        "numRowsRemoved": 0,
+        "allRemovalsTimeMs": 1,
+        "commitTimeMs": 148320,
+        "memoryUsedBytes": 6585704,
+        "numRowsDroppedByWatermark": 0,
+        "numShufflePartitions": 200,
+        "numStateStoreInstances": 800,
+        "customMetrics": {
+          "loadedMapCacheHitCount": 1600,
+          "loadedMapCacheMissCount": 0,
+          "stateOnCurrentVersionSizeBytes": 4474304
+        }
+      }
+    ],
+    "sources": [
+      {
+        "description": "KafkaV2[SubscribePattern[events\\.(?!.*\\.dlq$).*]]",
+        "startOffset": {
+          "events.hn": {
+            "0": 404,
+            "1": 393,
+            "2": 392,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 404,
+            "1": 393,
+            "2": 391,
+            "3": 405,
+            "4": 402,
+            "5": 400
+          },
+          "events.rss": {
+            "0": 780,
+            "1": 798,
+            "2": 773,
+            "3": 828,
+            "4": 771,
+            "5": 840
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "endOffset": {
+          "events.hn": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.rss": {
+            "0": 824,
+            "1": 834,
+            "2": 808,
+            "3": 859,
+            "4": 807,
+            "5": 868
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "latestOffset": {
+          "events.hn": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.news": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          },
+          "events.stocks": {
+            "0": 422,
+            "1": 413,
+            "2": 407,
+            "3": 424,
+            "4": 419,
+            "5": 415
+          },
+          "events.rss": {
+            "0": 824,
+            "1": 834,
+            "2": 808,
+            "3": 859,
+            "4": 807,
+            "5": 868
+          },
+          "events.lobsters": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
+          }
+        },
+        "numInputRows": 419,
+        "inputRowsPerSecond": 7.10338046316075,
+        "processedRowsPerSecond": 8.658992746285312,
+        "metrics": {
+          "avgOffsetsBehindLatest": "0.0",
+          "maxOffsetsBehindLatest": "0",
+          "minOffsetsBehindLatest": "0"
+        }
+      }
+    ],
+    "sink": {
+      "description": "FileSink[hdfs://localhost:8020/rat-bench-20261106/correlated]",
+      "numOutputRows": -1
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "events.hn": 2500,
+  "events.hn.dlq": 0,
+  "events.lobsters": 0,
+  "events.lobsters.dlq": 0,
+  "events.news": 0,
+  "events.news.dlq": 0,
+  "events.rss": 5000,
+  "events.rss.dlq": 0,
+  "events.stocks": 2500,
+  "events.stocks.dlq": 0
+}

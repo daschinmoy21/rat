@@ -1,15 +1,18 @@
 # Contributing
 
-Python producers. Scala job. Hive is query-only. No PySpark. Producers never write Hive.
+Python source plugins, an Iggy broker and a Rust correlation/Parquet/SQL
+engine. The Scala/Hadoop/Hive implementation remains as a legacy path.
 
 ## Shell
 
-[docs/setup.md](docs/setup.md). Then:
+[docs/rust-migration.md](docs/rust-migration.md). Then:
 
 ```bash
 direnv allow          # Nix
 uv sync --frozen      # always
 ./scripts/check-deps.sh
+cargo test --locked --workspace
+cargo clippy --locked --all-targets -- -D warnings
 ```
 
 Fix the machine if that fails.
@@ -19,12 +22,13 @@ Fix the machine if that fails.
 | Change | Where |
 |---|---|
 | Source | plugin, see [docs/plugins.md](docs/plugins.md). Loaded by `rat_producers.loader` |
-| Envelope | `events.py` and `Event.scala` in the same PR |
-| Job | `spark/src/main/scala/rat/` |
+| Envelope | `producers/rat_producers/events.py`, `rust/rat-rs/src/envelope.rs`; retain legacy wire compatibility |
+| Engine, Parquet, SQL | `rust/rat-rs/` |
+| Rust dependency | `rust/rat-rs/Cargo.toml` and root `Cargo.lock` |
 | Python lib | `uv add`, commit `uv.lock` |
-| Spark lib | `spark/build.sbt` (3.5.3 / 2.13.14) |
+| Legacy Spark lib | `spark/build.sbt` (3.5.3 / 2.13.14), `nix develop .#legacy` |
 | Tool pins | `flake.nix` and `mise.toml` together |
-| Topics | `plugins/*/plugin.toml` + one `./scripts/make-topics.sh` run |
+| Topics | `plugins/*/plugin.toml` + `RAT_BROKER=iggy uv run rat topics` |
 | Ops | `rat status` (broker, cursors, DLQ depth, sinks) · `rat dlq [--topic T] [--n N]` |
 | Docs | `docs/` |
 
@@ -32,10 +36,19 @@ RSS **feed** = config. New **kind** of source (HN, stocks, IMAP) = plugin.
 
 ## Envelope
 
-Python: `event_id`, `ts_ms`. Scala: `eventId`, `tsMs`. Same fields. Payload stays plugin JSON.
+The JSON wire fields remain `event_id`, `source`, `entities`, `ts_ms`, and
+`payload`. Payload stays plugin JSON. See [Iggy contract](docs/iggy-interface.md).
 
 ## Git
 
-Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, small PR, say what you ran (`uv sync`, `sbt compile`). Always run `uv run ruff check producers/` and `uv run pytest producers/tests/` before submitting.
+Do not commit `.venv/`, `target/`, `.env`, secrets. Branch off `main`, use small
+PRs and report validation. Run `cargo fmt --all -- --check`, Rust tests/clippy,
+`uv run ruff check producers/` and `uv run pytest producers/tests/` before
+submitting. `scripts/smoke-rust.sh` exercises a real Iggy broker, restart
+recovery and DataFusion queries; fake-server tests alone cannot verify the
+published broker image.
 
-Kafka runs in-tree: [infra/kafka/compose.yml](infra/kafka/compose.yml) — `uv run rat run --once` emits live. `Correlate` streams the `events.*` topics through the watermark join into checkpointed Parquet; with `RAT_HIVE_ENABLED=true` + HDFS and a metastore ([infra/hadoop](infra/hadoop/compose.yml) + [infra/hive](infra/hive/compose.yml)) those land as Hive tables over HDFS. `sbt "runMain rat.Query"` reads them back. Runbook: [docs/ops.md](docs/ops.md).
+Run `./scripts/iggy-up.sh`, then `RAT_BROKER=iggy uv run rat run --once` to
+emit live events. Start `target/release/rat-rs consume` before emitting, or
+use `RAT_STARTING_OFFSETS=earliest` with a fresh checkpoint. The original
+Kafka/Spark smoke scripts and runbooks remain available for legacy users.

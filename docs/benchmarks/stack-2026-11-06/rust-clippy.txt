@@ -1,0 +1,2 @@
+    Checking rat-rs v0.1.0 (/home/crimxnhaze/rat/rust/rat-rs)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.72s

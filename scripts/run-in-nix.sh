@@ -7,9 +7,11 @@ set -eu
 ROOT=${RAT_ROOT:-$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)}
 
 if command -v nix >/dev/null 2>&1 && [ -f "$ROOT/flake.nix" ]; then
+  # JVM service units select this explicitly; the default shell is Rust-only.
+  FLAKE="$ROOT${RAT_NIX_SHELL:+#$RAT_NIX_SHELL}"
   if [ "$#" -eq 0 ]; then
-    exec nix develop "$ROOT"
+    exec nix develop "$FLAKE"
   fi
-  exec nix develop "$ROOT" -c "$@"
+  exec nix develop "$FLAKE" -c "$@"
 fi
 exec "$@"

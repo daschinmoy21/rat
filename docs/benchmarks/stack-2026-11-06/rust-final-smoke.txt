@@ -1,0 +1,26 @@
+== iggy broker (podman-compose) ==
+rat-iggy
+== wait ==
+iggy at http://127.0.0.1:3000 is up
+== topics ==
+stream rat-smoke-1793963906-4015542: created
+topic  events.hn: created (partitions=6, expiry_us=604800000000)
+topic  events.hn.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.lobsters: created (partitions=6, expiry_us=604800000000)
+topic  events.lobsters.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.news: created (partitions=6, expiry_us=604800000000)
+topic  events.news.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.rss: created (partitions=6, expiry_us=604800000000)
+topic  events.rss.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.stocks: created (partitions=6, expiry_us=604800000000)
+topic  events.stocks.dlq: created (partitions=6, expiry_us=2592000000000)
+topics   events.hn events.hn.dlq events.lobsters events.lobsters.dlq events.news events.news.dlq events.rss events.rss.dlq events.stocks events.stocks.dlq
+1793963909678
+rat-iggy
+rat-iggy
+iggy at http://127.0.0.1:3000 is up
+broker retained all four messages across forced kill
+restart did not duplicate output: {'raw_rows': 1, 'correlated_rows': 3, 'correlated_duplicates': 0, 'files': 2, 'digest': '4c93b92cb05b0382'}
+{"pairs":3}
+{"raw":1}
+Rust + real Iggy smoke passed

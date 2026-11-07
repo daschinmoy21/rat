@@ -1,0 +1,3 @@
+rat-rs: consuming iggy stream "rat-bench-20261106" into /tmp/rat-rust-stream-20261106 (checkpoint /tmp/rat-rust-stream-20261106/checkpoints/rat-rs)
+rat-rs: shutdown requested
+{"records_read":10000,"records_rejected":0,"rejected_by_reason":{},"raw_rows":2500,"correlated_rows":7500,"late_dropped":0,"unjoinable":0,"batches":369,"files_written":533,"first_batch_id":1,"last_batch_id":369,"state_entries":7500,"watermark_ms":1699999460000,"elapsed_ms":191089,"iggy":{"polls":1008,"messages":10000,"offset_gaps":0,"errors":0}}
