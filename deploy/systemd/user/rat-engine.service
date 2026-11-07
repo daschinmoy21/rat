@@ -1,0 +1,19 @@
+[Unit]
+Description=rat engine (Rust: Iggy HTTP consumer -> correlate -> Parquet)
+Wants=rat-iggy.service
+After=rat-iggy.service network-online.target
+
+[Service]
+EnvironmentFile=-%h/.config/rat/env
+Environment=RAT_SINK_DIR=%h/.local/share/rat/sink
+Environment=RAT_CHECKPOINT_DIR=%h/.local/share/rat/sink/checkpoints
+# On a fresh checkpoint, consume retained input even if producers start first.
+Environment=RAT_STARTING_OFFSETS=earliest
+# The binary is built by the user (docs/rust-interface.md); fail loudly if missing.
+ExecStartPre=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; BIN="$${RAT_ENGINE_BIN:-$$ROOT/target/release/rat-rs}"; [ -x "$$BIN" ] || { echo "rat-engine: $$BIN missing; run: cargo build --release -p rat-rs" >&2; exit 1; }'
+ExecStart=/bin/sh -c 'ROOT="$${RAT_ROOT:-%h/rat}"; exec "$${RAT_ENGINE_BIN:-$$ROOT/target/release/rat-rs}" consume'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -32,3 +32,4 @@ result-*
 
 # local learning / practice space (untracked)
 learn/
+.firecrawl/

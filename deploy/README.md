@@ -1,5 +1,10 @@
 # Deployment Guide
 
+The Rust stack uses `./deploy/install.sh --broker iggy --start` after building
+`rat-rs`; see [Rust deployment and migration](../docs/rust-migration.md).
+The topology and manual commands below describe the legacy JVM stack; select
+`--broker kafka` explicitly to install that stack on a fresh configuration.
+
 This directory contains systemd user units, installation automation, and operational configuration for running the complete `rat` pipeline.
 
 ---

@@ -7,6 +7,7 @@ set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$ROOT"
+export RAT_BROKER=kafka
 
 BOOTSTRAP=${RAT_BOOTSTRAP:-localhost:9092}
 HDFS_BASE=${RAT_SINK_DIR:-hdfs://localhost:8020/rat}
@@ -14,7 +15,7 @@ CHECKPOINT_DIR=${RAT_CHECKPOINT_DIR:-hdfs://localhost:8020/rat/checkpoints}
 METASTORE_URI=${RAT_HIVE_METASTORE_URI:-thrift://localhost:9083}
 
 if command -v nix >/dev/null 2>&1 && [ -f "$ROOT/flake.nix" ]; then
-  PREFIX="nix develop -c"
+  PREFIX="nix develop .#legacy -c"
 else
   PREFIX=""
 fi

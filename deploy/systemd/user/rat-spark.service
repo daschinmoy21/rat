@@ -5,6 +5,7 @@ After=rat-kafka.service rat-hive.service network-online.target
 
 [Service]
 EnvironmentFile=-%h/.config/rat/env
+Environment=RAT_NIX_SHELL=legacy
 Environment=RAT_HIVE_ENABLED=true
 Environment=RAT_HIVE_METASTORE_URI=thrift://localhost:9083
 Environment=RAT_SINK_DIR=hdfs://localhost:8020/rat
