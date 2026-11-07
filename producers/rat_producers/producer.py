@@ -12,7 +12,20 @@ _broker_down_until = 0.0
 _BROKER_BACKOFF_S = 60
 
 
+def backend() -> str:
+    """RAT_BROKER: "kafka" (legacy default) or "iggy"."""
+    name = os.environ.get("RAT_BROKER", "kafka").strip().lower()
+    if name not in ("kafka", "iggy"):
+        raise ValueError(f"RAT_BROKER must be 'kafka' or 'iggy', got {name!r}")
+    return name
+
+
 def _broker_unavailable(err) -> bool:
+    from rat_producers.iggy import IggyUnavailable
+    if isinstance(err, IggyUnavailable):
+        # status 0 = unreachable/timeout: the broker is down. A 5xx reply means
+        # it is up but busy, so spend the remaining attempts instead.
+        return err.status == 0
     from kafka.errors import (
         BrokerNotAvailableError,
         KafkaConnectionError,
@@ -117,6 +130,11 @@ def emit(envelope, producer, max_attempts=3):
 
 
 def connect(bootstrap=None):
+    """Producer for the selected backend. Both expose send(...).get(),
+    flush() and close(); emit()/dlq() do not care which one they hold."""
+    if backend() == "iggy":
+        from rat_producers.iggy import connect as iggy_connect
+        return iggy_connect()
     from kafka import KafkaProducer
     if bootstrap is None:
         bootstrap = os.environ.get("RAT_BOOTSTRAP", "localhost:9092")

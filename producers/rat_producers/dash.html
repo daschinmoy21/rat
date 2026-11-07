@@ -98,7 +98,7 @@ footer .label { letter-spacing: .16em; }
 <div class="head">
   <div>
     <h1>rat</h1>
-    <div class="sub">sources → kafka → spark → parquet</div>
+    <div class="sub">sources → broker → spark → parquet</div>
   </div>
   <div class="live label"><span id="dot" class="dot"></span><span id="conn">connecting</span><span id="clock"></span></div>
 </div>
@@ -273,7 +273,7 @@ function renderPipeline() {
   const err = st.store_error ? `\n<span class="g">└</span> <span class="bad">${esc(st.store_error)}</span>` : "";
   return `
   <section><div class="label">sources</div><div class="tree">${src || '<span class="m">no plugins loaded</span>'}</div></section>
-  <section><div class="label">kafka</div><div class="tree">${broker}
+  <section><div class="label">broker</div><div class="tree">${broker}
 <span class="g">└</span> <span class="spark">${sparkline(rate)}</span>  <span class="m">last 60s · ${last10.toFixed(1)} msg/s</span></div></section>
   <section><div class="label">spark</div><div class="tree">${spark}</div></section>
   <section><div class="label">parquet · ${esc(st.sink_dir)}</div><div class="tree">${sinks}${err}</div></section>`;

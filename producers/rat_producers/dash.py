@@ -182,6 +182,50 @@ def consume(feed, bootstrap, stop, refresh_s=10):
                     log.debug("kafka close: %s", err)
 
 
+def consume_iggy(feed, client, stop, refresh_s=10, count=200, idle_s=0.5):
+    """Iggy twin of consume(): tail every events.* topic of the rat stream
+    from offset 0 by explicit per-partition offsets (no stored consumer
+    offset, auto_commit off), picking up new topics/partitions on refresh."""
+    from rat_producers.iggy import IggyError, decode_message
+
+    positions = {}  # (topic, partition) -> next offset
+    refreshed = 0.0
+    while not stop.is_set():
+        try:
+            if time.time() - refreshed >= refresh_s:
+                topics = [t for t in client.topics() if TOPICS.match(t)]
+                for t in topics:
+                    for part in (client.get_topic(t) or {}).get("partitions") or []:
+                        positions.setdefault((t, part["id"]), 0)
+                live = set(topics)
+                for tp in [tp for tp in positions if tp[0] not in live]:
+                    del positions[tp]
+                with feed.lock:
+                    feed.broker = {"up": True, "error": None, "topics": len(topics)}
+                refreshed = time.time()
+            got = 0
+            for (topic, partition), offset in sorted(positions.items()):
+                if stop.is_set():
+                    return
+                polled = client.poll(topic, partition, offset=offset, count=count,
+                                     consumer_id="rat-dash") or {}
+                for msg in polled.get("messages") or []:
+                    m = decode_message(msg)
+                    feed.add(topic, partition, m["offset"], m["value"], m["headers"],
+                             now=m["timestamp_s"])
+                    if m["offset"] is not None:
+                        positions[(topic, partition)] = m["offset"] + 1
+                    got += 1
+            if not got:
+                stop.wait(idle_s)
+        except (IggyError, KeyError, TypeError, ValueError) as err:
+            log.warning("iggy: %s", err)
+            with feed.lock:
+                feed.broker = {"up": False, "error": str(err), "topics": 0}
+            refreshed = 0.0
+            stop.wait(3)
+
+
 def _latest(d):
     """(batch id, path) of the highest-numbered file in a checkpoint log."""
     if not d.is_dir():
@@ -398,12 +442,18 @@ def serve(app, host="127.0.0.1", port=8765, cap=5000, bootstrap="localhost:9092"
     feed = Feed(cap=cap)
     store = Store(sink_dir, checkpoint_dir or os.path.join(sink_dir, "checkpoints"))
     dash = Dash(app, feed, store, bootstrap, cursor_db)
-    threading.Thread(target=consume, args=(feed, bootstrap, stop), daemon=True).start()
+    from rat_producers.producer import backend
+    if backend() == "iggy":
+        from rat_producers.iggy import IggyClient
+        reader = (consume_iggy, (feed, IggyClient.from_env(), stop))
+    else:
+        reader = (consume, (feed, bootstrap, stop))
+    threading.Thread(target=reader[0], args=reader[1], daemon=True).start()
     threading.Thread(target=store.loop, args=(stop,), daemon=True).start()
     server = ThreadingHTTPServer((host, port), _handler(dash, stop))
     server.daemon_threads = True
     print(f"rat dash  http://{host}:{server.server_address[1]}/"
-          f"   kafka={bootstrap}  sinks={sink_dir}")
+          f"   broker={bootstrap}  sinks={sink_dir}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

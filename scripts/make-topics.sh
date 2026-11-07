@@ -5,6 +5,14 @@
 set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+
+# RAT_BROKER=iggy: provision the Iggy stream/topics over HTTP instead
+# (docs/iggy-interface.md). Same plugin manifests, same retention defaults.
+case "${RAT_BROKER:-kafka}" in
+  iggy|Iggy|IGGY)
+    cd "$ROOT"
+    exec uv run rat topics --wait "${RAT_IGGY_WAIT_S:-60}" ;;
+esac
 CONTAINER=${RAT_KAFKA_CONTAINER:-rat-kafka}
 BOOTSTRAP=${RAT_BOOTSTRAP:-localhost:9092}
 PARTITIONS=${RAT_PARTITIONS:-6}

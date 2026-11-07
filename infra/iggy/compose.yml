@@ -1,0 +1,45 @@
+# Apache Iggy single-node broker for rat (replaces infra/kafka for RAT_BROKER=iggy).
+# Pinned to the 0.9.0 release image by digest; see docs/iggy-interface.md.
+#   podman-compose -f infra/iggy/compose.yml up -d     (or: docker compose ...)
+#   ./scripts/iggy-wait.sh && uv run rat topics
+services:
+  iggy:
+    image: docker.io/apache/iggy:0.9.0@sha256:85c9f88ceb41ffa3f9b291372e7aaec9c99fb4fdbd4279b7e2037ad2eb8b884e
+    container_name: rat-iggy
+    # io_uring + thread-per-core: the server needs these to start in a container.
+    cap_add:
+      - SYS_NICE
+    security_opt:
+      - seccomp:unconfined
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "127.0.0.1:3000:3000"   # HTTP (the only transport rat uses)
+      - "127.0.0.1:8090:8090"   # TCP binary protocol (unused by rat)
+    environment:
+      # The embedded default config binds 127.0.0.1; inside the container that
+      # is unreachable from the published port.
+      IGGY_HTTP_ADDRESS: 0.0.0.0:3000
+      IGGY_TCP_ADDRESS: 0.0.0.0:8090
+      # Required by config validation whenever a listener binds a wildcard.
+      IGGY_NODE_ADVERTISED_ADDRESS: localhost
+      IGGY_QUIC_ENABLED: "false"
+      IGGY_WEBSOCKET_ENABLED: "false"
+      # Applied only when the data volume is empty (first boot).
+      IGGY_ROOT_USERNAME: ${RAT_IGGY_USERNAME:-iggy}
+      IGGY_ROOT_PASSWORD: ${RAT_IGGY_PASSWORD:-iggy}
+      IGGY_LOGGING_LEVEL: info
+    volumes:
+      - iggy-data:/app/local_data
+    healthcheck:
+      # The image has bash but no curl/wget.
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/3000 && printf 'GET /ping HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q pong <&3"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+      start_period: 5s
+
+volumes:
+  iggy-data:
