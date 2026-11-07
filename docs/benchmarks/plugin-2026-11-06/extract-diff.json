@@ -1,0 +1,237 @@
+{
+ "corpus_size": 28,
+ "lua54": {
+  "extractor_mismatches": [
+   {
+    "input": "$ABé accent after cashtag",
+    "fn": "extract_entities",
+    "python": [],
+    "lua": [
+     "AB"
+    ]
+   },
+   {
+    "input": "$ABé accent after cashtag",
+    "fn": "extract_stocks",
+    "python": [],
+    "lua": [
+     "AB"
+    ]
+   },
+   {
+    "input": "AAPL MSFT (no-break space)",
+    "fn": "extract_stocks",
+    "python": [
+     "AAPL",
+     "MSFT",
+     "SPACE"
+    ],
+    "lua": [
+     "SPACE"
+    ]
+   },
+   {
+    "input": "AAPL MSFT (no-break space)",
+    "fn": "extract_symbol",
+    "python": [
+     "AAPL",
+     "MSFT"
+    ],
+    "lua": []
+   },
+   {
+    "input": "straße",
+    "fn": "extract_symbol",
+    "python": [
+     "STRASSE"
+    ],
+    "lua": []
+   },
+   {
+    "input": " TSLA em-space",
+    "fn": "extract_stocks",
+    "python": [
+     "TSLA"
+    ],
+    "lua": []
+   },
+   {
+    "input": " TSLA em-space",
+    "fn": "extract_symbol",
+    "python": [
+     "TSLA",
+     "EM-SPACE"
+    ],
+    "lua": []
+   },
+   {
+    "input": "ﬁ ligature",
+    "fn": "extract_stocks",
+    "python": [
+     "FI"
+    ],
+    "lua": []
+   },
+   {
+    "input": "ﬁ ligature",
+    "fn": "extract_symbol",
+    "python": [
+     "FI",
+     "LIGATURE"
+    ],
+    "lua": [
+     "LIGATURE"
+    ]
+   }
+  ],
+  "envelopes": {
+   "python": 187,
+   "lua": 187,
+   "identical_after_none_normalization": true,
+   "mismatched_envelopes": 0,
+   "order_identical": false,
+   "order_identical_up_to_equal_ts": true,
+   "only_python": [],
+   "only_lua": []
+  }
+ },
+ "luajit": {
+  "extractor_mismatches": [
+   {
+    "input": "$ABé accent after cashtag",
+    "fn": "extract_entities",
+    "python": [],
+    "lua": [
+     "AB"
+    ]
+   },
+   {
+    "input": "$ABé accent after cashtag",
+    "fn": "extract_stocks",
+    "python": [],
+    "lua": [
+     "AB"
+    ]
+   },
+   {
+    "input": "AAPL MSFT (no-break space)",
+    "fn": "extract_stocks",
+    "python": [
+     "AAPL",
+     "MSFT",
+     "SPACE"
+    ],
+    "lua": [
+     "SPACE"
+    ]
+   },
+   {
+    "input": "AAPL MSFT (no-break space)",
+    "fn": "extract_symbol",
+    "python": [
+     "AAPL",
+     "MSFT"
+    ],
+    "lua": []
+   },
+   {
+    "input": "straße",
+    "fn": "extract_symbol",
+    "python": [
+     "STRASSE"
+    ],
+    "lua": []
+   },
+   {
+    "input": " TSLA em-space",
+    "fn": "extract_stocks",
+    "python": [
+     "TSLA"
+    ],
+    "lua": []
+   },
+   {
+    "input": " TSLA em-space",
+    "fn": "extract_symbol",
+    "python": [
+     "TSLA",
+     "EM-SPACE"
+    ],
+    "lua": []
+   },
+   {
+    "input": "ﬁ ligature",
+    "fn": "extract_stocks",
+    "python": [
+     "FI"
+    ],
+    "lua": []
+   },
+   {
+    "input": "ﬁ ligature",
+    "fn": "extract_symbol",
+    "python": [
+     "FI",
+     "LIGATURE"
+    ],
+    "lua": [
+     "LIGATURE"
+    ]
+   }
+  ],
+  "envelopes": {
+   "python": 187,
+   "lua": 187,
+   "identical_after_none_normalization": false,
+   "mismatched_envelopes": 4,
+   "order_identical": false,
+   "order_identical_up_to_equal_ts": true,
+   "only_python": [
+    "{\"entities\": [\"AAPL\"], \"event_id\": \"stocks:AAPL:1725192000000\", \"payload\": {\"currency\": \"USD\", \"price\": 100.0, \"symbol\": \"AAPL\"}, \"source\": \"stocks\", \"ts_ms\": 1725192000000}",
+    "{\"entities\": [\"TSLA\"], \"event_id\": \"stocks:TSLA:1725192004000\", \"payload\": {\"currency\": \"USD\", \"price\": 105.0, \"symbol\": \"TSLA\"}, \"source\": \"stocks\", \"ts_ms\": 1725192004000}"
+   ],
+   "only_lua": [
+    "{\"entities\": [\"AAPL\"], \"event_id\": \"stocks:AAPL:1725192000000\", \"payload\": {\"currency\": \"USD\", \"price\": 100, \"symbol\": \"AAPL\"}, \"source\": \"stocks\", \"ts_ms\": 1725192000000}",
+    "{\"entities\": [\"TSLA\"], \"event_id\": \"stocks:TSLA:1725192004000\", \"payload\": {\"currency\": \"USD\", \"price\": 105, \"symbol\": \"TSLA\"}, \"source\": \"stocks\", \"ts_ms\": 1725192004000}"
+   ]
+  }
+ },
+ "mlua-lua54-envelopes.jsonl": {
+  "python": 187,
+  "lua": 187,
+  "identical_after_none_normalization": false,
+  "mismatched_envelopes": 98,
+  "order_identical": false,
+  "order_identical_up_to_equal_ts": true,
+  "only_python": [
+   "{\"entities\": [], \"event_id\": \"hn:40000001\", \"payload\": {\"score\": 101, \"title\": \"MSFT and the cloud #1\", \"url\": \"https://example.com/hn/1\"}, \"source\": \"hn\", \"ts_ms\": 1725192060000}",
+   "{\"entities\": [], \"event_id\": \"hn:40000003\", \"payload\": {\"score\": 103, \"title\": \"Rust 2024 edition #3\", \"url\": \"https://example.com/hn/3\"}, \"source\": \"hn\", \"ts_ms\": 1725192180000}",
+   "{\"entities\": [], \"event_id\": \"hn:40000004\", \"payload\": {\"score\": 104, \"title\": \"GOOGL antitrust ruling #4\", \"url\": \"https://example.com/hn/4\"}, \"source\": \"hn\", \"ts_ms\": 1725192240000}"
+  ],
+  "only_lua": [
+   "{\"entities\": {}, \"event_id\": \"hn:40000001\", \"payload\": {\"score\": 101, \"title\": \"MSFT and the cloud #1\", \"url\": \"https://example.com/hn/1\"}, \"source\": \"hn\", \"ts_ms\": 1725192060000}",
+   "{\"entities\": {}, \"event_id\": \"hn:40000003\", \"payload\": {\"score\": 103, \"title\": \"Rust 2024 edition #3\", \"url\": \"https://example.com/hn/3\"}, \"source\": \"hn\", \"ts_ms\": 1725192180000}",
+   "{\"entities\": {}, \"event_id\": \"hn:40000004\", \"payload\": {\"score\": 104, \"title\": \"GOOGL antitrust ruling #4\", \"url\": \"https://example.com/hn/4\"}, \"source\": \"hn\", \"ts_ms\": 1725192240000}"
+  ],
+  "entities_not_a_list": 49
+ },
+ "mlua-luajit-envelopes.jsonl": {
+  "python": 187,
+  "lua": 187,
+  "identical_after_none_normalization": false,
+  "mismatched_envelopes": 102,
+  "order_identical": false,
+  "order_identical_up_to_equal_ts": true,
+  "only_python": [
+   "{\"entities\": [\"AAPL\"], \"event_id\": \"stocks:AAPL:1725192000000\", \"payload\": {\"currency\": \"USD\", \"price\": 100.0, \"symbol\": \"AAPL\"}, \"source\": \"stocks\", \"ts_ms\": 1725192000000}",
+   "{\"entities\": [\"TSLA\"], \"event_id\": \"stocks:TSLA:1725192004000\", \"payload\": {\"currency\": \"USD\", \"price\": 105.0, \"symbol\": \"TSLA\"}, \"source\": \"stocks\", \"ts_ms\": 1725192004000}",
+   "{\"entities\": [], \"event_id\": \"hn:40000001\", \"payload\": {\"score\": 101, \"title\": \"MSFT and the cloud #1\", \"url\": \"https://example.com/hn/1\"}, \"source\": \"hn\", \"ts_ms\": 1725192060000}"
+  ],
+  "only_lua": [
+   "{\"entities\": [\"AAPL\"], \"event_id\": \"stocks:AAPL:1725192000000\", \"payload\": {\"currency\": \"USD\", \"price\": 100, \"symbol\": \"AAPL\"}, \"source\": \"stocks\", \"ts_ms\": 1725192000000}",
+   "{\"entities\": [\"TSLA\"], \"event_id\": \"stocks:TSLA:1725192004000\", \"payload\": {\"currency\": \"USD\", \"price\": 105, \"symbol\": \"TSLA\"}, \"source\": \"stocks\", \"ts_ms\": 1725192004000}",
+   "{\"entities\": {}, \"event_id\": \"hn:40000001\", \"payload\": {\"score\": 101, \"title\": \"MSFT and the cloud #1\", \"url\": \"https://example.com/hn/1\"}, \"source\": \"hn\", \"ts_ms\": 1725192060000}"
+  ],
+  "entities_not_a_list": 49
+ }
+}

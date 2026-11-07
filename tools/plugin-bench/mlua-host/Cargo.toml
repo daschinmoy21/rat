@@ -1,0 +1,21 @@
+# Standalone benchmark host, deliberately NOT a member of the repo workspace
+# (the empty [workspace] table below makes it its own root). Build with
+# tools/plugin-bench/run-mlua.sh; nothing here ships.
+[package]
+name = "plugin-bench-mlua-host"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[features]
+lua54 = ["mlua/lua54"]
+luajit = ["mlua/luajit"]
+
+[dependencies]
+mlua = { version = "=0.12.2", features = ["vendored", "serde"] }
+serde_json = "1"
+
+[profile.release]
+debug = "line-tables-only"

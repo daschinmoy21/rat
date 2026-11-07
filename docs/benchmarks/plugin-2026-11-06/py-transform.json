@@ -1,0 +1,70 @@
+{
+ "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [GCC 15.3.0]",
+ "events_per_cycle": 187,
+ "events_per_source": {
+  "hn": 27,
+  "lobsters": 25,
+  "news": 100,
+  "rss": 30,
+  "stocks": 5
+ },
+ "load_app_ms_in_process": 11.086595943197608,
+ "maxrss_after_load_kib": 39904,
+ "cycle_poll_only": {
+  "median_us": 1750.7939999999999,
+  "min_us": 1423.623,
+  "p90_us": 2156.688,
+  "reps": 300
+ },
+ "cycle_poll_extract": {
+  "median_us": 2056.5575,
+  "min_us": 1725.334,
+  "p90_us": 2459.422,
+  "reps": 300
+ },
+ "cycle_full_poll_extract_check": {
+  "median_us": 5932.4615,
+  "min_us": 5069.508,
+  "p90_us": 6884.823,
+  "reps": 300
+ },
+ "map_only_extract_from_decoded": {
+  "median_us": 842.4259999999999,
+  "min_us": 788.05,
+  "p90_us": 934.52,
+  "reps": 300
+ },
+ "heap_peak_bytes_full_cycle": 90985,
+ "heap_peak_bytes_map_only": 47945,
+ "source_hn_full": {
+  "median_us": 618.2055,
+  "min_us": 574.437,
+  "p90_us": 704.821,
+  "reps": 100
+ },
+ "source_lobsters_full": {
+  "median_us": 809.279,
+  "min_us": 733.615,
+  "p90_us": 1055.238,
+  "reps": 100
+ },
+ "source_news_full": {
+  "median_us": 3202.7875000000004,
+  "min_us": 2804.921,
+  "p90_us": 3644.762,
+  "reps": 100
+ },
+ "source_rss_full": {
+  "median_us": 769.051,
+  "min_us": 698.471,
+  "p90_us": 960.95,
+  "reps": 100
+ },
+ "source_stocks_full": {
+  "median_us": 332.59450000000004,
+  "min_us": 294.23,
+  "p90_us": 491.748,
+  "reps": 100
+ },
+ "maxrss_end_kib": 40928
+}

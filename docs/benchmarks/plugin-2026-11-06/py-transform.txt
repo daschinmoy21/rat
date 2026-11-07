@@ -1,0 +1,17 @@
+python                               3.12.14 (main, Aug 12 2026, 13:57:54) [GCC 15.3.0]
+events_per_cycle                     187
+events_per_source                    {'hn': 27, 'lobsters': 25, 'news': 100, 'rss': 30, 'stocks': 5}
+load_app_ms_in_process               11.086595943197608
+maxrss_after_load_kib                39904
+cycle_poll_only                          1750.8 us (median of 300)
+cycle_poll_extract                       2056.6 us (median of 300)
+cycle_full_poll_extract_check            5932.5 us (median of 300)
+map_only_extract_from_decoded             842.4 us (median of 300)
+heap_peak_bytes_full_cycle           90985
+heap_peak_bytes_map_only             47945
+source_hn_full                            618.2 us (median of 100)
+source_lobsters_full                      809.3 us (median of 100)
+source_news_full                         3202.8 us (median of 100)
+source_rss_full                           769.1 us (median of 100)
+source_stocks_full                        332.6 us (median of 100)
+maxrss_end_kib                       40928

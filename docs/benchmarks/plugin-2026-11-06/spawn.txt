@@ -1,0 +1,10 @@
+py_bare_IS               wall     9.17 ms  cpu     8.59 ms  peak RSS (VmHWM)    9.98 MiB
+py_site                  wall    14.64 ms  cpu    14.21 ms  peak RSS (VmHWM)   10.99 MiB
+py_import_core           wall   230.34 ms  cpu   227.07 ms  peak RSS (VmHWM)   35.25 MiB
+py_load_plugins          wall   306.50 ms  cpu   296.78 ms  peak RSS (VmHWM)   37.34 MiB
+py_load_plugins_kafka    wall   331.92 ms  cpu   302.39 ms  peak RSS (VmHWM)   37.42 MiB
+py_one_cycle_offline     wall   330.45 ms  cpu   288.65 ms  peak RSS (VmHWM)   38.95 MiB
+lua54_bare               wall     0.99 ms  cpu     0.86 ms  peak RSS (VmHWM)    2.72 MiB
+luajit_bare              wall     0.78 ms  cpu     0.67 ms  peak RSS (VmHWM)    2.75 MiB
+lua54_one_cycle          wall     3.82 ms  cpu     2.89 ms  peak RSS (VmHWM)    3.39 MiB
+luajit_one_cycle         wall     3.27 ms  cpu     2.66 ms  peak RSS (VmHWM)    3.41 MiB

@@ -1,0 +1,176 @@
+{
+ "delay_0ms": {
+  "median": {
+   "wall_ms": 424.6004191227257,
+   "cpu_ms": 310.402,
+   "vmhwm_kib": 42616,
+   "events": 187,
+   "load_ms": 192.835,
+   "cycle_ms": 112.266,
+   "http_requests": 43
+  },
+  "raw": [
+   {
+    "wall_ms": 520.0869098771363,
+    "cpu_ms": 311.87699999999995,
+    "vmhwm_kib": 42616,
+    "events": 187,
+    "load_ms": 239.379,
+    "cycle_ms": 166.944,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 322.9966820217669,
+    "cpu_ms": 275.166,
+    "vmhwm_kib": 42616,
+    "events": 187,
+    "load_ms": 169.508,
+    "cycle_ms": 36.342,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 402.14305208064616,
+    "cpu_ms": 310.402,
+    "vmhwm_kib": 42660,
+    "events": 187,
+    "load_ms": 248.606,
+    "cycle_ms": 42.273,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 424.6004191227257,
+    "cpu_ms": 298.52099999999996,
+    "vmhwm_kib": 42628,
+    "events": 187,
+    "load_ms": 148.372,
+    "cycle_ms": 143.766,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 487.8261520061642,
+    "cpu_ms": 318.4789999999999,
+    "vmhwm_kib": 42556,
+    "events": 187,
+    "load_ms": 192.835,
+    "cycle_ms": 112.266,
+    "http_requests": 43
+   }
+  ]
+ },
+ "delay_50ms": {
+  "median": {
+   "wall_ms": 2591.41713893041,
+   "cpu_ms": 343.788,
+   "vmhwm_kib": 42524,
+   "events": 187,
+   "load_ms": 205.589,
+   "cycle_ms": 2264.649,
+   "http_requests": 43
+  },
+  "raw": [
+   {
+    "wall_ms": 3167.605336057022,
+    "cpu_ms": 379.89799999999997,
+    "vmhwm_kib": 42512,
+    "events": 187,
+    "load_ms": 367.608,
+    "cycle_ms": 2300.934,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 2537.238646997139,
+    "cpu_ms": 309.29699999999997,
+    "vmhwm_kib": 42524,
+    "events": 187,
+    "load_ms": 155.607,
+    "cycle_ms": 2261.744,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 2611.67656397447,
+    "cpu_ms": 343.788,
+    "vmhwm_kib": 42460,
+    "events": 187,
+    "load_ms": 205.589,
+    "cycle_ms": 2264.649,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 2591.41713893041,
+    "cpu_ms": 345.157,
+    "vmhwm_kib": 42600,
+    "events": 187,
+    "load_ms": 207.118,
+    "cycle_ms": 2257.596,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 2526.9942658487707,
+    "cpu_ms": 301.58299999999997,
+    "vmhwm_kib": 42556,
+    "events": 187,
+    "load_ms": 149.78,
+    "cycle_ms": 2267.312,
+    "http_requests": 43
+   }
+  ]
+ },
+ "delay_200ms": {
+  "median": {
+   "wall_ms": 9114.73074904643,
+   "cpu_ms": 342.03499999999997,
+   "vmhwm_kib": 42612,
+   "events": 187,
+   "load_ms": 181.174,
+   "cycle_ms": 8764.808,
+   "http_requests": 43
+  },
+  "raw": [
+   {
+    "wall_ms": 9114.73074904643,
+    "cpu_ms": 381.96599999999995,
+    "vmhwm_kib": 42668,
+    "events": 187,
+    "load_ms": 216.318,
+    "cycle_ms": 8731.462,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 9040.701210964471,
+    "cpu_ms": 342.03499999999997,
+    "vmhwm_kib": 42628,
+    "events": 187,
+    "load_ms": 180.785,
+    "cycle_ms": 8737.132,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 9153.122883057222,
+    "cpu_ms": 378.09900000000005,
+    "vmhwm_kib": 42584,
+    "events": 187,
+    "load_ms": 219.946,
+    "cycle_ms": 8764.808,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 9088.152122916654,
+    "cpu_ms": 325.03399999999993,
+    "vmhwm_kib": 42488,
+    "events": 187,
+    "load_ms": 164.667,
+    "cycle_ms": 8806.062,
+    "http_requests": 43
+   },
+   {
+    "wall_ms": 9130.753932986408,
+    "cpu_ms": 333.65399999999994,
+    "vmhwm_kib": 42612,
+    "events": 187,
+    "load_ms": 181.174,
+    "cycle_ms": 8806.589,
+    "http_requests": 43
+   }
+  ]
+ }
+}
