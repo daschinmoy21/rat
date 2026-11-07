@@ -1,0 +1,1 @@
+{"events_attempted": 10000, "elapsed_s": 21.91109681292437, "attempts_per_s": 456.38975015168796, "note": "emit may DLQ/spool after send failures; verify broker counts and sinks separately"}

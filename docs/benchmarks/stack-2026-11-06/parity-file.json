@@ -1,0 +1,27 @@
+{
+  "legacy": {
+    "events_raw": {
+      "count": 2500,
+      "files": 32,
+      "sha256": "1fd65b334a358e8cc28705389774db0e02e82c017e5525f0dd2c63aa2822c063"
+    },
+    "correlated": {
+      "count": 7500,
+      "files": 473,
+      "sha256": "7e73f4cecb836a2113075edddfb999ef941ca2052b98cc98aed90ed499942257"
+    }
+  },
+  "rust": {
+    "events_raw": {
+      "count": 2500,
+      "files": 1,
+      "sha256": "1fd65b334a358e8cc28705389774db0e02e82c017e5525f0dd2c63aa2822c063"
+    },
+    "correlated": {
+      "count": 7500,
+      "files": 1,
+      "sha256": "7e73f4cecb836a2113075edddfb999ef941ca2052b98cc98aed90ed499942257"
+    }
+  },
+  "identical_rows": true
+}

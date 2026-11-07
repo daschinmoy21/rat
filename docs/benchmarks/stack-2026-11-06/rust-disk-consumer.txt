@@ -1,0 +1,3 @@
+rat-rs: consuming iggy stream "rat-bench-disk-20261106" into /home/crimxnhaze/.local/state/rat/bench-20261106/sink (checkpoint /home/crimxnhaze/.local/state/rat/bench-20261106/sink/checkpoints/rat-rs)
+rat-rs: shutdown requested
+{"records_read":10000,"records_rejected":0,"rejected_by_reason":{},"raw_rows":2500,"correlated_rows":7500,"late_dropped":0,"unjoinable":0,"batches":666,"files_written":1330,"first_batch_id":1,"last_batch_id":666,"state_entries":7500,"watermark_ms":1699999460000,"elapsed_ms":125372,"iggy":{"polls":5931,"messages":10000,"offset_gaps":0,"errors":0}}

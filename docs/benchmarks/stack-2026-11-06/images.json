@@ -1,0 +1,40 @@
+{
+  "docker.io/apache/kafka:3.7.0": {
+    "Id": "fe7e6a65afa5de2930f54c3d31d517d50acf8ff20f29a6f506df021a901d754d",
+    "Digest": "sha256:3e324d2bd331570676436b24f625e5dcf1facdfbd62efcffabc6b69b1abc13cc",
+    "RepoDigests": [
+      "docker.io/apache/kafka@sha256:3e324d2bd331570676436b24f625e5dcf1facdfbd62efcffabc6b69b1abc13cc",
+      "docker.io/apache/kafka@sha256:41c20d65b0a2180b9deca056d47540771752e69fe9225d5748dd65a25a9675d7"
+    ],
+    "Size": 396871448,
+    "Created": "2024-02-09T14:50:00.364476489Z"
+  },
+  "docker.io/apache/hadoop:3.3.6": {
+    "Id": "3d418cee563e95c550afaa18e223ef84b7b93cbc557c9f7d5caa242acba15b0c",
+    "Digest": "sha256:62a22627f35a1bbf29c721192c02fe311c93749cc43d51df01792b2ac40ff144",
+    "RepoDigests": [
+      "docker.io/apache/hadoop@sha256:62a22627f35a1bbf29c721192c02fe311c93749cc43d51df01792b2ac40ff144"
+    ],
+    "Size": 1674554625,
+    "Created": "2023-06-26T15:43:27.914081786Z"
+  },
+  "docker.io/apache/hive:3.1.3": {
+    "Id": "b97ef57367823600070b6e4c59a985d10fc7786e3bb5581e92942d0c1224200a",
+    "Digest": "sha256:d102ba29ad07e93c303894896203a80b903c0001d80221f1cb9fea92dcac06e4",
+    "RepoDigests": [
+      "docker.io/apache/hive@sha256:d102ba29ad07e93c303894896203a80b903c0001d80221f1cb9fea92dcac06e4"
+    ],
+    "Size": 894622846,
+    "Created": "2023-09-05T10:01:37.1922602Z"
+  },
+  "docker.io/apache/iggy:0.9.0": {
+    "Id": "3a67a78360981319a5f3e27aacdbc789631da5d36cd4895db76bef99814768a7",
+    "Digest": "sha256:85c9f88ceb41ffa3f9b291372e7aaec9c99fb4fdbd4279b7e2037ad2eb8b884e",
+    "RepoDigests": [
+      "docker.io/apache/iggy@sha256:85c9f88ceb41ffa3f9b291372e7aaec9c99fb4fdbd4279b7e2037ad2eb8b884e",
+      "docker.io/apache/iggy@sha256:b35fc2841964f2962a5f164d33b3ae3a9de99a66920defd3cd8a1c039470602d"
+    ],
+    "Size": 131410046,
+    "Created": "2026-09-18T18:50:31.785502777Z"
+  }
+}

@@ -1,0 +1,72 @@
+   Compiling rat-rs v0.1.0 (/home/crimxnhaze/rat/rust/rat-rs)
+    Finished `release` profile [optimized + debuginfo] target(s) in 58.08s
+     Running unittests src/lib.rs (target/release/deps/rat_rs-e789b8e28dc3b4d6)
+
+running 7 tests
+test envelope::tests::entity_cleanup ... ok
+test envelope::tests::rejects ... ok
+test envelope::tests::object_payload_is_kept_as_compact_json_in_key_order ... ok
+test interval::tests::units ... ok
+test envelope::tests::partial_results_null_bad_fields_only ... ok
+test sink::tests::escape_round_trip ... ok
+test sink::tests::dt_utc ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/rat_rs-f0c834060eee781a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/correlate.rs (target/release/deps/correlate-435522c1be646805)
+
+running 16 tests
+test any_two_sources_pair_on_a_shared_entity_inside_the_window ... ok
+test duplicate_entities_inside_one_event_do_not_multiply_output ... ok
+test boundary_pair_arriving_out_of_order_is_kept ... ok
+test extreme_timestamps_do_not_overflow_or_create_false_pairs ... ok
+test hn_and_rss_pair_exactly_once_a_from_hn_b_from_rss ... ok
+test late_records_are_dropped_from_the_join_but_keep_policy_keeps_them ... ok
+test multiple_shared_entities_give_one_row_per_entity ... ok
+test no_self_or_same_source_pairs_no_mirrored_duplicates ... ok
+test out_of_order_within_the_watermark_still_pairs ... ok
+test null_or_blank_source_and_entity_rows_are_excluded ... ok
+test raw_branch_takes_entityless_records_only ... ok
+test pair_inside_exactly_at_and_outside_the_window ... ok
+test source_order_does_not_depend_on_arrival_order ... ok
+test three_sources_sharing_an_entity_give_c3_2_pairs ... ok
+test source_order_is_bytewise_like_spark ... ok
+test eviction_bounds_state_without_changing_output ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/pipeline.rs (target/release/deps/pipeline-f3a9a0986378b982)
+
+running 17 tests
+test changed_settings_or_missing_checkpoint_are_refused ... ok
+test failed_poll_does_not_commit_partially_decoded_offsets ... ok
+test hostile_source_names_are_escaped_in_partition_paths ... ok
+test iggy_latest_skips_history_on_first_run_only ... ok
+test crash_after_commit_before_rename_rolls_forward ... ok
+test invalid_lines_are_counted_by_reason_and_skipped ... ok
+test crash_before_commit_discards_staged_files_and_replays ... ok
+test iggy_source_reads_all_partitions_skips_dlq_and_resumes_from_checkpoint ... ok
+test reset_refuses_symlink_escape ... ok
+test reset_validates_all_paths_before_deleting_anything ... ok
+test second_writer_is_locked_out ... ok
+test rerun_after_completion_is_a_no_op ... ok
+test streaming_source_waits_between_committed_batches ... ok
+test truncated_input_is_refused ... ok
+test sql_read_side_sees_committed_rows_with_partition_columns ... ok
+test batching_and_restart_points_do_not_change_output ... ok
+test keep_policy_equals_drop_policy_when_nothing_is_late ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.69s
+
+   Doc-tests rat_rs
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

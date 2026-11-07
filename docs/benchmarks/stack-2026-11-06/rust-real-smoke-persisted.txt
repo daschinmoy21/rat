@@ -1,0 +1,17 @@
+stream rat-smoke-1793963518-4008634: created
+topic  events.hn: created (partitions=6, expiry_us=604800000000)
+topic  events.hn.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.lobsters: created (partitions=6, expiry_us=604800000000)
+topic  events.lobsters.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.news: created (partitions=6, expiry_us=604800000000)
+topic  events.news.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.rss: created (partitions=6, expiry_us=604800000000)
+topic  events.rss.dlq: created (partitions=6, expiry_us=2592000000000)
+topic  events.stocks: created (partitions=6, expiry_us=604800000000)
+topic  events.stocks.dlq: created (partitions=6, expiry_us=2592000000000)
+topics   events.hn events.hn.dlq events.lobsters events.lobsters.dlq events.news events.news.dlq events.rss events.rss.dlq events.stocks events.stocks.dlq
+1793963519621
+restart did not duplicate output: {'raw_rows': 1, 'correlated_rows': 3, 'correlated_duplicates': 0, 'files': 3, 'digest': 'fc17b09d2f46cf03'}
+{"pairs":3}
+{"raw":1}
+Rust + real Iggy smoke passed

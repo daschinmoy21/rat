@@ -1,0 +1,47 @@
+{
+  "legacy_loaded": {
+    "mean_memory_mib": 2992.6640195741757,
+    "mean_working_set_mib": 2905.799278846154,
+    "peak_working_set_mib": 3193.48828125,
+    "mean_anon_mib": 2790.2344608516482,
+    "mean_swap_mib": 66.4170673076923,
+    "cpu_seconds": 73.968793,
+    "cpu_percent_one_core": 82.18639774627039,
+    "read_bytes": 52166656,
+    "write_bytes": 221065216
+  },
+  "rust_loaded": {
+    "mean_memory_mib": 163.91363324175825,
+    "mean_working_set_mib": 163.31911057692307,
+    "peak_working_set_mib": 185.46875,
+    "mean_anon_mib": 151.3865470467033,
+    "mean_swap_mib": 0.0,
+    "cpu_seconds": 7.471214,
+    "cpu_percent_one_core": 8.30127394700268,
+    "read_bytes": 4096,
+    "write_bytes": 91353088
+  },
+  "legacy_idle": {
+    "mean_memory_mib": 2882.6891381048385,
+    "mean_working_set_mib": 2779.690398185484,
+    "peak_working_set_mib": 2897.5234375,
+    "mean_anon_mib": 2658.1227318548385,
+    "mean_swap_mib": 731.2525201612904,
+    "cpu_seconds": 5.0214,
+    "cpu_percent_one_core": 16.737262512148572,
+    "read_bytes": 454656,
+    "write_bytes": 19197952
+  },
+  "rust_idle": {
+    "mean_memory_mib": 164.13722278225808,
+    "mean_working_set_mib": 163.43800403225808,
+    "peak_working_set_mib": 163.51953125,
+    "mean_anon_mib": 150.8477822580645,
+    "mean_swap_mib": 0.0,
+    "cpu_seconds": 1.257223,
+    "cpu_percent_one_core": 4.1905992933544205,
+    "read_bytes": 0,
+    "write_bytes": 0
+  },
+  "rows_identical": true
+}

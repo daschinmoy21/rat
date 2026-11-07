@@ -1,0 +1,531 @@
+{
+  "recorded_at": "2026-11-06T10:48:08.187256+00:00",
+  "duration_s": 30.000541895860806,
+  "logical_cpus": 4,
+  "cgroups": {
+    "rat-iggy": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_3091ff77fb564411e117260482f0abed598a5853d749fde5a5fcc36ce9008664.slice/libpod-72d47e8b2839c65c607ff005f2e35929be46175992f91285982a3d17caed10d7.scope/container"
+  },
+  "summary": {
+    "rat-iggy": {
+      "mean_memory_mib": 167.01423891129033,
+      "mean_working_set_mib": 167.01423891129033,
+      "peak_working_set_mib": 175.41796875,
+      "mean_anon_mib": 136.42149697580646,
+      "mean_swap_mib": 0.0,
+      "cpu_seconds": 0.994839,
+      "cpu_percent_one_core": 3.316070101177934,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "TOTAL": {
+      "mean_memory_mib": 167.01423891129033,
+      "mean_working_set_mib": 167.01423891129033,
+      "peak_working_set_mib": 175.41796875,
+      "mean_anon_mib": 136.42149697580646,
+      "mean_swap_mib": 0.0,
+      "cpu_seconds": 0.994839,
+      "cpu_percent_one_core": 3.316070101177934,
+      "read_bytes": 0,
+      "write_bytes": 0
+    }
+  },
+  "samples": [
+    {
+      "elapsed_s": 4.700850695371628e-07,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 160821248,
+          "working_set_bytes": 160821248,
+          "anon_bytes": 129810432,
+          "swap_bytes": 0,
+          "cpu_usec": 1085611,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 1.0004063551314175,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 160821248,
+          "working_set_bytes": 160821248,
+          "anon_bytes": 129810432,
+          "swap_bytes": 0,
+          "cpu_usec": 1110900,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 2.0009761571418494,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1171580,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 3.001582605065778,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1199289,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 4.002147468039766,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1221322,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 5.00268025114201,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1246712,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 6.003244575113058,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1272305,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 7.003807014087215,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1299457,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 8.004567323019728,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1331476,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 9.005320080090314,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1363424,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 10.006114671938121,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1400709,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 11.006965331966057,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1437465,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 12.007560823112726,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1468130,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 13.00817838916555,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1505311,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 14.008785688085482,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1542430,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 15.009490481112152,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1574245,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 16.01019289996475,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1612614,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 17.01082630897872,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1650406,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 18.01155611104332,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 183939072,
+          "working_set_bytes": 183939072,
+          "anon_bytes": 152883200,
+          "swap_bytes": 0,
+          "cpu_usec": 1687454,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 19.012175429146737,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1727775,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 20.01281045214273,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1770539,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 21.01342742703855,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1810281,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 22.01404742593877,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1847982,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 23.014633073005825,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1884284,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 24.015336490934715,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1912757,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 25.015935405157506,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1937588,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 26.016545466147363,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1970490,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 27.017277274047956,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 1999076,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 28.018051569117233,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 2026288,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 29.020400593988597,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 2053410,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    },
+    {
+      "elapsed_s": 30.000542365945876,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165027840,
+          "working_set_bytes": 165027840,
+          "anon_bytes": 131321856,
+          "swap_bytes": 0,
+          "cpu_usec": 2080450,
+          "rbytes": 21143552,
+          "wbytes": 323584,
+          "rios": 377,
+          "wios": 75
+        }
+      }
+    }
+  ],
+  "method": "cgroup v2; working set = memory.current - inactive_file; CPU 100% = one core; excludes build tools and other services"
+}

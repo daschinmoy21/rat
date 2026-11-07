@@ -1,0 +1,2504 @@
+{
+  "recorded_at": "2026-11-06T11:13:50.121888+00:00",
+  "duration_s": 90.00107674999163,
+  "logical_cpus": 4,
+  "cgroups": {
+    "rat-iggy": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/user.slice/user-libpod_pod_3091ff77fb564411e117260482f0abed598a5853d749fde5a5fcc36ce9008664.slice/libpod-72d47e8b2839c65c607ff005f2e35929be46175992f91285982a3d17caed10d7.scope/container",
+    "rat-bench-rust-persisted.scope": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rat-bench-rust-persisted.scope"
+  },
+  "summary": {
+    "rat-iggy": {
+      "mean_memory_mib": 157.54541552197801,
+      "mean_working_set_mib": 152.79927884615384,
+      "peak_working_set_mib": 171.640625,
+      "mean_anon_mib": 145.43848729395606,
+      "mean_swap_mib": 0.0,
+      "cpu_seconds": 9.660642,
+      "cpu_percent_one_core": 10.733918247262412,
+      "read_bytes": 200704,
+      "write_bytes": 89399296
+    },
+    "rat-bench-rust-persisted.scope": {
+      "mean_memory_mib": 23.40676510989011,
+      "mean_working_set_mib": 10.038075206043956,
+      "peak_working_set_mib": 11.27734375,
+      "mean_anon_mib": 5.469393887362638,
+      "mean_swap_mib": 0.0,
+      "cpu_seconds": 4.961532,
+      "cpu_percent_one_core": 5.512747379436726,
+      "read_bytes": 163840,
+      "write_bytes": 488538112
+    },
+    "TOTAL": {
+      "mean_memory_mib": 180.95218063186815,
+      "mean_working_set_mib": 162.8373540521978,
+      "peak_working_set_mib": 175.24609375,
+      "mean_anon_mib": 150.9078811813187,
+      "mean_swap_mib": 0.0,
+      "cpu_seconds": 14.622174,
+      "cpu_percent_one_core": 16.24666562669914,
+      "read_bytes": 364544,
+      "write_bytes": 577937408
+    }
+  },
+  "samples": [
+    {
+      "elapsed_s": 4.6100467443466187e-07,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 180576256,
+          "working_set_bytes": 179978240,
+          "anon_bytes": 172912640,
+          "swap_bytes": 0,
+          "cpu_usec": 2481563,
+          "rbytes": 372736,
+          "wbytes": 786432,
+          "rios": 86,
+          "wios": 674
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 3784704,
+          "working_set_bytes": 3780608,
+          "anon_bytes": 3633152,
+          "swap_bytes": 0,
+          "cpu_usec": 7962,
+          "rbytes": 0,
+          "wbytes": 4096,
+          "rios": 0,
+          "wios": 1
+        }
+      }
+    },
+    {
+      "elapsed_s": 1.0008693300187588,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 159592448,
+          "working_set_bytes": 158994432,
+          "anon_bytes": 151937024,
+          "swap_bytes": 0,
+          "cpu_usec": 2532910,
+          "rbytes": 372736,
+          "wbytes": 786432,
+          "rios": 86,
+          "wios": 674
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 3788800,
+          "working_set_bytes": 3784704,
+          "anon_bytes": 3633152,
+          "swap_bytes": 0,
+          "cpu_usec": 8918,
+          "rbytes": 0,
+          "wbytes": 4096,
+          "rios": 0,
+          "wios": 1
+        }
+      }
+    },
+    {
+      "elapsed_s": 2.00167307886295,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 161378304,
+          "working_set_bytes": 160489472,
+          "anon_bytes": 151941120,
+          "swap_bytes": 0,
+          "cpu_usec": 2758686,
+          "rbytes": 372736,
+          "wbytes": 4026368,
+          "rios": 86,
+          "wios": 1524
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 3788800,
+          "working_set_bytes": 3784704,
+          "anon_bytes": 3637248,
+          "swap_bytes": 0,
+          "cpu_usec": 8918,
+          "rbytes": 0,
+          "wbytes": 4096,
+          "rios": 0,
+          "wios": 1
+        }
+      }
+    },
+    {
+      "elapsed_s": 3.0024017898831517,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 161996800,
+          "working_set_bytes": 160886784,
+          "anon_bytes": 152342528,
+          "swap_bytes": 0,
+          "cpu_usec": 2997385,
+          "rbytes": 372736,
+          "wbytes": 8015872,
+          "rios": 86,
+          "wios": 2618
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 5050368,
+          "working_set_bytes": 4878336,
+          "anon_bytes": 4403200,
+          "swap_bytes": 0,
+          "cpu_usec": 39785,
+          "rbytes": 0,
+          "wbytes": 688128,
+          "rios": 0,
+          "wios": 41
+        }
+      }
+    },
+    {
+      "elapsed_s": 4.003349713049829,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 162439168,
+          "working_set_bytes": 161124352,
+          "anon_bytes": 152268800,
+          "swap_bytes": 0,
+          "cpu_usec": 3261635,
+          "rbytes": 372736,
+          "wbytes": 11276288,
+          "rios": 86,
+          "wios": 3547
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 6139904,
+          "working_set_bytes": 5095424,
+          "anon_bytes": 4407296,
+          "swap_bytes": 0,
+          "cpu_usec": 197460,
+          "rbytes": 0,
+          "wbytes": 6352896,
+          "rios": 0,
+          "wios": 311
+        }
+      }
+    },
+    {
+      "elapsed_s": 5.004175595007837,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 162365440,
+          "working_set_bytes": 160886784,
+          "anon_bytes": 152289280,
+          "swap_bytes": 0,
+          "cpu_usec": 3530406,
+          "rbytes": 372736,
+          "wbytes": 14811136,
+          "rios": 86,
+          "wios": 4552
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 6909952,
+          "working_set_bytes": 5160960,
+          "anon_bytes": 4407296,
+          "swap_bytes": 0,
+          "cpu_usec": 365799,
+          "rbytes": 0,
+          "wbytes": 13750272,
+          "rios": 0,
+          "wios": 602
+        }
+      }
+    },
+    {
+      "elapsed_s": 6.004961245926097,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 162553856,
+          "working_set_bytes": 160899072,
+          "anon_bytes": 152293376,
+          "swap_bytes": 0,
+          "cpu_usec": 3830821,
+          "rbytes": 372736,
+          "wbytes": 18300928,
+          "rios": 86,
+          "wios": 5554
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 8306688,
+          "working_set_bytes": 5705728,
+          "anon_bytes": 4407296,
+          "swap_bytes": 0,
+          "cpu_usec": 562591,
+          "rbytes": 0,
+          "wbytes": 23568384,
+          "rios": 0,
+          "wios": 900
+        }
+      }
+    },
+    {
+      "elapsed_s": 7.005827181041241,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 162615296,
+          "working_set_bytes": 160743424,
+          "anon_bytes": 152236032,
+          "swap_bytes": 0,
+          "cpu_usec": 4124150,
+          "rbytes": 372736,
+          "wbytes": 22065152,
+          "rios": 86,
+          "wios": 6589
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 9240576,
+          "working_set_bytes": 5738496,
+          "anon_bytes": 4407296,
+          "swap_bytes": 0,
+          "cpu_usec": 763712,
+          "rbytes": 0,
+          "wbytes": 35479552,
+          "rios": 0,
+          "wios": 1234
+        }
+      }
+    },
+    {
+      "elapsed_s": 8.007472714874893,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 162873344,
+          "working_set_bytes": 160825344,
+          "anon_bytes": 152236032,
+          "swap_bytes": 0,
+          "cpu_usec": 4438361,
+          "rbytes": 372736,
+          "wbytes": 25059328,
+          "rios": 86,
+          "wios": 7425
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 10338304,
+          "working_set_bytes": 6107136,
+          "anon_bytes": 4419584,
+          "swap_bytes": 0,
+          "cpu_usec": 976035,
+          "rbytes": 0,
+          "wbytes": 46931968,
+          "rios": 0,
+          "wios": 1489
+        }
+      }
+    },
+    {
+      "elapsed_s": 9.008904163958505,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163454976,
+          "working_set_bytes": 161214464,
+          "anon_bytes": 152264704,
+          "swap_bytes": 0,
+          "cpu_usec": 4734586,
+          "rbytes": 372736,
+          "wbytes": 28942336,
+          "rios": 86,
+          "wios": 8540
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 11403264,
+          "working_set_bytes": 6307840,
+          "anon_bytes": 4444160,
+          "swap_bytes": 0,
+          "cpu_usec": 1173884,
+          "rbytes": 0,
+          "wbytes": 62222336,
+          "rios": 0,
+          "wios": 1789
+        }
+      }
+    },
+    {
+      "elapsed_s": 10.009674619883299,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163430400,
+          "working_set_bytes": 160989184,
+          "anon_bytes": 152293376,
+          "swap_bytes": 0,
+          "cpu_usec": 5019308,
+          "rbytes": 372736,
+          "wbytes": 32698368,
+          "rios": 86,
+          "wios": 9602
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 12615680,
+          "working_set_bytes": 6643712,
+          "anon_bytes": 4497408,
+          "swap_bytes": 0,
+          "cpu_usec": 1376030,
+          "rbytes": 0,
+          "wbytes": 79572992,
+          "rios": 0,
+          "wios": 2081
+        }
+      }
+    },
+    {
+      "elapsed_s": 11.010590024059638,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163860480,
+          "working_set_bytes": 161210368,
+          "anon_bytes": 152178688,
+          "swap_bytes": 0,
+          "cpu_usec": 5277461,
+          "rbytes": 372736,
+          "wbytes": 36360192,
+          "rios": 86,
+          "wios": 10652
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 13926400,
+          "working_set_bytes": 7094272,
+          "anon_bytes": 4608000,
+          "swap_bytes": 0,
+          "cpu_usec": 1557347,
+          "rbytes": 0,
+          "wbytes": 98570240,
+          "rios": 0,
+          "wios": 2369
+        }
+      }
+    },
+    {
+      "elapsed_s": 12.01173541485332,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163733504,
+          "working_set_bytes": 160870400,
+          "anon_bytes": 152195072,
+          "swap_bytes": 0,
+          "cpu_usec": 5519737,
+          "rbytes": 372736,
+          "wbytes": 39436288,
+          "rios": 86,
+          "wios": 11499
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 14925824,
+          "working_set_bytes": 7376896,
+          "anon_bytes": 4710400,
+          "swap_bytes": 0,
+          "cpu_usec": 1736461,
+          "rbytes": 0,
+          "wbytes": 116580352,
+          "rios": 0,
+          "wios": 2609
+        }
+      }
+    },
+    {
+      "elapsed_s": 13.012738254852593,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 164020224,
+          "working_set_bytes": 161038336,
+          "anon_bytes": 152195072,
+          "swap_bytes": 0,
+          "cpu_usec": 5744505,
+          "rbytes": 372736,
+          "wbytes": 41455616,
+          "rios": 86,
+          "wios": 12067
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 15675392,
+          "working_set_bytes": 7565312,
+          "anon_bytes": 4739072,
+          "swap_bytes": 0,
+          "cpu_usec": 1900973,
+          "rbytes": 98304,
+          "wbytes": 129445888,
+          "rios": 24,
+          "wios": 2802
+        }
+      }
+    },
+    {
+      "elapsed_s": 14.013608577894047,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163872768,
+          "working_set_bytes": 160780288,
+          "anon_bytes": 152145920,
+          "swap_bytes": 0,
+          "cpu_usec": 5977363,
+          "rbytes": 372736,
+          "wbytes": 43724800,
+          "rios": 86,
+          "wios": 12712
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 16400384,
+          "working_set_bytes": 7786496,
+          "anon_bytes": 4784128,
+          "swap_bytes": 0,
+          "cpu_usec": 2077775,
+          "rbytes": 98304,
+          "wbytes": 143892480,
+          "rios": 24,
+          "wios": 2989
+        }
+      }
+    },
+    {
+      "elapsed_s": 15.014575510984287,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 164134912,
+          "working_set_bytes": 160890880,
+          "anon_bytes": 152145920,
+          "swap_bytes": 0,
+          "cpu_usec": 6190325,
+          "rbytes": 372736,
+          "wbytes": 46374912,
+          "rios": 86,
+          "wios": 13481
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 17432576,
+          "working_set_bytes": 8282112,
+          "anon_bytes": 4825088,
+          "swap_bytes": 0,
+          "cpu_usec": 2240853,
+          "rbytes": 98304,
+          "wbytes": 160686080,
+          "rios": 24,
+          "wios": 3188
+        }
+      }
+    },
+    {
+      "elapsed_s": 16.01542712491937,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 164298752,
+          "working_set_bytes": 160940032,
+          "anon_bytes": 152145920,
+          "swap_bytes": 0,
+          "cpu_usec": 6403294,
+          "rbytes": 372736,
+          "wbytes": 48599040,
+          "rios": 86,
+          "wios": 14127
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 17940480,
+          "working_set_bytes": 8249344,
+          "anon_bytes": 4878336,
+          "swap_bytes": 0,
+          "cpu_usec": 2412006,
+          "rbytes": 163840,
+          "wbytes": 176250880,
+          "rios": 40,
+          "wios": 3373
+        }
+      }
+    },
+    {
+      "elapsed_s": 17.016380568034947,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 164204544,
+          "working_set_bytes": 160714752,
+          "anon_bytes": 152166400,
+          "swap_bytes": 0,
+          "cpu_usec": 6654611,
+          "rbytes": 372736,
+          "wbytes": 51167232,
+          "rios": 86,
+          "wios": 14870
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 18821120,
+          "working_set_bytes": 8548352,
+          "anon_bytes": 4976640,
+          "swap_bytes": 0,
+          "cpu_usec": 2627292,
+          "rbytes": 163840,
+          "wbytes": 199245824,
+          "rios": 40,
+          "wios": 3600
+        }
+      }
+    },
+    {
+      "elapsed_s": 18.017378479940817,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 164646912,
+          "working_set_bytes": 160976896,
+          "anon_bytes": 152133632,
+          "swap_bytes": 0,
+          "cpu_usec": 6926682,
+          "rbytes": 372736,
+          "wbytes": 54288384,
+          "rios": 86,
+          "wios": 15725
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 19832832,
+          "working_set_bytes": 8880128,
+          "anon_bytes": 5070848,
+          "swap_bytes": 0,
+          "cpu_usec": 2848943,
+          "rbytes": 163840,
+          "wbytes": 222253056,
+          "rios": 40,
+          "wios": 3843
+        }
+      }
+    },
+    {
+      "elapsed_s": 19.019187127938494,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165076992,
+          "working_set_bytes": 161234944,
+          "anon_bytes": 152121344,
+          "swap_bytes": 0,
+          "cpu_usec": 7202057,
+          "rbytes": 372736,
+          "wbytes": 57454592,
+          "rios": 86,
+          "wios": 16609
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 20783104,
+          "working_set_bytes": 9191424,
+          "anon_bytes": 5173248,
+          "swap_bytes": 0,
+          "cpu_usec": 3070253,
+          "rbytes": 163840,
+          "wbytes": 245338112,
+          "rios": 40,
+          "wios": 4089
+        }
+      }
+    },
+    {
+      "elapsed_s": 20.01993822492659,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165220352,
+          "working_set_bytes": 161234944,
+          "anon_bytes": 152076288,
+          "swap_bytes": 0,
+          "cpu_usec": 7444536,
+          "rbytes": 372736,
+          "wbytes": 60137472,
+          "rios": 86,
+          "wios": 17376
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 21622784,
+          "working_set_bytes": 9453568,
+          "anon_bytes": 5259264,
+          "swap_bytes": 0,
+          "cpu_usec": 3268358,
+          "rbytes": 163840,
+          "wbytes": 266502144,
+          "rios": 40,
+          "wios": 4290
+        }
+      }
+    },
+    {
+      "elapsed_s": 21.02082883892581,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165384192,
+          "working_set_bytes": 161214464,
+          "anon_bytes": 152055808,
+          "swap_bytes": 0,
+          "cpu_usec": 7705376,
+          "rbytes": 372736,
+          "wbytes": 63664128,
+          "rios": 86,
+          "wios": 18371
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 22622208,
+          "working_set_bytes": 9740288,
+          "anon_bytes": 5312512,
+          "swap_bytes": 0,
+          "cpu_usec": 3507456,
+          "rbytes": 163840,
+          "wbytes": 294367232,
+          "rios": 40,
+          "wios": 4526
+        }
+      }
+    },
+    {
+      "elapsed_s": 22.021550780860707,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165617664,
+          "working_set_bytes": 161247232,
+          "anon_bytes": 151990272,
+          "swap_bytes": 0,
+          "cpu_usec": 7972733,
+          "rbytes": 372736,
+          "wbytes": 67194880,
+          "rios": 86,
+          "wios": 19356
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 23674880,
+          "working_set_bytes": 10055680,
+          "anon_bytes": 5382144,
+          "swap_bytes": 0,
+          "cpu_usec": 3760045,
+          "rbytes": 163840,
+          "wbytes": 324997120,
+          "rios": 40,
+          "wios": 4778
+        }
+      }
+    },
+    {
+      "elapsed_s": 23.022708352888003,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165609472,
+          "working_set_bytes": 161050624,
+          "anon_bytes": 152023040,
+          "swap_bytes": 0,
+          "cpu_usec": 8220402,
+          "rbytes": 372736,
+          "wbytes": 70586368,
+          "rios": 86,
+          "wios": 20290
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 24203264,
+          "working_set_bytes": 10186752,
+          "anon_bytes": 5394432,
+          "swap_bytes": 0,
+          "cpu_usec": 3911044,
+          "rbytes": 163840,
+          "wbytes": 342499328,
+          "rios": 40,
+          "wios": 4916
+        }
+      }
+    },
+    {
+      "elapsed_s": 24.023586119059473,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166072320,
+          "working_set_bytes": 161259520,
+          "anon_bytes": 152014848,
+          "swap_bytes": 0,
+          "cpu_usec": 8440501,
+          "rbytes": 372736,
+          "wbytes": 74661888,
+          "rios": 86,
+          "wios": 21402
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 24203264,
+          "working_set_bytes": 10186752,
+          "anon_bytes": 5394432,
+          "swap_bytes": 0,
+          "cpu_usec": 3911080,
+          "rbytes": 163840,
+          "wbytes": 342499328,
+          "rios": 40,
+          "wios": 4916
+        }
+      }
+    },
+    {
+      "elapsed_s": 25.024579894030467,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166948864,
+          "working_set_bytes": 161886208,
+          "anon_bytes": 152576000,
+          "swap_bytes": 0,
+          "cpu_usec": 8676098,
+          "rbytes": 372736,
+          "wbytes": 78704640,
+          "rios": 86,
+          "wios": 22498
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 25325568,
+          "working_set_bytes": 10969088,
+          "anon_bytes": 6074368,
+          "swap_bytes": 0,
+          "cpu_usec": 4016041,
+          "rbytes": 163840,
+          "wbytes": 355889152,
+          "rios": 40,
+          "wios": 5010
+        }
+      }
+    },
+    {
+      "elapsed_s": 26.026073620887473,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 167030784,
+          "working_set_bytes": 161783808,
+          "anon_bytes": 152408064,
+          "swap_bytes": 0,
+          "cpu_usec": 8921916,
+          "rbytes": 372736,
+          "wbytes": 81936384,
+          "rios": 86,
+          "wios": 23404
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 26697728,
+          "working_set_bytes": 11223040,
+          "anon_bytes": 6094848,
+          "swap_bytes": 0,
+          "cpu_usec": 4277815,
+          "rbytes": 163840,
+          "wbytes": 389857280,
+          "rios": 40,
+          "wios": 5250
+        }
+      }
+    },
+    {
+      "elapsed_s": 27.026834073010832,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166932480,
+          "working_set_bytes": 161521664,
+          "anon_bytes": 152403968,
+          "swap_bytes": 0,
+          "cpu_usec": 9173373,
+          "rbytes": 372736,
+          "wbytes": 85061632,
+          "rios": 86,
+          "wios": 24290
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 27095040,
+          "working_set_bytes": 11431936,
+          "anon_bytes": 6111232,
+          "swap_bytes": 0,
+          "cpu_usec": 4529017,
+          "rbytes": 163840,
+          "wbytes": 424169472,
+          "rios": 40,
+          "wios": 5473
+        }
+      }
+    },
+    {
+      "elapsed_s": 28.02759851096198,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 167350272,
+          "working_set_bytes": 161759232,
+          "anon_bytes": 152399872,
+          "swap_bytes": 0,
+          "cpu_usec": 9436008,
+          "rbytes": 372736,
+          "wbytes": 88412160,
+          "rios": 86,
+          "wios": 25237
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28598272,
+          "working_set_bytes": 11718656,
+          "anon_bytes": 6131712,
+          "swap_bytes": 0,
+          "cpu_usec": 4809655,
+          "rbytes": 163840,
+          "wbytes": 464261120,
+          "rios": 40,
+          "wios": 5725
+        }
+      }
+    },
+    {
+      "elapsed_s": 29.028339542914182,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 167116800,
+          "working_set_bytes": 161423360,
+          "anon_bytes": 152399872,
+          "swap_bytes": 0,
+          "cpu_usec": 9581211,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28590080,
+          "working_set_bytes": 11825152,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4945127,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 30.02918768185191,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166907904,
+          "working_set_bytes": 161214464,
+          "anon_bytes": 152399872,
+          "swap_bytes": 0,
+          "cpu_usec": 9610498,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4945127,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 31.029935214901343,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166821888,
+          "working_set_bytes": 161128448,
+          "anon_bytes": 152399872,
+          "swap_bytes": 0,
+          "cpu_usec": 9639860,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4945918,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 32.03071080101654,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166748160,
+          "working_set_bytes": 161054720,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9672830,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4945971,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 33.031722937943414,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 166105088,
+          "working_set_bytes": 160411648,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9705690,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4946770,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 34.03254423593171,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165687296,
+          "working_set_bytes": 159993856,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 9750509,
+          "rbytes": 372736,
+          "wbytes": 90185728,
+          "rios": 86,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4946770,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 35.033515808871016,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9795442,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4947574,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 36.03455517697148,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9825902,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4947640,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 37.035320105962455,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9860633,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4948328,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 38.03609216585755,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9898243,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4948328,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 39.03698096098378,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 9926611,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4949005,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 40.03784234006889,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165900288,
+          "working_set_bytes": 160006144,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 9964518,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4949041,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 41.038877120940015,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 10000292,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4950098,
+          "rbytes": 163840,
+          "wbytes": 486182912,
+          "rios": 40,
+          "wios": 5862
+        }
+      }
+    },
+    {
+      "elapsed_s": 42.03976703598164,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10036895,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4950098,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 43.040882642846555,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10071601,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4950871,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 44.041801733896136,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10110560,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4950930,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 45.042756909970194,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10152804,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4951874,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 46.043859456898645,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165900288,
+          "working_set_bytes": 160006144,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 10219106,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4951874,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 47.04492629785091,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 10262559,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4952782,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 48.04622659506276,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10299677,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4952836,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 49.04702047002502,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10343088,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4953466,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 50.04788113897666,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10380498,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4953466,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 51.0486680730246,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165896192,
+          "working_set_bytes": 160002048,
+          "anon_bytes": 152363008,
+          "swap_bytes": 0,
+          "cpu_usec": 10417238,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4954243,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 52.049566672882065,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165900288,
+          "working_set_bytes": 160006144,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 10459573,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4954298,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 53.050598580855876,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165892096,
+          "working_set_bytes": 159997952,
+          "anon_bytes": 152367104,
+          "swap_bytes": 0,
+          "cpu_usec": 10505277,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4955121,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 54.05148542299867,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165892096,
+          "working_set_bytes": 159997952,
+          "anon_bytes": 152358912,
+          "swap_bytes": 0,
+          "cpu_usec": 10549788,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4955121,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 55.05239940597676,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165871616,
+          "working_set_bytes": 159977472,
+          "anon_bytes": 152358912,
+          "swap_bytes": 0,
+          "cpu_usec": 10590853,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4955827,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 56.05335892899893,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165871616,
+          "working_set_bytes": 159977472,
+          "anon_bytes": 152338432,
+          "swap_bytes": 0,
+          "cpu_usec": 10630799,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4955827,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 57.054182200925425,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165871616,
+          "working_set_bytes": 159977472,
+          "anon_bytes": 152338432,
+          "swap_bytes": 0,
+          "cpu_usec": 10673300,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4956583,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 58.05505751399323,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165875712,
+          "working_set_bytes": 159981568,
+          "anon_bytes": 152342528,
+          "swap_bytes": 0,
+          "cpu_usec": 10712477,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4956583,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 59.05583932087757,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165863424,
+          "working_set_bytes": 159969280,
+          "anon_bytes": 152342528,
+          "swap_bytes": 0,
+          "cpu_usec": 10746749,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4957349,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 60.05661620898172,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 10779154,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4957349,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 61.057418989017606,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 10811264,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4957993,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 62.05818403093144,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 10851883,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4957993,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 63.059060845989734,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 10893076,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4958594,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 64.05990853602998,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165851136,
+          "working_set_bytes": 159956992,
+          "anon_bytes": 152317952,
+          "swap_bytes": 0,
+          "cpu_usec": 10937215,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4958594,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 65.06071887793951,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165863424,
+          "working_set_bytes": 159969280,
+          "anon_bytes": 152317952,
+          "swap_bytes": 0,
+          "cpu_usec": 10985505,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4959528,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 66.06157101504505,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11035518,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4959528,
+          "rbytes": 163840,
+          "wbytes": 488304640,
+          "rios": 40,
+          "wios": 6380
+        }
+      }
+    },
+    {
+      "elapsed_s": 67.06231482187286,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165859328,
+          "working_set_bytes": 159965184,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11078938,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4960364,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 68.06322920601815,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11125487,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4960364,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 69.06405113684013,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165851136,
+          "working_set_bytes": 159956992,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11171820,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4961277,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 70.064927441068,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165851136,
+          "working_set_bytes": 159956992,
+          "anon_bytes": 152317952,
+          "swap_bytes": 0,
+          "cpu_usec": 11209247,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4961277,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 71.0657241709996,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152317952,
+          "swap_bytes": 0,
+          "cpu_usec": 11260729,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4962180,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 72.06658979994245,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11304135,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4962180,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 73.06740878405981,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11344913,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4962983,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 74.06831909297034,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11388239,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4962983,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 75.06954591604881,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 165847040,
+          "working_set_bytes": 159952896,
+          "anon_bytes": 152313856,
+          "swap_bytes": 0,
+          "cpu_usec": 11435923,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4963648,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 76.07046782202087,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163749888,
+          "working_set_bytes": 157855744,
+          "anon_bytes": 152248320,
+          "swap_bytes": 0,
+          "cpu_usec": 11478413,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4963648,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 77.0712883810047,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163753984,
+          "working_set_bytes": 157859840,
+          "anon_bytes": 152248320,
+          "swap_bytes": 0,
+          "cpu_usec": 11509306,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4964294,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 78.07210935791954,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163753984,
+          "working_set_bytes": 157859840,
+          "anon_bytes": 152252416,
+          "swap_bytes": 0,
+          "cpu_usec": 11552082,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4964294,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 79.0730274580419,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163692544,
+          "working_set_bytes": 157798400,
+          "anon_bytes": 152252416,
+          "swap_bytes": 0,
+          "cpu_usec": 11604606,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4965164,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 80.07416944904253,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163692544,
+          "working_set_bytes": 157798400,
+          "anon_bytes": 152190976,
+          "swap_bytes": 0,
+          "cpu_usec": 11652316,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4965164,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 81.07498631090857,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163692544,
+          "working_set_bytes": 157798400,
+          "anon_bytes": 152190976,
+          "swap_bytes": 0,
+          "cpu_usec": 11697948,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4966059,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 82.07583797792904,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163708928,
+          "working_set_bytes": 157814784,
+          "anon_bytes": 152207360,
+          "swap_bytes": 0,
+          "cpu_usec": 11747174,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4966059,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 83.07671576505527,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163708928,
+          "working_set_bytes": 157814784,
+          "anon_bytes": 152207360,
+          "swap_bytes": 0,
+          "cpu_usec": 11795050,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4966814,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 84.07768115005456,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163708928,
+          "working_set_bytes": 157814784,
+          "anon_bytes": 152207360,
+          "swap_bytes": 0,
+          "cpu_usec": 11849818,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4966814,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 85.07872651005164,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163692544,
+          "working_set_bytes": 157798400,
+          "anon_bytes": 152207360,
+          "swap_bytes": 0,
+          "cpu_usec": 11903849,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4967661,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 86.0795683618635,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163692544,
+          "working_set_bytes": 157798400,
+          "anon_bytes": 152190976,
+          "swap_bytes": 0,
+          "cpu_usec": 11954246,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4967661,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 87.08042316301726,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163659776,
+          "working_set_bytes": 157765632,
+          "anon_bytes": 152190976,
+          "swap_bytes": 0,
+          "cpu_usec": 12005566,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4968573,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 88.0813639999833,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163663872,
+          "working_set_bytes": 157769728,
+          "anon_bytes": 152162304,
+          "swap_bytes": 0,
+          "cpu_usec": 12055047,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4968573,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 89.08226678706706,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163663872,
+          "working_set_bytes": 157769728,
+          "anon_bytes": 152162304,
+          "swap_bytes": 0,
+          "cpu_usec": 12101948,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4969494,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    },
+    {
+      "elapsed_s": 90.0010772109963,
+      "groups": {
+        "rat-iggy": {
+          "memory_bytes": 163659776,
+          "working_set_bytes": 157765632,
+          "anon_bytes": 152158208,
+          "swap_bytes": 0,
+          "cpu_usec": 12142205,
+          "rbytes": 573440,
+          "wbytes": 90185728,
+          "rios": 132,
+          "wios": 25714
+        },
+        "rat-bench-rust-persisted.scope": {
+          "memory_bytes": 28585984,
+          "working_set_bytes": 11821056,
+          "anon_bytes": 6139904,
+          "swap_bytes": 0,
+          "cpu_usec": 4969494,
+          "rbytes": 163840,
+          "wbytes": 488542208,
+          "rios": 40,
+          "wios": 6438
+        }
+      }
+    }
+  ],
+  "method": "cgroup v2; working set = memory.current - inactive_file; CPU 100% = one core; excludes build tools and other services"
+}

@@ -1,0 +1,3 @@
+rat-rs: consuming iggy stream "rat-bench-persisted-20261106" into /home/crimxnhaze/.local/state/rat/bench-20261106/persisted-sink (checkpoint /home/crimxnhaze/.local/state/rat/bench-20261106/persisted-sink/checkpoints/rat-rs)
+rat-rs: shutdown requested
+{"records_read":10000,"records_rejected":0,"rejected_by_reason":{},"raw_rows":2500,"correlated_rows":7500,"late_dropped":0,"unjoinable":0,"batches":1891,"files_written":3665,"first_batch_id":1,"last_batch_id":1891,"state_entries":7500,"watermark_ms":1699999460000,"elapsed_ms":146235,"iggy":{"polls":7517,"messages":10000,"offset_gaps":1179666,"errors":0}}
